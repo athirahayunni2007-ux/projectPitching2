@@ -1,0 +1,32 @@
+{
+  "stressLevel": "High",
+  "pools": {
+    "Mild": [
+      { "title":"Gratitude Journaling", "desc":"Write down 3 things you're grateful for today" },
+      { "title":"Gentle Stretching",    "desc":"10 minutes of light stretching or yoga" },
+      { "title":"5-Minute Breathing",   "desc":"Practice 5 minutes of deep breathing exercises" }
+    ],
+    "Normal": [
+      { "title":"Morning Reflection",   "desc":"Spend 5 minutes setting an intention for the day" },
+      { "title":"Hydration Check",      "desc":"Drink a full glass of water and track intake" },
+      { "title":"Mindful Walk",         "desc":"Take a 10-minute walk paying attention to your surroundings" },
+      { "title":"Read for Pleasure",    "desc":"Read 10 pages of a book you enjoy" }
+    ],
+    "Moderate": [
+      { "title":"Gratitude Journal",    "desc":"Write down 3 things you're grateful for today" },
+      { "title":"Gentle Stretching",    "desc":"10 minutes of light stretching or yoga" },
+      { "title":"Mindful Breathing",    "desc":"Practice 5 minutes of deep breathing exercises" },
+      { "title":"Nature Walk",          "desc":"Take a 15-minute walk outside" },
+      { "title":"Connect with Someone", "desc":"Call or message a friend or family member" }
+    ],
+    "High": [
+      { "title":"Gratitude Journal",    "desc":"Write down 3 things you're grateful for today" },
+      { "title":"Gentle Stretching",    "desc":"10 minutes of light stretching or yoga" },
+      { "title":"Mindful Breathing",    "desc":"Practice 5 minutes of deep breathing exercises" },
+      { "title":"Nature Walk",          "desc":"Take a 15-minute walk outside" },
+      { "title":"Connect with Someone", "desc":"Call or message a friend or family member" },
+      { "title":"Digital Detox Hour",   "desc":"Spend 1 hour away from all screens" },
+      { "title":"Creative Expression",  "desc":"Draw, write, or play music for 20 minutes" }
+    ]
+  }
+}

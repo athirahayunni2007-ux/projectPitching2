@@ -1,0 +1,39 @@
+/* ============ CampusMind Footer styles ============ */
+.cm-footer{
+  margin-top:60px;
+  background:#0b3d33;
+  color:#cfe9df;
+  font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+}
+.cm-footer-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:40px 32px 24px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:32px;
+}
+.cm-footer h4.cm-footer-brand{
+  color:#fff;margin:0 0 10px;font-size:18px;font-weight:800;
+}
+.cm-footer h5{
+  color:#fff;margin:0 0 12px;font-size:14px;
+  text-transform:uppercase;letter-spacing:.05em;
+}
+.cm-footer p{margin:0;line-height:1.6;font-size:14px}
+.cm-footer ul{
+  list-style:none;padding:0;margin:0;
+  display:flex;flex-direction:column;gap:8px;font-size:14px;
+}
+.cm-footer a{color:#9ed8c5;text-decoration:none}
+.cm-footer a:hover{color:#fff;text-decoration:underline}
+.cm-footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:16px 32px;text-align:center;font-size:13px;color:#9ed8c5;
+}
+@media (max-width: 880px){
+  .cm-footer-inner{grid-template-columns:1fr 1fr;padding:32px 20px}
+}
+@media (max-width: 520px){
+  .cm-footer-inner{grid-template-columns:1fr}
+}
