@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result - CampusMind</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .status-container { text-align: center; padding-top: 20px; }
+        .result-box { 
+            background: #ffffff; 
+            border: 1px solid #88ab8e; 
+            border-radius: 15px; 
+            padding: 25px; 
+            text-align: left; 
+            margin: 20px 0;
+        }
+        .result-value { color: #709677; font-size: 32px; font-weight: bold; }
+        .btn-green {
+            background-color: #709677;
+            color: white;
+            padding: 15px;
+            width: 100%;
+            border-radius: 10px;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="screening-card status-container">
+        <h1 style="max-width: 100%;">Assessment Complete</h1>
+        <p>Here are your results and personalized recommendations.</p>
+
+        <div class="result-box">
+            <p style="font-size: 14px; color: #7a8a7c;">Your stress level is</p>
+            <p class="result-value" id="level">Mild</p>
+            <p id="message" style="font-size: 14px;">You are doing well, keep it up!</p>
+        </div>
+
+        <a href="index.html" class="btn-green">Go to Dashboard</a>
+    </div>
+
+    <script>
+        const score = localStorage.getItem('userScore') || 0;
+        const level = document.getElementById('level');
+        const message = document.getElementById('message');
+
+        if (score <= 4) { level.innerText = "Normal"; message.innerText = "You're handling things great!"; }
+        else if (score <= 8) { level.innerText = "Mild"; message.innerText = "You're experiencing mild stress. Self-care is recommended."; }
+        else { level.innerText = "Moderate"; message.innerText = "Consider taking a break or talking to a friend."; }
+    </script>
+</body>
+</html>
