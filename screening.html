@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screening of Mental Health</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="screening-card">
+        <div class="header">
+            <div class="title-group">
+                <h1>Mental Health Screening</h1>
+                <span class="question-count" id="question-number">Question 1 of 5</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-fill" id="progress-bar" style="width: 20%;"></div>
+            </div>
+        </div>
+
+        <main class="content">
+            <p class="question-text" id="question-display">
+                I found it hard to wind down.
+            </p>
+
+            <div class="options-list">
+                <button class="option-btn">Never</button>
+                <button class="option-btn">Rarely</button>
+                <button class="option-btn">Often</button>
+                <button class="option-btn">Very often</button>
+            </div>
+        </main>
+
+        <footer>
+            <p class="disclaimer">
+            This screening is for informational purposes only and is not a diagnostic tool 
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        
+        const questions = [
+            "I found it hard to wind down.",
+            "I was aware of dryness of my mouth.",
+            "I couldn't seem to experience any positive feeling.",
+            "I experienced breathing difficulty.",
+            "I found it difficult to work up the initiative to do things."
+        ];
+
+        let currentIndex = 0;
+        let totalScore = 0;
+
+        
+        const scoreMap = {
+            "Never": 0,
+            "Rarely": 1,
+            "Often": 2,
+            "Very often": 3
+        };
+
+        
+        const questionDisplay = document.getElementById('question-display');
+        const questionNumber = document.getElementById('question-number');
+        const progressBar = document.getElementById('progress-bar');
+        const buttons = document.querySelectorAll('.option-btn');
+
+        
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                
+                const selectedAnswer = e.target.innerText;
+                totalScore += scoreMap[selectedAnswer];
+
+                currentIndex++;
+
+                if (currentIndex < questions.length) {
+                    
+                    questionDisplay.innerText = questions[currentIndex];
+                    
+                    
+                    questionNumber.innerText = `Question ${currentIndex + 1} of 5`;
+                    let progressPercent = ((currentIndex + 1) / questions.length) * 100;
+                    progressBar.style.width = progressPercent + "%";
+                } else {
+                    
+                    localStorage.setItem('userScore', totalScore);
+                    alert("Thank you! Your score has been recorded.");
+                    window.location.href = "status.html"; 
+                }
+            });
+        });
+    </script>
+</body>
+</html>
