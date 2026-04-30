@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusMind</title>
+    <link rel = "stylesheet" href = "authentification.css">
+</head>
+
+<body>
+    <!--<header>
+        <h1>CampusMind</h1>
+        <h2>Your Journey to Mental Wellness <br>Supporting Student Mental Health</h2>
+    </header>-->
+
+    <div class ="signup">
+        <h1>Create Account</h1>
+        <h3>Join CampusMind to start your wellness journey</h3>
+
+            <label for = "name">Name</label> <br>
+            <input type = "text" id = "name" name = "name" placeholder="Enter your name" required><br><br>
+
+            <label>Email Address</label>
+            <br>
+            <input type="email" id="email" placeholder="your.email@example.com" required>
+            <br><br>
+
+            <label>Password</label>
+            <br>
+            <input type="password" id="password" placeholder="Create a password (min. 6 characters)" required>
+
+            <div class="showPasswordArea">
+                <input type ="checkbox" id="showPassword" onclick="showPassword()">
+                <label for="showPassword">Show password</label>
+            </div>
+            <br>
+            <button onclick="signUp()">Sign up</button>
+
+    </div>
+
+    <script src = "index.js"></script>
+</body>
+</html>

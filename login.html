@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusMind</title>
+    <link rel = "stylesheet" href = "authentification.css">
+</head>
+<body>
+    
+    <!--<div class ="login">
+        <h1>CampusMind</h1>
+        <h3>Your Journey to Mental Wellness<br>Supporting Student Mental Health</h3>
+    </div>-->
+
+    <div class ="welcome">
+        <h1>Welcome Back!</h1>
+        <h3>Sign in to continue your wellness journey</h3>
+
+        <label for = "loginEmail">Email Address</label><br>
+        <input type = "email" id ="email" name = "email" placeholder="your.email@example.com">
+        <br><br>
+
+        <label for = "password">Password</label><br>
+        <input  type = "password" id="password" name ="password" placeholder="Enter your password">
+
+        <div class="showPasswordArea">
+        <input type ="checkbox" id="showPassword" onclick="showPassword()">
+        <label for="showPassword">Show password</label>
+        </div>
+
+        <br><br>
+        <button onclick="login()">Sign in</button>
+
+        <p>Don't have an account?
+        <a href = "signup.html">Sign Up</a></p>
+    </div>
+
+    <script src = "index.js"></script>
+
+</body>
+</html>
