@@ -8,7 +8,7 @@
         .status-container { text-align: center; padding-top: 20px; }
         .result-box { 
             background: #ffffff; 
-            border: 1px solid #88ab8e; 
+            border: 2px solid #88ab8e; 
             border-radius: 15px; 
             padding: 25px; 
             text-align: left; 
@@ -22,7 +22,7 @@
             width: 100%;
             border-radius: 10px;
             text-decoration: none;
-            display: inline-block;
+            display: block;
             font-weight: bold;
             border: none;
             box-sizing: border-box;
@@ -33,35 +33,43 @@
     </style>
 </head>
 <body>
-    <div class="screening-card status-container" style="max-width: 500px; margin: 50px auto;">
-        <h1 style="max-width: 100%;">Assessment Complete</h1>
-        <p>Here are your results and personalized recommendations.</p>
+    <div class="screening-card status-container">
+        <h1 style="max-width: 100%; color: #3d4a3e;">Assessment Complete</h1>
+        <p style="color: #7a8a7c;">Here are your results and personalized recommendations.</p>
 
         <div class="result-box">
             <p style="font-size: 14px; color: #7a8a7c;">Your stress level is</p>
-            <p class="result-value" id="level">Calculating...</p>
-            <p id="message" style="font-size: 14px;">Please wait while we process your score.</p>
+            <p class="result-value" id="level">Normal</p>
+            <p id="message" style="font-size: 14px; color: #3d4a3e;">You are doing well, keep it up!</p>
         </div>
 
         <a href="dashboard.html" class="btn-green">Go to Dashboard</a>
     </div>
 
     <script>
-        const score = parseInt(localStorage.getItem('userScore')) || 0;
+        const results = JSON.parse(localStorage.getItem('dass_results'));
         const level = document.getElementById('level');
         const message = document.getElementById('message');
 
-        if (score <= 4) { 
-            level.innerText = "Normal"; 
-            message.innerText = "You're handling things great!"; 
-        }
-        else if (score <= 8) { 
-            level.innerText = "Mild"; 
-            message.innerText = "You're experiencing mild stress. Self-care is recommended."; 
-        }
-        else { 
-            level.innerText = "Moderate"; 
-            message.innerText = "Consider taking a break or talking to a friend."; 
+        if (results) {
+            const score = results.s; // Ambil score Stress (s) sahaja untuk paparan utama
+            
+            if (score <= 14) { 
+                level.innerText = "Normal"; 
+                message.innerText = "You're handling things great!"; 
+            }
+            else if (score <= 18) { 
+                level.innerText = "Mild"; 
+                message.innerText = "You're experiencing mild stress. Self-care is recommended."; 
+            }
+            else if (score <= 25) {
+                level.innerText = "Moderate";
+                message.innerText = "Consider taking a break or talking to a friend.";
+            }
+            else { 
+                level.innerText = "Severe"; 
+                message.innerText = "Please consider seeking support or professional advice."; 
+            }
         }
     </script>
 </body>
