@@ -84,11 +84,11 @@
     <h1 class="cm-brand">CampusMind</h1>
     <p class="cm-brand-sub">Student Mental Wellness</p>
     <div class="cm-user">
-      <div class="cm-avatar">AJ</div>
-      <div>
-        <div class="cm-uname">AJ</div>
-        <div class="cm-urole">Undergraduate</div>
-      </div>
+      <div class="cm-avatar" id="user-initials">U</div>
+            <div>
+                <div class="cm-uname" id="user-display-name">User</div>
+                <div class="cm-urole">Undergraduate</div>
+            </div>
     </div>
     <nav class="cm-nav">
       <a href="dashboard.html"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>Dashboard</a>
@@ -97,7 +97,7 @@
       <a href="support.html"><svg viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L7 10.5a16 16 0 0 0 6.5 6.5l1.75-1.79a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg>Support</a>
       <a href="about_us.html"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2"/><path d="M15 20c0-2 2-4 5-4"/></svg>About Us</a>
     </nav>
-    <a href="index.html" class="cm-logout">
+    <a href="index.html" class="cm-logout" onclick="localStorage.removeItem('activeUser');">
       <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
       Log out
     </a>
@@ -180,6 +180,11 @@
     index = (day - 1) mod totalActivities
   Day 1..21 cycles through the activity pool for the user's stress level.
 */
+
+const savedName = localStorage.getItem('activeUser') || "Guest";
+    document.getElementById('user-display-name').innerText = savedName;
+    document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
+
 (function(){
   var STORAGE_KEY = 'cm_daily_progress_v1';
   var LEVEL_KEY   = 'cm_stress_level_v1';
