@@ -6,7 +6,6 @@
 <title>Support · CampusMind</title>
 <link rel="stylesheet" href="theme.css" />
 <style>
-  /* Page-specific styles */
   .support-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:760px}
   .support-card .cover{
     width:100%;height:230px;object-fit:cover;display:block;background:#e2e8f0;
@@ -25,11 +24,18 @@
   .info-label{font-weight:600;font-size:14px;margin:0 0 2px}
   .info-value{margin:0;color:var(--cm-green);font-size:14px;line-height:1.5}
   .loading{padding:40px;text-align:center;color:var(--cm-muted)}
+
+  @media(max-width:990px){
+    .support-grid{max-width:100%}
+  }
+  @media(max-width:600px){
+    .support-card .cover{height:160px}
+    .support-body{padding:16px}
+  }
 </style>
 </head>
 <body>
 <div class="cm-app">
-  <!-- Sidebar -->
   <aside class="cm-sidebar">
     <h1 class="cm-brand">CampusMind</h1>
     <p class="cm-brand-sub">Student Mental Wellness</p>
@@ -42,7 +48,7 @@
     </div>
     <nav class="cm-nav">
       <a href="dashboard.html"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>Dashboard</a>
-      <a href="dailytasks.html"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Daily Tasks</a>
+      <a href="daily_tasks.html"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Daily Tasks</a>
       <a href="resource_library.html"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h8M8 11h8"/></svg>Resources</a>
       <a href="support.html" class="active"><svg viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L7 10.5a16 16 0 0 0 6.5 6.5l1.75-1.79a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg>Support</a>
       <a href="about_us.html"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2"/><path d="M15 20c0-2 2-4 5-4"/></svg>About Us</a>
@@ -53,7 +59,6 @@
     </a>
   </aside>
 
-  <!-- Main -->
   <main class="cm-main">
     <h2 class="cm-page-title">Counseling &amp; Support</h2>
     <p class="cm-page-sub">You're not alone. Reach out to our professional support services.</p>
@@ -66,7 +71,6 @@
   </main>
 </div>
 
-<!-- Inline JSON data (also used as fallback if AJAX fails) -->
 <script id="support-data" type="application/json">
 {
   "services": [
@@ -99,7 +103,6 @@
 </script>
 
 <script>
-/* AJAX-style loader: tries support.json first, then falls back to inline JSON. */
 const savedName = localStorage.getItem('activeUser') || "Guest";
     document.getElementById('user-display-name').innerText = savedName;
     document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();

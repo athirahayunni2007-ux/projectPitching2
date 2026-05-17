@@ -52,7 +52,7 @@
         const message = document.getElementById('message');
 
         if (results) {
-            const score = results.s; // Ambil score Stress (s) sahaja untuk paparan utama
+            const score = results.s;
             
             if (score <= 14) { 
                 level.innerText = "Normal"; 
@@ -67,7 +67,7 @@
                 message.innerText = "Consider taking a break or talking to a friend.";
             }
             else { 
-                level.innerText = "Severe"; 
+                level.innerText = "High"; 
                 message.innerText = "Please consider seeking support or professional advice."; 
             }
         }
