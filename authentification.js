@@ -28,6 +28,7 @@ function signUp() {
     userList.push (newUsers);
 
     localStorage.setItem("allUsers", JSON.stringify(userList));
+    localStorage.setItem("activeUser", newUsers.name);
 
     console.log ("Updated list:",userList);
     alert("Successfully sign up!");
