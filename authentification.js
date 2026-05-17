@@ -50,6 +50,8 @@ function login() {
     } 
 
     else if (foundUser.password === loginPassword) {
+        localStorage.setItem("activeUser", foundUser.name);
+        
         alert("Login successfully!");
         window.location.href = "dashboard.html";
     } 
