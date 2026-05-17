@@ -51,7 +51,7 @@ function login() {
 
     else if (foundUser.password === loginPassword) {
         alert("Login successfully!");
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
     } 
 
     else {
