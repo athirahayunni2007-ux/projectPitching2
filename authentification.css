@@ -1,6 +1,6 @@
-body{
-margin: 0;
-    padding: 0;
+body {
+    margin: 0;
+    padding: 20px; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f4f2;
     display: flex;
@@ -9,138 +9,90 @@ margin: 0;
     justify-content: center;
     min-height: 100vh;
     color: #3d4a3e;
-    background-image: url(https://i.pinimg.com/736x/f2/cf/06/f2cf06ffc4fc2bb973647bae2af3ec53.jpg);
+    background-image: url('https://i.pinimg.com/736x/f2/cf/06/f2cf06ffc4fc2bb973647bae2af3ec53.jpg');
     background-size: cover;
-}
-
-.manual {
-    background-color: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    max-width: 600px; /* Lebih lebar sedikit untuk teks panjang */
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.instruction {
-    text-align: left; /* Senarai lebih senang dibaca rapat ke kiri */
-    margin: 30px 0;
-    color: #3d4a3e;
-    line-height: 1.6;
-}
-
-.instruction ol {
-    padding-left: 20px;
-}
-
-.instruction li {
-    margin-bottom: 15px;
-}
-
-.instruction p {
-    margin-top: 25px;
-    font-style: italic;
-    color: #88ab8e;
-}
-
-.buttons {
-    margin-top: 20px;
-}
-
-
-/* Header Branding (CampusMind) */
-/*header, .login {
-    text-align: center;
-    margin-bottom: 20px;
-}*/
-
-/*header h1, .login h1 {
-    color: #88ab8e;
-    font-size: 2.5rem;
-    margin-bottom: 0;
-}
-
-header h2, .login h3 {
-    color: #7a8a7c;
-    font-size: 1.5rem;
-    line-height: 1.5;
-}
-*/
-
-/* Card Utama (Login & Signup) */
-.signup, .welcome {
-    background-color: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    max-width: 500px;
+    background-position: center;
     box-sizing: border-box;
 }
 
-/* Tajuk Dalam Card */
-.signup h1, .welcome h1 {
-    font-size: 1.8rem;
+.manual, .signup, .welcome {
+    background-color: rgba(255, 255, 255, 0.95); 
+    backdrop-filter: blur(5px); 
+    padding: 30px 24px; 
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+
+h1 {
+    font-size: 1.6rem;
     margin-top: 0;
     text-align: center;
+    color: #3d4a3e;
 }
 
-.signup h3, .welcome h3 {
-    font-size: 1.2rem;
+h3 {
+    font-size: 1rem;
     color: #7a8a7c;
     font-weight: 400;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     text-align: center;
+    line-height: 1.4;
 }
 
-/* Input & Form */
+
 label {
     font-weight: 600;
     font-size: 0.85rem;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     display: inline-block;
 }
 
 input {
     width: 100%;
-    padding: 10px 15px;
+    padding: 12px 15px;
     border: 1.5px solid #e0eadd;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     outline: none;
     box-sizing: border-box;
     transition: all 0.3s ease;
-}
-
-.showPasswordArea {
-    display: flex;
-    align-items: center;
-    margin-top: 10px; /* Jarak dari input password */
-}
-
-.showPasswordArea input[type="checkbox"] {
-    width: auto; /* Supaya checkbox tak jadi besar lebar sebaris */
-    margin-right: 8px;
-    cursor: pointer;
-}
-
-.checkbox label {
-    font-size: 0.8rem;
-    font-weight: 400; /* Tak perlu bold sangat */
-    color: #88ab8e;
-    margin-bottom: 0; /* Override margin-bottom label biasa */
-    cursor: pointer;
-    display: inline;
+    margin-bottom: 16px; 
 }
 
 input:focus {
     border-color: #88ab8e;
-    box-shadow: 0 0 0 3px rgba(136, 171, 142, 0.1);
+    box-shadow: 0 0 0 3px rgba(136, 171, 142, 0.15);
 }
 
-/* Button */
+
+.showPasswordArea {
+    display: flex;
+    align-items: center;
+    margin-top: -4px;
+    margin-bottom: 20px;
+}
+
+.showPasswordArea input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.showPasswordArea label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5a6e5d;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+
 button {
     width: 100%;
     padding: 14px;
@@ -162,11 +114,34 @@ button:active {
     transform: scale(0.98);
 }
 
-/* Link Footer */
+/* Index/Manual Specific Styles */
+.instruction {
+    text-align: left;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.instruction ol {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.instruction li {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.instruction p {
+    margin-top: 20px;
+    font-style: italic;
+    color: #618264;
+    text-align: center;
+}
+
 p {
     text-align: center;
     font-size: 0.9rem;
-    color:#7a8a7c;
+    color: #7a8a7c;
     margin-top: 20px;
 }
 
@@ -177,5 +152,40 @@ a {
 }
 
 a:hover {
-    text-decoration:underline;
+    text-decoration: underline;
+}
+
+
+@media (min-width: 600px) {
+    body {
+        padding: 40px;
+    }
+
+    .manual, .signup, .welcome {
+        padding: 40px;
+        max-width: 500px; 
+    }
+
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .manual {
+        max-width: 600px; 
+    }
+    
+    .signup, .welcome {
+        max-width: 450px; 
+    }
+
+    .manual:hover, .signup:hover, .welcome:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
 }
