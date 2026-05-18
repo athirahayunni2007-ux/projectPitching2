@@ -17,19 +17,16 @@ function signUp() {
     let emailInput = document.getElementById("email").value.trim();
     let passwordInput = document.getElementById("password").value.trim();
 
-    // 1. Sekat jika ada kotak kosong
     if (nameInput === "" || emailInput === "" || passwordInput === "") {
         alert("Please fill in all the details before signing up!");
         return;
     }
 
-    // 2. Sekat jika password kurang 6 aksara
     if (passwordInput.length < 6) {
         alert("Password must be at least 6 characters long!");
         return;
     }
 
-    // 3. Simpan data (Gunakan pembolehubah yang telah di-trim tadi)
     let userList = JSON.parse(localStorage.getItem("allUsers")) || [];
 
     let newUsers = {
@@ -50,14 +47,12 @@ function signUp() {
 }
 
 function login() {
-    // 1. Ambil nilai input dan buang ruang kosong (.trim())
     let loginEmail = document.getElementById("email").value.trim();
     let loginPassword = document.getElementById("password").value.trim();
 
-    // 2. [PART BARU] Sekat jika user tidak isi langsung kotak email atau password
     if (loginEmail === "" || loginPassword === "") {
         alert("Please enter both your email and password to log in!");
-        return; // Hentikan fungsi serta-merta, tak sempat check login
+        return; 
     }
 
     let userList = JSON.parse(localStorage.getItem("allUsers")) || [];
