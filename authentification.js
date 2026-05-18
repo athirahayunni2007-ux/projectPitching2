@@ -13,7 +13,7 @@ function showPassword(){
         passwordInput.type = "password";
     }
 }
-function signUp() {
+function signUp(){
 
     //take data from local storage
     let userList = JSON.parse(localStorage.getItem("allUsers")) || [];

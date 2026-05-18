@@ -1,13 +1,13 @@
 {
   "materials": [
-    { "id":"a1","type":"Articles","title":"Managing Exam Stress","description":"Practical tips for handling academic pressure.","tags":["stress","study","academic"] },
-    { "id":"a2","type":"Articles","title":"Building Healthy Sleep Habits","description":"Why sleep matters for your mental health.","tags":["sleep","wellness"] },
-    { "id":"a3","type":"Articles","title":"Mindful Eating on Campus","description":"Nutrition basics for busy students.","tags":["nutrition","mindfulness"] },
-    { "id":"v1","type":"Videos","title":"5-Minute Breathing Exercise","description":"A quick guided breathing session.","tags":["breathing","calm"] },
-    { "id":"v2","type":"Videos","title":"Yoga for Beginners","description":"Gentle stretches you can do at your desk.","tags":["yoga","movement"] },
-    { "id":"v3","type":"Videos","title":"Talking About Mental Health","description":"How to open up to friends and family.","tags":["communication","support"] },
-    { "id":"p1","type":"Posters","title":"Daily Self-Care Checklist","description":"Printable poster for your dorm wall.","tags":["selfcare","printable"] },
-    { "id":"p2","type":"Posters","title":"Grounding 5-4-3-2-1 Technique","description":"Visual guide for anxiety relief.","tags":["anxiety","grounding"] },
-    { "id":"p3","type":"Posters","title":"Emergency Helplines IIUM","description":"Keep these numbers handy.","tags":["emergency","helpline"] }
+    { "id":"e1","type":"E-Books","title":"Suicide Prevention Kit","description":"Collection of items designed to help individuals remember their reasons to keep living.","tags":["kit","suicide"] },
+    { "id":"e2","type":"E-Books","title":"Campus Survival Kit","description":"Why campus preparation and survival skill is important for your mental health.","tags":["campus","kit"] },
+    { "id":"e3","type":"E-Books","title":"IIUM Student Mental Health Policy 2021","description":"IIUM views an individual with good mental health as someone who displays the characteristics of Insan Sejahtera","tags":["sejahtera","policy"] },
+    { "id":"e4","type":"E-Books","title":"Mental Health Tips for Students","description":"Practical advice for maintaining good mental health during your free time.","tags":["mental health","tips"] },
+    { "id":"v1","type":"Videos","title":"Podcast Bicara Sihat: \"Bukan Sekadar Sedih\" - Memahami Depresi","description":"Remember, seeking help is a strength, not a weakness.","tags":["depression","podcast"] },
+    { "id":"v2","type":"Videos","title":"What's on Your Mind? | UNICEF","description":"Opening up about your struggles with someone you trust can help you feel better. #OnYourMind","tags":["depression","struggles"] },
+    { "id":"v3","type":"Videos","title":"Patient Story On Recovering From Mental Health Illness","description":"What’s the best way to remove the stigma around mental health and suicide ideation? Talk openly about our own stories.","tags":["communication","support"] },
+    { "id":"p1","type":"Posters","title":"LIVE LIFE","description":"WHO initiative to support countries to advance political will, national strategic action, and serve as a catalyst for governments to take evidence-based action to prevent suicide.","tags":["WHO","government"] },
+    { "id":"p2","type":"Posters","title":"Talian Sokongan Psikososial","description":"services that respond to calls and crises related to mental health, suicidal behavior, self-harm or harm to others, as well as post-vention and follow-up calls in the community.","tags":["helpline","support"] }
   ]
 }
