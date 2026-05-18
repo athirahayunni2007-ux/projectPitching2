@@ -5,14 +5,26 @@ body {
     background-color: #f0f4f2;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     min-height: 100vh;
     color: #3d4a3e;
     background-image: url('https://i.pinimg.com/736x/f2/cf/06/f2cf06ffc4fc2bb973647bae2af3ec53.jpg');
     background-size: cover;
     background-position: center;
     box-sizing: border-box;
+}
+
+.auth-container {
+    flex: 1; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    width: 100%;
+}
+
+#cm-footer-slot {
+    width: 100%;
+    margin-top: auto; 
+    /*padding-top: 20px;*/
 }
 
 .manual, .signup, .welcome {
@@ -176,11 +188,8 @@ a:hover {
 }
 
 @media (min-width: 1024px) {
-    .manual {
-        max-width: 600px; 
-    }
     
-    .signup, .welcome {
+    .manual,.signup, .welcome {
         max-width: 450px; 
     }
 
