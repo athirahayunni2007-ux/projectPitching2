@@ -6,6 +6,18 @@
     if (y) y.textContent = new Date().getFullYear();
   }
 
+  
+  function adjustFooterFont() {
+    var slot = document.getElementById('cm-footer-slot');
+   
+    if (slot && typeof currentScale !== 'undefined' && currentScale > 100) {
+      var footerTexts = slot.querySelectorAll('.cm-footer h4, .cm-footer h5, .cm-footer p, .cm-footer a, .cm-footer li');
+      for (var i = 0; i < footerTexts.length; i++) {
+        footerTexts[i].style.fontSize = (currentScale / 100) + 'em';
+      }
+    }
+  }
+
   function mount() {
     var slot = document.getElementById('cm-footer-slot');
     if (!slot) return;
@@ -17,6 +29,7 @@
         if (xhr.status === 200 || xhr.status === 0) {
           slot.innerHTML = xhr.responseText;
           injectYear();
+          adjustFooterFont(); // <-- Panggil fungsi adjust font kat sini sebaik sahaja footer selesai di-load
         }
       }
     };

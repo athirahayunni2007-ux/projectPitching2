@@ -4,42 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CampusMind</title>
-    <link rel = "stylesheet" href = "authentification.css">
+    <link rel="stylesheet" href="authentification.css">
+    <style>
+        html, body {
+            min-height: 100%;
+            margin: 0;
+        }
+        body {
+            font-size: 16px;
+            transition: font-size 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 60px 20px;
+            box-sizing: border-box;
+        }
+        .accessibility-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+        .accessibility-tools {
+            display: flex;
+            gap: 6px;
+            background: #fff;
+            padding: 4px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+        }
+        .btn-access {
+            background: transparent;
+            border: none;
+            color: #334155;
+            padding: 6px 12px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.1s;
+        }
+        .btn-access:hover {
+            background: #eafff5;
+            color: #0f766e;
+        }
+        @media(max-width: 600px) {
+            .accessibility-container {
+                top: 10px;
+                right: 10px;
+            }
+            body {
+                padding: 50px 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!--<header>
-        <h1>CampusMind</h1>
-        <h2>Your Journey to Mental Wellness <br>Supporting Student Mental Health</h2>
-    </header>-->
-    <main class="auth-container">
-    <div class ="signup">
+
+    <div class="accessibility-container">
+        <div class="accessibility-tools">
+            <button class="btn-access" onclick="changeFontSize('up')" title="Besarkan tulisan">A+</button>
+            <button class="btn-access" onclick="changeFontSize('down')" title="Kecilkan tulisan">A-</button>
+        </div>
+    </div>
+
+    <div class="signup cm-main">
         <h1>Create Account</h1>
         <h3>Join CampusMind to start your wellness journey</h3>
 
-            <label for = "name">Name</label> <br>
-            <input type = "text" id = "name" name = "name" placeholder="Enter your name" required><br><br>
+        <label for="name">Name</label> <br>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
 
-            <label>Email Address</label>
-            <br>
-            <input type="email" id="email" placeholder="your.email@example.com" required>
-            <br><br>
+        <label for="email">Email Address</label>
+        <br>
+        <input type="email" id="email" placeholder="your.email@example.com" required>
+        <br><br>
 
-            <label>Password</label>
-            <br>
-            <input type="password" id="password" placeholder="Create a password (min. 6 characters)" required>
+        <label for="password">Password</label>
+        <br>
+        <input type="password" id="password" placeholder="Create a password (min. 6 characters)" required>
 
-            <div class="showPasswordArea">
-                <input type ="checkbox" id="showPassword" onclick="showPassword()">
-                <label for="showPassword">Show password</label>
-            </div>
-            <br>
-            <button onclick="signUp()">Sign up</button>
-
+        <div class="showPasswordArea">
+            <input type="checkbox" id="showPassword" onclick="showPassword()">
+            <label for="showPassword">Show password</label>
+        </div>
+        <br>
+        <button onclick="signUp()">Sign up</button>
     </div>
-    </main><div id="cm-footer-slot"></div>
+    <div id="cm-footer-slot"></div>
 
-    <script src= "authentification.js"></script>
+    <script>
+    let currentScale = 100; 
+    function changeFontSize(action) {
+        if(action === 'up') {
+            if(currentScale < 150) currentScale += 15; 
+        } else {
+            if(currentScale > 100) currentScale -= 15; 
+        }
+        
+        document.body.style.fontSize = currentScale + '%';
+        
+        const mainContent = document.querySelector('.cm-main');
+        if(mainContent) {
+            mainContent.style.fontSize = currentScale + '%';
+            const allMainTexts = mainContent.querySelectorAll('h1, h3, label, input, div, button');
+            allMainTexts.forEach(el => {
+                if (!el.classList.contains('btn-access')) {
+                    el.style.fontSize = (currentScale / 100) + 'em';
+                }
+            });
+        }
+
+        const sidebar = document.querySelector('.cm-sidebar');
+        if(sidebar) {
+            const allSidebarTexts = sidebar.querySelectorAll('.cm-uname, .cm-urole, .cm-brand, .cm-brand-sub, .cm-nav a, .cm-logout');
+            allSidebarTexts.forEach(el => {
+                el.style.fontSize = (currentScale / 100) + 'em';
+            });
+        }
+
+        const footerSlot = document.getElementById('cm-footer-slot');
+        if(footerSlot) {
+            const footerTexts = footerSlot.querySelectorAll('.cm-footer h4, .cm-footer h5, .cm-footer p, .cm-footer a, .cm-footer li');
+            footerTexts.forEach(el => {
+                el.style.fontSize = (currentScale / 100) + 'em';
+            });
+        }
+    }
+    </script>
+    <script src="authentification.js"></script>
     <script src="footer.js"></script>
 </body>
 </html>

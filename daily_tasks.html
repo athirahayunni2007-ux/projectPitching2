@@ -1,288 +1,157 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Daily Tasks · CampusMind</title>
-<link rel="stylesheet" href="theme.css" />
-<style>
-  .progress-card{
-    background:#eafff5;
-    border:1px solid #b7ebd5;
-    border-radius:14px;
-    padding:22px 26px;
-    margin-bottom:24px;
-    display:flex;flex-direction:column;gap:14px;
-    box-shadow:var(--cm-shadow);
-  }
-  .progress-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
-  .progress-title{margin:0;font-size:22px;font-weight:800;color:var(--cm-green-dark)}
-  .progress-sub{margin:4px 0 0;color:#0f766e;font-size:14px}
-  .progress-sub b{font-weight:700;color:var(--cm-green-dark)}
-  .reset-btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:8px 14px;border-radius:10px;background:#fff;
-    border:1px solid #b7ebd5;color:var(--cm-green-dark);
-    font-weight:600;font-size:13px;cursor:pointer;font-family:inherit;
-  }
-  .reset-btn:hover{background:#f0fdf4}
-  .reset-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Daily Tasks · CampusMind</title>
+    <link rel="stylesheet" href="theme.css" />
+    <style>
+        /* AKSESIBILITI */
+        .accessibility-tools { display: flex; gap: 6px; background: #fff; padding: 4px; border-radius: 8px; border: 1px solid var(--cm-border); display: inline-flex; }
+        .btn-access { background: transparent; border: none; color: var(--cm-text); padding: 4px 10px; font-weight: 700; font-size: 14px; cursor: pointer; border-radius: 6px; transition: 0.1s; }
+        .btn-access:hover { background: var(--cm-green-soft); color: var(--cm-green-dark); }
+        
+        /* TASK GRID & CARDS */
+        .tasks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
+        
+        .task-card { 
+            background: var(--cm-card); border: 1px solid var(--cm-border); padding: 20px; border-radius: 12px; 
+            display: flex; gap: 15px; cursor: pointer; transition: all 0.3s ease-in-out; 
+            box-shadow: var(--cm-shadow);
+        }
+        .task-card:hover { border-color: var(--cm-green); }
+        
+        .task-card.done { 
+            opacity: 0.7; background: #f0fdf4; border-color: var(--cm-green); transform: scale(0.98); 
+        }
+        .task-card.done h4 { text-decoration: line-through; color: var(--cm-green-dark); }
+        
+        /* BUTANG RESET */
+        #reset-btn {
+            background: #fee2e2; border: 1px solid #fecaca; color: #b91c1c;
+            padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;
+            transition: 0.2s; margin-top: 15px;
+        }
+        #reset-btn:hover { background: #fecaca; }
 
-  .progress-row{display:flex;justify-content:space-between;font-size:13px;color:#0f766e;font-weight:500}
-  .bar{height:8px;background:#c9efde;border-radius:999px;overflow:hidden}
-  .bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--cm-green),#34d399);border-radius:999px;transition:width .3s}
-
-  .tasks-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media(max-width:990px){.tasks-grid{grid-template-columns:1fr}}
-
-  .task{
-    background:#fff;border:1px solid var(--cm-border);border-radius:12px;
-    padding:18px 20px;display:flex;gap:14px;align-items:flex-start;
-    transition:border-color .15s, box-shadow .15s;
-  }
-  .task:hover{border-color:var(--cm-green);box-shadow:var(--cm-shadow)}
-  .task.done{background:#f8fafc;opacity:.75}
-  .task.done .task-title{text-decoration:line-through;color:var(--cm-muted)}
-
-  .task-check{
-    width:20px;height:20px;border:2px solid #cbd5e1;border-radius:5px;
-    flex:none;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;
-    background:#fff;
-  }
-  .task-check.checked{background:var(--cm-green);border-color:var(--cm-green)}
-  .task-check svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:3;display:none}
-  .task-check.checked svg{display:block}
-
-  .task-day{
-    display:inline-flex;align-items:center;gap:6px;
-    color:var(--cm-green);font-size:12px;font-weight:600;
-    text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;
-  }
-  .task-day svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
-  .task-title{margin:0 0 4px;font-size:15px;font-weight:700;color:var(--cm-text)}
-  .task-desc{margin:0;color:var(--cm-muted);font-size:13px;line-height:1.5}
-
-  .stress-pill{
-    display:inline-block;padding:2px 8px;border-radius:6px;
-    background:#fef3c7;color:#92400e;font-weight:700;
-  }
-  .level-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:4px}
-  .level-row .lbl{font-size:13px;color:#0f766e;font-weight:600;margin-right:4px}
-  .level-btn{
-    padding:6px 12px;border-radius:999px;border:1px solid #b7ebd5;
-    background:#fff;color:var(--cm-green-dark);font-weight:600;font-size:12px;
-    cursor:pointer;font-family:inherit;
-  }
-  .level-btn:hover{background:#f0fdf4}
-  .level-btn.active{background:var(--cm-green);color:#fff;border-color:var(--cm-green)}
-</style>
+        /* PROGRESS BAR */
+        #progress-bar { transition: width 0.5s ease-in-out; }
+    </style>
 </head>
 <body>
+
 <div class="cm-app">
-  <aside class="cm-sidebar">
-    <h1 class="cm-brand">CampusMind</h1>
-    <p class="cm-brand-sub">Student Mental Wellness</p>
-    <div class="cm-user">
-      <div class="cm-avatar" id="user-initials">U</div>
+    <aside class="cm-sidebar">
+        <h1 class="cm-brand">CampusMind</h1>
+        <p class="cm-brand-sub">Student Mental Wellness</p>
+        <div class="cm-user">
+            <div class="cm-avatar" id="user-initials">U</div>
             <div>
                 <div class="cm-uname" id="user-display-name">User</div>
                 <div class="cm-urole">Undergraduate</div>
             </div>
-    </div>
-    <nav class="cm-nav">
-      <a href="dashboard.html"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>Dashboard</a>
-      <a href="daily_tasks.html" class="active"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Daily Tasks</a>
-      <a href="resource_library.html"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h8M8 11h8"/></svg>Resources</a>
-      <a href="support.html"><svg viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L7 10.5a16 16 0 0 0 6.5 6.5l1.75-1.79a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg>Support</a>
-      <a href="about_us.html"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2"/><path d="M15 20c0-2 2-4 5-4"/></svg>About Us</a>
-    </nav>
-    <a href="index.html" class="cm-logout" onclick="localStorage.removeItem('activeUser');">
-      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
-      Log out
-    </a>
-  </aside>
-
-  <main class="cm-main">
-    <h2 class="cm-page-title">Your 21-Day Wellness Plan</h2>
-    <p class="cm-page-sub">Complete daily tasks to support your mental health journey</p>
-
-    <div class="progress-card">
-      <div class="progress-top">
-        <div>
-          <h3 class="progress-title"><span id="done-count">0</span> / 21 Tasks Completed</h3>
-          <p class="progress-sub">Personalized plan for <b><span class="stress-pill" id="stress-level">High</span></b> stress level</p>
         </div>
-        <button class="reset-btn" id="reset-btn">
-          <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
-          Reset Progress
-        </button>
-      </div>
+        <nav class="cm-nav">
+            <a href="dashboard.html"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>Dashboard</a>
+            <a href="daily_tasks.html" class="active"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Daily Tasks</a>
+            <a href="resource_library.html"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h8M8 11h8"/></svg>Resources</a>
+            <a href="support.html"><svg viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L7 10.5a16 16 0 0 0 6.5 6.5l1.75-1.79a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg>Support</a>
+            <a href="about_us.html"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2"/><path d="M15 20c0-2 2-4 5-4"/></svg>About Us</a>
+        </nav>
+        <a href="index.html" class="cm-logout" onclick="localStorage.removeItem('activeUser');">
+            <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Log out
+        </a>
+    </aside>
 
+    <main class="cm-main">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <h2 class="cm-page-title">Your 21-Day Wellness Plan</h2>
+                <p class="cm-page-sub">Stress Level: <b id="stress-level-text">Normal</b></p>
+            </div>
+            <div class="accessibility-tools">
+                <button class="btn-access" onclick="changeFontSize('up')">A+</button>
+                <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+            </div>
+        </div>
+        
+        <div class="cm-card" style="padding:20px; margin-bottom:30px;">
+            <h3><span id="done-count">0</span> / 21 Tasks Completed</h3>
+            <div style="background:#e5e7eb; height:10px; border-radius:5px; overflow:hidden;">
+                <div id="progress-bar" style="height:100%; width:0%; background:var(--cm-green);"></div>
+            </div>
+            <button id="reset-btn">Reset Progress</button>
+        </div>
 
-      <div>
-        <div class="progress-row"><span>Overall Progress</span><span id="progress-pct">0%</span></div>
-        <div class="bar"><span id="progress-bar" style="width:0%"></span></div>
-      </div>
-    </div>
-
-    <div id="tasks" class="tasks-grid"></div>
-
-    <div id="cm-footer-slot"></div>
-  </main>
+        <div id="tasks" class="tasks-grid"></div>
+    </main>
 </div>
 
-<script id="tasks-data" type="application/json">
-{
-  "stressLevel": "High",
-  "pools": {
-    "Mild": [
-      { "title":"Gratitude Journaling", "desc":"Write down 3 things you're grateful for today" },
-      { "title":"Gentle Stretching",    "desc":"10 minutes of light stretching or yoga" },
-      { "title":"5-Minute Breathing",   "desc":"Practice 5 minutes of deep breathing exercises" }
-    ],
-    "Normal": [
-      { "title":"Morning Reflection",   "desc":"Spend 5 minutes setting an intention for the day" },
-      { "title":"Hydration Check",      "desc":"Drink a full glass of water and track intake" },
-      { "title":"Mindful Walk",         "desc":"Take a 10-minute walk paying attention to your surroundings" },
-      { "title":"Read for Pleasure",    "desc":"Read 10 pages of a book you enjoy" }
-    ],
-    "Moderate": [
-      { "title":"Gratitude Journal",    "desc":"Write down 3 things you're grateful for today" },
-      { "title":"Gentle Stretching",    "desc":"10 minutes of light stretching or yoga" },
-      { "title":"Gentle Stretching",    "desc":"10 minutes of light stretching or yoga" },
-      { "title":"Mindful Breathing",    "desc":"Practice 5 minutes of deep breathing exercises" },
-      { "title":"Nature Walk",          "desc":"Take a 15-minute walk outside" },
-      { "title":"Connect with Someone", "desc":"Call or message a friend or family member" }
-    ],
-    "High": [
-      { "title":"Gratitude Journal",    "desc":"Write down 3 things you're grateful for today" },
-      { "title":"Gentle Stretching",    "desc":"10 minutes of light stretching or yoga" },
-      { "title":"Mindful Breathing",    "desc":"Practice 5 minutes of deep breathing exercises" },
-      { "title":"Nature Walk",          "desc":"Take a 15-minute walk outside" },
-      { "title":"Connect with Someone", "desc":"Call or message a friend or family member" },
-      { "title":"Digital Detox Hour",   "desc":"Spend 1 hour away from all screens" },
-      { "title":"Creative Expression",  "desc":"Draw, write, or play music for 20 minutes" }
-    ]
-  }
-}
-</script>
-
 <script>
-const savedName = localStorage.getItem('activeUser') || "Guest";
+    // Tetapan Pengguna
+    const savedName = localStorage.getItem('activeUser') || "Guest";
     document.getElementById('user-display-name').innerText = savedName;
     document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
 
-(function(){
-  var STORAGE_KEY = 'cm_daily_progress_v1';
-  var LEVEL_KEY   = 'cm_stress_level_v1';
-  var TOTAL_DAYS = 21;
-  var FALLBACK = JSON.parse(document.getElementById('tasks-data').textContent);
-  var data = FALLBACK;
-var completed = loadProgress();
+    // Fungsi Aksesibiliti
+    let currentScale = 100;
+    function changeFontSize(action) {
+        if(action === 'up' && currentScale < 150) currentScale += 15;
+        if(action === 'down' && currentScale > 100) currentScale -= 15;
+        document.body.style.fontSize = currentScale + '%';
+        document.querySelectorAll('h1, h2, h3, h4, p, span, div, a').forEach(el => {
+            el.style.fontSize = (currentScale / 100) + 'em';
+        });
+    }
 
-var rawResults = localStorage.getItem("dass_results");
-console.log("Tahap stress tersimpan di LocalStorage:", rawResults);
+    const myTasks = [
+    { title: "Deep Breathing", desc: "Take 5 minutes for deep breathing to reduce tension." },
+    { title: "Physical Activity", desc: "Perform stretching or go for a 15-minute walk." },
+    { title: "Prioritization", desc: "Organize today's tasks using the prioritization matrix." }
+    ];
 
-// 2. Set default level dahulu
-data.stressLevel = "Normal"; 
-
-if (rawResults) {
+    let level = "Normal";
     try {
-        // 3. Parse string menjadi Object JavaScript
-        var parsedResults = JSON.parse(rawResults);
-        
-        // 4. Ambil nilai 's' (Stress)
-        var s = parsedResults.s; 
-        
-        // 5. Tentukan string level berdasarkan skor DASS-21 (Ikut logik dashboard.html)
-        if (s <= 14) data.stressLevel = "Normal";
-        else if (s <= 18) data.stressLevel = "Mild";
-        else if (s <= 25) data.stressLevel = "Moderate";
-        else data.stressLevel = "High";
-        
-    } catch(e) {
-        console.error("Gagal membaca data dass_results:", e);
+        const raw = localStorage.getItem("dass_results");
+        if(raw) {
+            const s = JSON.parse(raw).s;
+            level = s <= 14 ? "Normal" : s <= 18 ? "Mild" : s <= 25 ? "Moderate" : "High";
+        }
+    } catch(e) {}
+
+    let completed = JSON.parse(localStorage.getItem('cm_daily_progress_v1')) || {};
+
+    function render() {
+        const tasksDiv = document.getElementById('tasks');
+        tasksDiv.innerHTML = '';
+        let doneCount = 0;
+
+        for (let i = 1; i <= 21; i++) {
+            const taskInfo = myTasks[(i - 1) % myTasks.length];
+            const isDone = !!completed[i];
+            if(isDone) doneCount++;
+
+            const div = document.createElement('div');
+            div.className = `task-card ${isDone ? 'done' : ''}`;
+            div.innerHTML = `<div><h4 style="margin:0;">Day ${i}: ${taskInfo.title}</h4>
+                             <p style="margin:5px 0 0; color:var(--cm-muted); font-size:13px;">${taskInfo.desc}</p></div>`;
+            div.onclick = () => {
+                completed[i] = !completed[i];
+                localStorage.setItem('cm_daily_progress_v1', JSON.stringify(completed));
+                render();
+            };
+            tasksDiv.appendChild(div);
+        }
+        document.getElementById('done-count').textContent = doneCount;
+        document.getElementById('progress-bar').style.width = `${(doneCount/21)*100}%`;
+        document.getElementById('stress-level-text').textContent = level;
     }
-}
-  function loadProgress(){
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
-    catch(e){ return {}; }
-  }
-  function saveProgress(){
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(completed)); } catch(e){}
-  }
-  function saveLevel(){
-    try { localStorage.setItem(LEVEL_KEY, data.stressLevel); } catch(e){}
-  }
 
-  
-  function buildPlan(){
-    var level = data.stressLevel || 'Mild';
-    var pool = (data.pools && data.pools[level]) || [];
-    if(!pool.length) return [];
-    var plan = [];
-    for(var day=1; day<=TOTAL_DAYS; day++){
-      var idx = (day - 1) % pool.length;
-      plan.push({ day:day, title:pool[idx].title, desc:pool[idx].desc });
-    }
-    return plan;
-  }
+    document.getElementById('reset-btn').onclick = () => {
+        if(confirm('Reset all progress?')) { completed={}; localStorage.removeItem('cm_daily_progress_v1'); render(); }
+    };
 
-  function render(){
-    var lvl = data.stressLevel || 'Mild';
-    document.getElementById('stress-level').textContent = lvl;
-
-    /*document.querySelectorAll('.level-btn').forEach(function(b){
-      b.classList.toggle('active', b.dataset.level === lvl);
-    });*/
-
-    var plan = buildPlan();
-    var doneCount = plan.filter(function(t){return completed[t.day];}).length;
-    var pct = Math.round((doneCount/TOTAL_DAYS)*100);
-    document.getElementById('done-count').textContent = doneCount;
-    document.getElementById('progress-pct').textContent = pct+'%';
-    document.getElementById('progress-bar').style.width = pct+'%';
-
-    var tpl = plan.map(function(t){
-      var done = !!completed[t.day];
-      return ''
-        + '<div class="task '+(done?'done':'')+'" data-day="'+t.day+'">'
-        +   '<div class="task-check '+(done?'checked':'')+'">'
-        +     '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>'
-        +   '</div>'
-        +   '<div>'
-        +     '<div class="task-day"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Day '+t.day+'</div>'
-        +     '<h4 class="task-title">'+t.title+'</h4>'
-        +     '<p class="task-desc">'+t.desc+'</p>'
-        +   '</div>'
-        + '</div>';
-    }).join('');
-    document.getElementById('tasks').innerHTML = tpl;
-
-    document.querySelectorAll('.task').forEach(function(el){
-      el.addEventListener('click', function(){
-        var d = el.dataset.day;
-        completed[d] = !completed[d];
-        saveProgress(); render();
-      });
-    });
-  }
-
-  /*document.querySelectorAll('.level-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      data.stressLevel = btn.dataset.level;
-      saveLevel();
-      render();
-    });
-  });*/
-
-  document.getElementById('reset-btn').addEventListener('click', function(){
-    if(confirm('Reset all progress?')){ completed = {}; saveProgress(); render(); }
-  });
-
-  render();
-})();
+    render();
 </script>
-<script src="footer.js"></script>
 </body>
 </html>

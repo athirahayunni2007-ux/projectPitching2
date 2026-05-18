@@ -7,6 +7,44 @@
   <link rel="stylesheet" href="theme.css"/>
 
 <style>
+  body {
+    font-size: 16px;
+    transition: font-size 0.2s ease;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+  }
+
+  .accessibility-tools {
+    display: flex;
+    gap: 6px;
+    background: #fff;
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+  }
+
+  .btn-access {
+    background: transparent;
+    border: none;
+    color: #334155;
+    padding: 6px 12px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.1s;
+  }
+
+  .btn-access:hover {
+    background: #eafff5;
+    color: #0f766e;
+  }
 
   .toolbar{
     display:flex;flex-wrap:wrap;gap:12px;align-items:center;
@@ -45,6 +83,11 @@
 
   @media(max-width:600px){
     .grid{grid-template-columns:1fr}
+    .header-container {
+      flex-direction: column-reverse;
+      gap: 15px;
+      align-items: flex-end;
+    }
   }
 
   .item{
@@ -80,8 +123,7 @@
 
   .empty{
     padding:40px;text-align:center;color:var(--cm-muted)
-    }
-
+  }
 </style>
 </head>
 
@@ -114,8 +156,16 @@
   </aside>
 
   <main class="cm-main">
-    <h2 class="cm-page-title">Resource Library</h2>
-    <p class="cm-page-sub">Browse articles, videos, and posters to support your wellness journey.</p>
+    <div class="header-container">
+      <div>
+        <h2 class="cm-page-title">Resource Library</h2>
+        <p class="cm-page-sub">Browse articles, videos, and posters to support your wellness journey.</p>
+      </div>
+      <div class="accessibility-tools">
+        <button class="btn-access" onclick="changeFontSize('up')" title="Besarkan tulisan">A+</button>
+        <button class="btn-access" onclick="changeFontSize('down')" title="Kecilkan tulisan">A-</button>
+      </div>
+    </div>
 
     <div class="toolbar">
       <input id="search" type="text" placeholder="Search by title, description, or #tag…" />
@@ -154,6 +204,43 @@
     document.getElementById('user-display-name').innerText = savedName;
     document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
     
+    let currentScale = 100;
+
+    function applyDynamicFontScaling() {
+        const mainContent = document.querySelector('.cm-main');
+        if (mainContent) {
+            const dynamicTexts = mainContent.querySelectorAll('h2, h4, p, span, input, select, button, li');
+            dynamicTexts.forEach(el => {
+                if (!el.classList.contains('btn-access')) {
+                    el.style.fontSize = (currentScale / 100) + 'em';
+                }
+            });
+        }
+        const sidebar = document.querySelector('.cm-sidebar');
+        if (sidebar) {
+            const sidebarTexts = sidebar.querySelectorAll('.cm-uname, .cm-urole, .cm-brand, .cm-brand-sub, .cm-nav a, .cm-logout, .cm-avatar');
+            sidebarTexts.forEach(el => {
+                el.style.fontSize = (currentScale / 100) + 'em';
+            });
+        }
+        const footerSlot = document.getElementById('cm-footer-slot');
+        if (footerSlot) {
+            const footerTexts = footerSlot.querySelectorAll('.cm-footer h4, .cm-footer h5, .cm-footer p, .cm-footer a, .cm-footer li');
+            footerTexts.forEach(el => {
+                el.style.fontSize = (currentScale / 100) + 'em';
+            });
+        }
+    }
+
+    function changeFontSize(action) {
+        if (action === 'up') {
+            if (currentScale < 150) currentScale += 15;
+        } else {
+            if (currentScale > 100) currentScale -= 15;
+        }
+        document.body.style.fontSize = currentScale + '%';
+        applyDynamicFontScaling();
+    }
 
 (function(){
   var FALLBACK = JSON.parse(document.getElementById('resources-data').textContent);
@@ -184,6 +271,7 @@
     c.querySelectorAll('.cat-btn').forEach(function(b){
       b.addEventListener('click', function(){ state.category=b.dataset.cat; renderCats(); render(); });
     });
+    applyDynamicFontScaling();
   }
 
   function render(){
@@ -199,7 +287,7 @@
       return state.sort==='az' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
     });
     var list = document.getElementById('list');
-    if(!items.length){ list.innerHTML = '<div class="empty">No materials found.</div>'; return; }
+    if(!items.length){ list.innerHTML = '<div class="empty">No materials found.</div>'; applyDynamicFontScaling(); return; }
     list.innerHTML = items.map(function(m){
       return '<div class="cm-card item">'
         + '<span class="type-badge">'+m.type+'</span>'
@@ -214,6 +302,7 @@
         state.search = '#'+t.dataset.tag; render();
       });
     });
+    applyDynamicFontScaling();
   }
 
   document.getElementById('search').addEventListener('input', function(e){ state.search=e.target.value; render(); });
