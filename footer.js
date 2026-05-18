@@ -1,4 +1,4 @@
-/* Loads footer.html into <div id="cm-footer-slot"></div> via AJAX.
+/* Will loads footer.html into <div id="cm-footer-slot"></div> via AJAX.
    Falls back silently if the file can't be fetched (e.g. opened with file://). */
 (function () {
   function injectYear() {

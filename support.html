@@ -1,29 +1,62 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Support · CampusMind</title>
-<link rel="stylesheet" href="theme.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Support · CampusMind</title>
+  <link rel="stylesheet" href="theme.css"/>
+
 <style>
-  .support-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:760px}
+
+  .support-grid{
+    display:grid;grid-template-columns:1fr;gap:20px;max-width:760px
+  }
+
   .support-card .cover{
     width:100%;height:230px;object-fit:cover;display:block;background:#e2e8f0;
   }
-  .support-body{padding:22px 24px 26px}
-  .support-body h3{margin:0 0 6px;font-size:20px}
-  .support-body .desc{color:var(--cm-muted);margin:0 0 18px}
-  .info-row{display:flex;gap:14px;align-items:flex-start;padding:10px 0}
-  .info-row + .info-row{border-top:1px solid #f1f5f9}
+
+  .support-body{
+    padding:22px 24px 26px
+  }
+
+  .support-body h3{
+    margin:0 0 6px;font-size:20px
+  }
+
+  .support-body .desc{
+    color:var(--cm-muted);margin:0 0 18px
+  }
+
+  .info-row{
+    display:flex;gap:14px;align-items:flex-start;padding:10px 0
+  }
+
+  .info-row + .info-row{
+    border-top:1px solid #f1f5f9
+  }
+
   .info-icon{
     width:36px;height:36px;border-radius:10px;
     background:var(--cm-green-soft);color:var(--cm-green-dark);
     display:flex;align-items:center;justify-content:center;flex:none;
   }
-  .info-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
-  .info-label{font-weight:600;font-size:14px;margin:0 0 2px}
-  .info-value{margin:0;color:var(--cm-green);font-size:14px;line-height:1.5}
-  .loading{padding:40px;text-align:center;color:var(--cm-muted)}
+
+  .info-icon svg{
+    width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2
+  }
+
+  .info-label{
+    font-weight:600;font-size:14px;margin:0 0 2px
+  }
+
+  .info-value{
+    margin:0;color:var(--cm-green);font-size:14px;line-height:1.5
+  }
+
+  .loading{
+    padding:40px;text-align:center;color:var(--cm-muted)
+  }
 
   @media(max-width:990px){
     .support-grid{max-width:100%}
@@ -32,9 +65,11 @@
     .support-card .cover{height:160px}
     .support-body{padding:16px}
   }
-</style>
+  </style>
 </head>
+
 <body>
+
 <div class="cm-app">
   <aside class="cm-sidebar">
     <h1 class="cm-brand">CampusMind</h1>
@@ -75,28 +110,36 @@
 {
   "services": [
     {
-      "name": "IIUM Counseling Center",
-      "description": "Professional mental health support for all students.",
-      "image": "https://thfvnext.bing.com/th/id/OIP._kTAW3XxA6ykFj4Y_QfXHgHaEJ?w=267&h=180&c=7&r=0&o=7&cb=thfvnext&dpr=1.5&pid=1.7&rm=3",
-      "phone": "+60 3-6196 4000",
-      "email": "counseling@iium.edu.my",
-      "location": "Student Affairs Building, Level 2\nIIUM Gombak Campus"
+      "name": "Counselling and Career Services Unit (CCSU)",
+      "description": "Professional mental health support for all CFS students.",
+      "image": "supportimage.png",
+      "phone": "09-5183464",
+      "email": "cfs.enquiry@iium.edu.my",
+      "location": "Administration Building,\n26300 Gambang,\nPahang Darul Makmur, Malaysia"
     },
     {
-      "name": "Talian Kasih (24/7 Hotline)",
-      "description": "National helpline for emotional and crisis support.",
-      "image": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=70",
-      "phone": "15999",
-      "email": "taliankasih@kpwkm.gov.my",
-      "location": "Available 24 hours, every day"
+      "name": "IIUM Counselling and Career Services Centre (CCSC)",
+      "description": "Professional mental health support for all IIUM students",
+      "image": "supportimage.png",
+      "phone": "03 – 6421 4409",
+      "email": "ccsc@iium.edu. my",
+      "location": "Level 2, Muhammad Abdul-Rauf Building,\nInternational Islamic University Malaysia,\nJln Gombak, Selangor"
     },
     {
-      "name": "Befrienders Kuala Lumpur",
-      "description": "Confidential emotional support for those in distress",
-      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=70",
+      "name": "Counselling & Career Services Department (CCSD)",
+      "description": "Mental health support for all  IIUM Kuantan students",
+      "image": "supportimage.png",
       "phone": "03-7627 2929",
-      "email": "sam@befrienders.org.my",
-      "location": "95 Jalan Templer, 46000 Petaling Jaya"
+      "email": "scsd_ktn@iium.edu. my",
+      "location": "One Stop Student Centre,\nOffice of the Campus Director,\nIIUM Kuantan Campus,\nJalan Sultan Ahmad Shah,\nBandar Indera Mahkota,\n25200 Kuantan, Pahang Darul Makmur, MALAYSIA."
+    },
+    {
+      "name": "Counselling and Career Services Unit (CCSU)",
+      "description": "Mental health support for all  IIUM Pagoh students",
+      "image": "supportimage.png",
+      "phone": "06-974 2655",
+      "email": "No email yet",
+      "location": "International Islamic University Malaysia (IIUM) Pagoh Edu Hub,\nKM 1, Jalan Panchor,\n84600, Pagoh, Muar,\nJohor Darul Takzim,\nMalaysia."
     }
   ]
 }
@@ -155,6 +198,8 @@ const savedName = localStorage.getItem('activeUser') || "Guest";
   try{ xhr.send(); }catch(e){ fallback(); }
 })();
 </script>
+
 <script src="footer.js"></script>
+
 </body>
 </html>

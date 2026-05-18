@@ -1,28 +1,36 @@
 {
   "services": [
     {
-      "name": "IIUM Counseling Center",
-      "description": "Professional mental health support for all students",
-      "image": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=70",
-      "phone": "+60 3-6196 4000",
-      "email": "counseling@iium.edu.my",
-      "location": "Student Affairs Building, Level 2\nIIUM Gombak Campus"
+      "name": "Counselling and Career Services Unit (CCSU)",
+      "description": "Mental health support for all  CFS students",
+      "image": "supportimage.png",
+      "phone": "09-5183464",
+      "email": "cfs.enquiry@iium.edu.my",
+      "location": "Administration Building,\n26300 Gambang,\nPahang Darul Makmur, Malaysia"
     },
     {
-      "name": "Talian Kasih (24/7 Hotline)",
-      "description": "National helpline for emotional and crisis support",
-      "image": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=70",
-      "phone": "15999",
-      "email": "taliankasih@kpwkm.gov.my",
-      "location": "Available 24 hours, every day"
+      "name": "IIUM Counselling and Career Services Centre (CCSC)",
+      "description": "Professional mental health support for all IIUM Gombak students",
+      "image": "supportimage.png",
+      "phone": "03 – 6421 4409",
+      "email": "ccsc@iium.edu. my",
+      "location": "Level 2, Muhammad Abdul-Rauf Building,\nInternational Islamic University Malaysia,\nJln Gombak, Selangor"
     },
     {
-      "name": "Befrienders Kuala Lumpur",
-      "description": "Confidential emotional support for those in distress",
-      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=70",
+      "name": "Counselling & Career Services Department (CCSD)",
+      "description": "Mental health support for all  IIUM Kuantan students",
+      "image": "supportimage.png",
       "phone": "03-7627 2929",
-      "email": "sam@befrienders.org.my",
-      "location": "95 Jalan Templer, 46000 Petaling Jaya"
+      "email": "scsd_ktn@iium.edu. my",
+      "location": "One Stop Student Centre,\nOffice of the Campus Director,\nIIUM Kuantan Campus,\nJalan Sultan Ahmad Shah,\nBandar Indera Mahkota,\n25200 Kuantan, Pahang Darul Makmur, MALAYSIA."
+    },
+    {
+      "name": "Counselling and Career Services Unit (CCSU)",
+      "description": "Mental health support for all  IIUM Pagoh students",
+      "image": "supportimage.png",
+      "phone": "06-974 2655",
+      "email": "No email yet",
+      "location": "International Islamic University Malaysia (IIUM) Pagoh Edu Hub,\nKM 1, Jalan Panchor,\n84600, Pagoh, Muar,\nJohor Darul Takzim,\nMalaysia."
     }
   ]
 }

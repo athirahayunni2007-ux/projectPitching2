@@ -10,17 +10,30 @@
   --cm-shadow:0 1px 2px rgba(15,23,42,.04), 0 8px 24px rgba(15,23,42,.06);
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
+
+html,body{
+  margin:0;padding:0
+}
+
 body{
   font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
   background:var(--cm-bg);
   color:var(--cm-text);
   min-height:100vh;
 }
-a{color:var(--cm-green);text-decoration:none}
-a:hover{text-decoration:underline}
 
-.cm-app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+a{
+  color:var(--cm-green);text-decoration:none
+}
+
+a:hover{
+  text-decoration:underline
+}
+
+.cm-app{
+  display:grid;grid-template-columns:240px 1fr;min-height:100vh
+}
+
 .cm-sidebar{
   background:#fff;
   border-right:1px solid var(--cm-border);
@@ -28,18 +41,27 @@ a:hover{text-decoration:underline}
   position:sticky;top:0;height:100vh;
   display:flex;flex-direction:column;
 }
+
 .cm-user{
   display:flex;align-items:center;gap:10px;
   padding:12px;border-radius:10px;background:var(--cm-green-soft);
   margin-bottom:18px;
 }
+
 .cm-user .cm-avatar{
   width:32px;height:32px;border-radius:50%;
   background:#fff;color:var(--cm-green-dark);
   display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;
 }
-.cm-user .cm-uname{font-weight:600;font-size:14px;line-height:1.2}
-.cm-user .cm-urole{color:var(--cm-muted);font-size:12px}
+
+.cm-user .cm-uname{
+  font-weight:600;font-size:14px;line-height:1.2
+}
+
+.cm-user .cm-urole{
+  color:var(--cm-muted);font-size:12px
+}
+
 .cm-logout{
   margin-top:auto;
   display:flex;align-items:center;gap:10px;
@@ -49,22 +71,55 @@ a:hover{text-decoration:underline}
   cursor:pointer;text-decoration:none;
   font-family:inherit;width:100%;
 }
-.cm-logout:hover{background:#fef2f2;text-decoration:none}
-.cm-logout svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
-.cm-brand{font-weight:800;color:var(--cm-green);font-size:20px;margin:0}
-.cm-brand-sub{color:var(--cm-muted);font-size:13px;margin:2px 0 28px}
-.cm-nav{display:flex;flex-direction:column;gap:6px}
+
+.cm-logout:hover{
+  background:#fef2f2;text-decoration:none
+}
+
+.cm-logout svg{
+  width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2
+}
+
+.cm-brand{
+  font-weight:800;color:var(--cm-green);font-size:20px;margin:0
+}
+
+.cm-brand-sub{
+  color:var(--cm-muted);font-size:13px;margin:2px 0 28px
+}
+
+.cm-nav{
+  display:flex;flex-direction:column;gap:6px
+}
+
 .cm-nav a{
   display:flex;align-items:center;gap:10px;
   padding:10px 12px;border-radius:10px;color:#334155;font-weight:500;
 }
-.cm-nav a:hover{background:#f1f5f9;text-decoration:none}
-.cm-nav a.active{background:var(--cm-green-soft);color:var(--cm-green-dark)}
-.cm-nav svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 
-.cm-main{padding:36px 48px 0}
-.cm-page-title{font-size:28px;font-weight:800;margin:0 0 6px}
-.cm-page-sub{color:var(--cm-muted);margin:0 0 28px}
+.cm-nav a:hover{
+  background:#f1f5f9;text-decoration:none
+}
+
+.cm-nav a.active{
+  background:var(--cm-green-soft);color:var(--cm-green-dark)
+}
+
+.cm-nav svg{
+  width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2
+}
+
+.cm-main{
+  padding:36px 48px 0
+}
+
+.cm-page-title{
+  font-size:28px;font-weight:800;margin:0 0 6px
+}
+
+.cm-page-sub{
+  color:var(--cm-muted);margin:0 0 28px
+}
 
 .cm-card{
   background:var(--cm-card);
@@ -79,17 +134,36 @@ a:hover{text-decoration:underline}
   background:#0b3d33;
   color:#cfe9df;
 }
+
 .cm-footer-inner{
   max-width:1200px;margin:0 auto;
   padding:40px 32px 24px;
   display:grid;grid-template-columns:repeat(4,1fr);gap:32px;
 }
-.cm-footer h4.cm-footer-brand{color:#fff;margin:0 0 10px;font-size:18px}
-.cm-footer h5{color:#fff;margin:0 0 12px;font-size:14px;text-transform:uppercase;letter-spacing:.05em}
-.cm-footer p{margin:0;line-height:1.6;font-size:14px}
-.cm-footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:14px}
-.cm-footer a{color:#9ed8c5}
-.cm-footer a:hover{color:#fff}
+
+.cm-footer h4.cm-footer-brand{
+  color:#fff;margin:0 0 10px;font-size:18px
+}
+
+.cm-footer h5{
+  color:#fff;margin:0 0 12px;font-size:14px;text-transform:uppercase;letter-spacing:.05em
+}
+
+.cm-footer p{
+  margin:0;line-height:1.6;font-size:14px
+}
+
+.cm-footer ul{
+  list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:14px
+}
+
+.cm-footer a{
+  color:#9ed8c5
+}
+.cm-footer a:hover{
+  color:#fff
+}
+
 .cm-footer-bottom{
   border-top:1px solid rgba(255,255,255,.08);
   padding:16px 32px;text-align:center;font-size:13px;color:#9ed8c5;

@@ -83,6 +83,7 @@
     </style>
 </head>
 <body>
+    
 <div class="cm-app">
     <aside class="cm-sidebar">
         <h1 class="cm-brand">CampusMind</h1>
@@ -136,7 +137,7 @@
                 </div>
                 <button class="btn-main" onclick="location.href='daily_tasks.html'">View All Tasks</button>
             </div>
-
+            
             <div class="cm-card-dash" style="grid-column: span 2;">
                 <h3 style="color: #3d4a3e; margin-bottom: 15px;">Recommended Resources</h3>
                 <div id="dash-resources-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px;">
@@ -144,8 +145,10 @@
                 </div>
             </div>
         </div>
+        <div id="cm-footer-slot"></div>
     </div>
 </div>
+
 
 <script>
     const savedName = localStorage.getItem('activeUser') || "Guest";
@@ -194,5 +197,8 @@
     }
     loadDashboardResources();
 </script>
+
+<script src="footer.js"></script>
+
 </body>
 </html>
