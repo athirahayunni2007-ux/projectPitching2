@@ -117,13 +117,8 @@
           Reset Progress
         </button>
       </div>
-      <div class="level-row">
-        <span class="lbl">Stress level:</span>
-        <button type="button" class="level-btn" data-level="Mild">Mild</button>
-        <button type="button" class="level-btn" data-level="Normal">Normal</button>
-        <button type="button" class="level-btn" data-level="Moderate">Moderate</button>
-        <button type="button" class="level-btn" data-level="High">High</button>
-      </div>
+
+
       <div>
         <div class="progress-row"><span>Overall Progress</span><span id="progress-pct">0%</span></div>
         <div class="bar"><span id="progress-bar" style="width:0%"></span></div>
@@ -183,13 +178,32 @@ const savedName = localStorage.getItem('activeUser') || "Guest";
   var TOTAL_DAYS = 21;
   var FALLBACK = JSON.parse(document.getElementById('tasks-data').textContent);
   var data = FALLBACK;
-  var completed = loadProgress();
+var completed = loadProgress();
 
-  try {
-    var saved = localStorage.getItem(LEVEL_KEY);
-    if(saved) data.stressLevel = saved;
-  } catch(e){}
+var rawResults = localStorage.getItem("dass_results");
+console.log("Tahap stress tersimpan di LocalStorage:", rawResults);
 
+// 2. Set default level dahulu
+data.stressLevel = "Normal"; 
+
+if (rawResults) {
+    try {
+        // 3. Parse string menjadi Object JavaScript
+        var parsedResults = JSON.parse(rawResults);
+        
+        // 4. Ambil nilai 's' (Stress)
+        var s = parsedResults.s; 
+        
+        // 5. Tentukan string level berdasarkan skor DASS-21 (Ikut logik dashboard.html)
+        if (s <= 14) data.stressLevel = "Normal";
+        else if (s <= 18) data.stressLevel = "Mild";
+        else if (s <= 25) data.stressLevel = "Moderate";
+        else data.stressLevel = "High";
+        
+    } catch(e) {
+        console.error("Gagal membaca data dass_results:", e);
+    }
+}
   function loadProgress(){
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
     catch(e){ return {}; }
@@ -201,24 +215,7 @@ const savedName = localStorage.getItem('activeUser') || "Guest";
     try { localStorage.setItem(LEVEL_KEY, data.stressLevel); } catch(e){}
   }
 
-  function loadTasksJSON(){
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET','tasks.json',true);
-    xhr.onreadystatechange = function(){
-      if(xhr.readyState===4){
-        try{
-          if((xhr.status===200||xhr.status===0) && xhr.responseText){
-            var fetched = JSON.parse(xhr.responseText);
-            fetched.stressLevel = data.stressLevel || fetched.stressLevel;
-            data = fetched;
-          }
-        }catch(e){ }
-        render();
-      }
-    };
-    try{ xhr.send(); } catch(e){ render(); }
-  }
-
+  
   function buildPlan(){
     var level = data.stressLevel || 'Mild';
     var pool = (data.pools && data.pools[level]) || [];
@@ -235,9 +232,9 @@ const savedName = localStorage.getItem('activeUser') || "Guest";
     var lvl = data.stressLevel || 'Mild';
     document.getElementById('stress-level').textContent = lvl;
 
-    document.querySelectorAll('.level-btn').forEach(function(b){
+    /*document.querySelectorAll('.level-btn').forEach(function(b){
       b.classList.toggle('active', b.dataset.level === lvl);
-    });
+    });*/
 
     var plan = buildPlan();
     var doneCount = plan.filter(function(t){return completed[t.day];}).length;
@@ -271,13 +268,13 @@ const savedName = localStorage.getItem('activeUser') || "Guest";
     });
   }
 
-  document.querySelectorAll('.level-btn').forEach(function(btn){
+  /*document.querySelectorAll('.level-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
       data.stressLevel = btn.dataset.level;
       saveLevel();
       render();
     });
-  });
+  });*/
 
   document.getElementById('reset-btn').addEventListener('click', function(){
     if(confirm('Reset all progress?')){ completed = {}; saveProgress(); render(); }
