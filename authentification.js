@@ -15,6 +15,21 @@ function showPassword(){
 }
 function signUp() {
 
+    let nameInput = document.getElementById("name").value.trim();
+    let emailInput = document.getElementById("email").value.trim();
+    let passwordInput = document.getElementById("password").value.trim();
+
+    //if user enter 0
+    if (nameInput === "" || emailInput === "" || passwordInput === "") {
+        alert("Please fill in all the details before signing up!");
+        return;
+    }
+
+   // user enter password lenght less than required
+    if (passwordInput.length < 6) {
+        alert("Password must be at least 6 characters long!");
+        return;
+
     //take data from local storage
     let userList = JSON.parse(localStorage.getItem("allUsers")) || [];
 
@@ -34,7 +49,7 @@ function signUp() {
     alert("Successfully sign up!");
 
     window.location.href ="screening.html";
-}  
+}  }
 
 function login() {
     

@@ -74,6 +74,56 @@
         .btn-outline:hover {
             background-color: var(--cm-green-soft);
         }
+
+        .quote-container {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .quote-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0f766e; /* Guna warna hijau tema CampusMind */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .quote-text {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1e293b;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+            font-style: italic;
+        }
+
+        .btn-refresh {
+            background-color: #709677; /* Warna hijau lembut padan dengan status.html anda */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-refresh:hover {
+            background-color: #5a7a60;
+        }
+
+        .loader {
+            color: #64748b;
+            font-size: 14px;
+        }
         @media(max-width: 990px) {
             .dashboard-grid { grid-template-columns: 1fr; }
         }
@@ -111,6 +161,12 @@
         <div class="welcome-section">
             <h1 id="welcome-title">Welcome back, User!</h1>
             <p>Here's your mental wellness overview for today</p>
+        </div>
+
+        <div class="quote-container">
+        <div class="quote-title">🌿 Mindful Advice of the Day</div>
+        <p class="quote-text" id="quote-display">Loading your daily advice...</p>
+        <button class="btn-refresh" id="btn-quote" onclick="fetchNewQuote()">New Advice</button>
         </div>
 
         <div class="dashboard-grid">
@@ -152,6 +208,31 @@
     document.getElementById('user-display-name').innerText = savedName;
     document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
     document.getElementById('welcome-title').innerText = `Welcome back, ${savedName}!`;
+
+    function fetchNewQuote() {
+        const quoteDisplay = document.getElementById('quote-display');
+        const quoteButton = document.getElementById('btn-quote');
+
+        quoteDisplay.innerText = "Fetching custom wisdom for you...";
+        quoteButton.innerText = "Loading...";
+        quoteButton.disabled = true;
+
+        fetch('https://api.adviceslip.com/advice')
+            .then(response => response.json())
+            .then(data => {
+                quoteDisplay.innerText = `"${data.slip.advice}"`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                quoteDisplay.innerText = "Take a deep breath. You are doing better than you think. 🌿";
+            })
+            .finally(() => {
+                quoteButton.innerText = "New Advice";
+                quoteButton.disabled = false;
+            });
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchNewQuote);
 
     const results = JSON.parse(localStorage.getItem('dass_results'));
     const display = document.getElementById('dash-level');
