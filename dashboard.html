@@ -80,11 +80,11 @@
             border: 1px solid #cbd5e1;
             border-radius: 16px;
             padding: 24px;
-            max-width: 600px;
-            margin: 20px auto;
             text-align: center;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        }
+            grid-column: span 2; 
+            width: 100%;
+}
 
         .quote-title {
             font-size: 13px;
@@ -126,6 +126,7 @@
         }
         @media(max-width: 990px) {
             .dashboard-grid { grid-template-columns: 1fr; }
+
         }
         @media(max-width: 600px) {
             .dashboard-grid { gap: 15px; }
@@ -164,12 +165,6 @@
             <p>Here's your mental wellness overview for today</p>
         </div>
 
-        <div class="quote-container">
-        <div class="quote-title">🌿 Mindful Advice of the Day</div>
-        <p class="quote-text" id="quote-display">Loading your daily advice...</p>
-        <button class="btn-refresh" id="btn-quote" onclick="fetchNewQuote()">New Advice</button>
-        </div>
-
         <div class="dashboard-grid">
             <div class="cm-card-dash">
                 <h3 style="color: #3d4a3e;">Current Stress Level</h3>
@@ -194,6 +189,12 @@
                 <button class="btn-main" onclick="location.href='daily_tasks.html'">View All Tasks</button>
             </div>
             
+        <div class="quote-container">
+            <div class="quote-title">🌿 Mindful Advice of the Day</div>
+                <p class="quote-text" id="quote-display">Loading your daily advice...</p>
+                <button class="btn-refresh" id="btn-quote" onclick="fetchNewQuote()">New Advice</button>
+        </div>
+
             <div class="cm-card-dash" style="grid-column: span 2;">
                 <h3 style="color: #3d4a3e; margin-bottom: 15px;">Recommended Resources</h3>
                 <div id="dash-resources-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px;">
