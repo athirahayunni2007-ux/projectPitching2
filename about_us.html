@@ -153,9 +153,9 @@
     { "icon": "book",   "title": "What We Do",  "body": "We provide self-help resources, wellness tracking, and direct lines to IIUM's counseling services." }
   ],
   "team": [
-    { "name": "Athirah Ayunni",  "role": "Project Leader & Developer" },
-    { "name": "Amirah Haziqah",         "role": "Frontend Developer" },
-    { "name": "Anis Jazmina",        "role": "Backend Developer" }
+    { "name": "Athirah Ayunni binti Amirul",        "matricNo": "251346" ,         "role": "Project Leader & Developer" },
+    { "name": "Amirah Haziqah binti Khwar Izmin",    "matricNo": "251038",   "role": "Frontend Developer" },
+    { "name": "Anis Jazmina binti Ahmad Mujahid",    "matricNo": "251168" ,   "role": "Backend Developer" }
   ]
 }
 </script>
@@ -189,7 +189,9 @@
         '<div class="team-grid">'+
           d.team.map(function(m){
             return '<div class="member"><div class="avatar">'+initials(m.name)+'</div>'+
-              '<p class="name">'+m.name+'</p><p class="role">'+m.role+'</p></div>';
+              '<p class="name">'+m.name+'</p>'+
+              '<p class="role" style="font-weight: 600; color: #7a8a7c; margin: 4px 0 0;">'+m.matricNo+'</p>'+ // Tambah baris ini
+              '<p class="role">'+m.role+'</p></div>';
           }).join('')+
         '</div>'+
       '</section>';
