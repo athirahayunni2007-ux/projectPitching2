@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="theme.css" />
 
   <style>
+  /* CSS TAMBAHAN AKSESIBILITI */
+  .accessibility-tools { display: flex; gap: 6px; background: #fff; padding: 4px; border-radius: 8px; border: 1px solid var(--cm-border); display: inline-flex; margin-bottom: 10px; }
+  .btn-access { background: transparent; border: none; color: var(--cm-text); padding: 4px 10px; font-weight: 700; font-size: 14px; cursor: pointer; border-radius: 6px; transition: 0.1s; }
+  .btn-access:hover { background: var(--cm-green-soft); color: var(--cm-green-dark); }
 
   .about-wrap{
     max-width:900px
@@ -129,8 +133,16 @@
   </aside>
 
   <main class="cm-main">
-    <h2 class="cm-page-title">About Us</h2>
-    <p class="cm-page-sub">Empowering IIUM students to take charge of their mental wellness.</p>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <h2 class="cm-page-title">About Us</h2>
+        <p class="cm-page-sub">Empowering IIUM students to take charge of their mental wellness.</p>
+      </div>
+      <div class="accessibility-tools">
+        <button class="btn-access" onclick="changeFontSize('up')">A+</button>
+        <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+      </div>
+    </div>
 
     <div id="about-content" class="about-wrap">
       <div class="loading">Loading…</div>
@@ -153,14 +165,28 @@
     { "icon": "book",   "title": "What We Do",  "body": "We provide self-help resources, wellness tracking, and direct lines to IIUM's counseling services." }
   ],
   "team": [
-    { "name": "Athirah Ayunni binti Amirul",        "matricNo": "251346" ,         "role": "Project Leader & Developer" },
+    { "name": "Athirah Ayunni binti Amirul",        "matricNo": "251346" ,        "role": "Project Leader & Developer" },
     { "name": "Amirah Haziqah binti Khwar Izmin",    "matricNo": "251038",   "role": "Frontend Developer" },
-    { "name": "Anis Jazmina binti Ahmad Mujahid",    "matricNo": "251168" ,   "role": "Backend Developer" }
+    { "name": "Anis Jazmina binti Ahmad Mujahid",    "matricNo": "251168" ,  "role": "Backend Developer" }
   ]
 }
 </script>
 
 <script>
+  // SKRIP AKSESIBILITI
+  let currentScale = 100;
+  function changeFontSize(action) {
+      if(action === 'up' && currentScale < 150) currentScale += 15;
+      if(action === 'down' && currentScale > 100) currentScale -= 15;
+      document.body.style.fontSize = currentScale + '%';
+      const mainContent = document.querySelector('.cm-main');
+      if(mainContent) {
+          mainContent.querySelectorAll('h1, h2, h3, h4, p, span, div').forEach(el => {
+              el.style.fontSize = (currentScale / 100) + 'em';
+          });
+      }
+  }
+
   const savedName = localStorage.getItem('activeUser') || "Guest";
     document.getElementById('user-display-name').innerText = savedName;
     document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
@@ -190,7 +216,7 @@
           d.team.map(function(m){
             return '<div class="member"><div class="avatar">'+initials(m.name)+'</div>'+
               '<p class="name">'+m.name+'</p>'+
-              '<p class="role" style="font-weight: 600; color: #7a8a7c; margin: 4px 0 0;">'+m.matricNo+'</p>'+ // Tambah baris ini
+              '<p class="role" style="font-weight: 600; color: #7a8a7c; margin: 4px 0 0;">'+m.matricNo+'</p>'+
               '<p class="role">'+m.role+'</p></div>';
           }).join('')+
         '</div>'+
