@@ -175,7 +175,7 @@
     <div class="header-container">
       <div>
         <h2 class="cm-page-title">Resource Library</h2>
-        <p class="cm-page-sub">Browse articles, videos, and posters to support your wellness journey.</p>
+        <p class="cm-page-sub">Browse e-books, videos, and posters to support your wellness journey.</p>
       </div>
       <div class="accessibility-tools">
         <button class="btn-access" onclick="changeFontSize('up')" title="Besarkan tulisan">A+</button>
@@ -202,9 +202,6 @@
 <script id="resources-data" type="application/json">
 {
   "materials": [
-    { "id":"a1","type":"Articles","title":"Managing Exam Stress","description":"Practical tips for handling academic pressure.","tags":["stress","study","academic"] },
-    { "id":"a2","type":"Articles","title":"Building Healthy Sleep Habits","description":"Why sleep matters for your mental health.","tags":["sleep","wellness"] },
-    { "id":"a3","type":"Articles","title":"Mindful Eating on Campus","description":"Nutrition basics for busy students.","tags":["nutrition","mindfulness"] },
     { "id":"e1","type":"E-Books","title":"Suicide Prevention Kit","description":"Collection of items designed to help individuals remember their reasons to keep living.","tags":["kit","suicide"] },
     { "id":"e2","type":"E-Books","title":"Campus Survival Kit","description":"Why campus preparation and survival skill is important for your mental health.","tags":["campus","kit"] },
     { "id":"e3","type":"E-Books","title":"IIUM Student Mental Health Policy 2021","description":"IIUM views an individual with good mental health as someone who displays the characteristics of Insan Sejahtera","tags":["sejahtera","policy"] },
@@ -264,7 +261,7 @@
 (function(){
   var FALLBACK = JSON.parse(document.getElementById('resources-data').textContent);
   var state = { materials:[], category:'All', search:'', sort:'az' };
-  var CATEGORIES = ['All', 'Articles', 'E-Books', 'Videos', 'Posters'];
+  var CATEGORIES = ['All', 'E-Books', 'Videos', 'Posters'];
 
   function loadResources(){
     var xhr = new XMLHttpRequest();
@@ -334,12 +331,7 @@
 
           let extra = '';
           
-          if(material.type === "Articles") {
-            extra = '<div style="padding:15px; background:#f8fafc; border-left:4px solid var(--cm-green); border-radius:4px;">'
-                  + '<p>Anda boleh membaca artikel penuh ini melalui pautan di bawah:</p>'
-                  + '</div>';
-          }
-          else if(material.type === "E-Books"){
+          if(material.type === "E-Books"){
             if(material.id === "e1"){
               extra = '<iframe src="ebooks/Suicide_PreventionKit.pdf" width="100%" height="400"></iframe>'
                     + '<p><a href="ebooks/Suicide_PreventionKit.pdf" target="_blank">Open in new tab</a></p>';
