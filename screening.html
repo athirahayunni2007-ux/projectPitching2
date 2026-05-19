@@ -4,62 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Screening · CampusMind</title>
+    
+    <!-- Link to the global design system -->
+    <link rel="stylesheet" href="theme.css" />
     <link rel="stylesheet" href="style.css">
+    
     <style>
-        body {
-            font-size: 16px;
-            transition: font-size 0.2s ease;
-            position: relative;
-        }
-        .accessibility-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 999;
-        }
-        .accessibility-tools {
-            display: flex;
-            gap: 6px;
-            background: #fff;
-            padding: 4px;
-            border-radius: 8px;
-            border: 1px solid #cbd5e1;
-            box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
-        }
-        .btn-access {
-            background: transparent;
-            border: none;
-            color: #334155;
-            padding: 6px 12px;
+        /* Specific layout styles for the DASS-21 questionnaire elements */
+        .title-group h1 {
+            font-size: 1.6em;
             font-weight: 700;
-            font-size: 14px;
+            color: #3d4a3e;
+            margin: 0 0 5px 0;
+        }
+
+        .question-count {
+            font-size: 0.85em;
+            color: #7a8a7c;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* Progress Bar container styling */
+        .progress-container {
+            height: 6px;
+            background: #dce4e0;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress-fill {
+            display: block;
+            height: 100%;
+            background: var(--cm-green, #709677);
+            transition: width 0.3s ease;
+        }
+
+        /* Question text block styling */
+        .question-text {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #3d4a3e;
+            line-height: 1.5;
+            margin: 0 0 30px 0;
+            min-height: 60px;
+        }
+
+        /* Layout structure for the multiple choice choices */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        /* Option button style configurations */
+        .option-btn {
+            background: white;
+            color: #3d4a3e;
+            border: 1px solid #dce4e0;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95em;
             cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.1s;
+            font-family: inherit;
+            text-align: left;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            width: 100%;
         }
-        .btn-access:hover {
-            background: #eafff5;
-            color: #0f766e;
+
+        .option-btn:hover {
+            background-color: var(--cm-green-soft, #eafff5);
+            border-color: var(--cm-green, #709677);
+            color: var(--cm-green-dark, #5a7a60);
+            padding-left: 20px; /* Micro-interaction sliding effect on hover */
         }
-        @media(max-width: 600px) {
-            .accessibility-container {
-                top: 10px;
-                right: 10px;
-            }
+
+        .disclaimer {
+            font-size: 0.75em;
+            color: #7a8a7c;
+            margin: 0;
+            line-height: 1.4;
+            border-top: 1px solid #f0f4f2;
+            padding-top: 20px;
         }
     </style>
 </head>
-<body>
+<body class="card-layout"> <!-- Uses card-layout class from style.css to vertically center the card -->
 
+    <!-- Global Accessibility Control Component -->
     <div class="accessibility-container">
         <div class="accessibility-tools">
-            <button class="btn-access" onclick="changeFontSize('up')" title="Besarkan tulisan">A+</button>
-            <button class="btn-access" onclick="changeFontSize('down')" title="Kecilkan tulisan">A-</button>
+            <button class="btn-access" onclick="changeFontSize('up')" title="Increase text size">A+</button>
+            <button class="btn-access" onclick="changeFontSize('down')" title="Decrease text size">A-</button>
         </div>
     </div>
 
+    <!-- Main Screening Evaluation Card -->
     <div class="screening-card cm-main">
-        <div class="header">
+        <header class="header">
             <div class="title-group">
                 <h1>DASS-21 Screening</h1>
                 <span class="question-count" id="question-number">Question 1 of 21</span>
@@ -67,7 +115,7 @@
             <div class="progress-container">
                 <div class="progress-fill" id="progress-bar" style="width: 4.7%;"></div>
             </div>
-        </div>
+        </header>
 
         <main class="content">
             <p class="question-text" id="question-display">Loading question...</p>
@@ -88,6 +136,7 @@
     </div>
 
     <script>
+        // Official DASS-21 question items grouped by category (s = stress, a = anxiety, d = depression)
         const questions = [
             { t: "I found it hard to wind down", c: "s" },
             { t: "I was aware of dryness of my mouth", c: "a" },
@@ -120,64 +169,44 @@
         const progressBar = document.getElementById('progress-bar');
         const buttons = document.querySelectorAll('.option-btn');
 
+        // ACCESSIBILITY ENGINE: Scales font size dynamically via body element percentage
         let currentScale = 100;
-
-        function applyDynamicFontScaling() {
-            const mainContent = document.querySelector('.cm-main');
-            if (mainContent) {
-                const dynamicTexts = mainContent.querySelectorAll('h1, span, p, button');
-                dynamicTexts.forEach(el => {
-                    if (!el.classList.contains('btn-access')) {
-                        el.style.fontSize = (currentScale / 100) + 'em';
-                    }
-                });
-            }
-            const sidebar = document.querySelector('.cm-sidebar');
-            if (sidebar) {
-                const sidebarTexts = sidebar.querySelectorAll('.cm-uname, .cm-urole, .cm-brand, .cm-brand-sub, .cm-nav a, .cm-logout');
-                sidebarTexts.forEach(el => {
-                    el.style.fontSize = (currentScale / 100) + 'em';
-                });
-            }
-            const footerSlot = document.getElementById('cm-footer-slot');
-            if (footerSlot) {
-                const footerTexts = footerSlot.querySelectorAll('.cm-footer h4, .cm-footer h5, .cm-footer p, .cm-footer a, .cm-footer li');
-                footerTexts.forEach(el => {
-                    el.style.fontSize = (currentScale / 100) + 'em';
-                });
-            }
-        }
 
         function changeFontSize(action) {
             if (action === 'up') {
-                if (currentScale < 150) currentScale += 15;
+                if (currentScale < 140) currentScale += 10;
             } else {
-                if (currentScale > 100) currentScale -= 15;
+                if (currentScale > 90) currentScale -= 10;
             }
             document.body.style.fontSize = currentScale + '%';
-            applyDynamicFontScaling();
         }
 
+        // Updates the user interface state for questions numbers, text, and active progress
         function updateQuestion() {
             questionDisplay.innerText = questions[currentIndex].t;
             questionNumber.innerText = `Question ${currentIndex + 1} of 21`;
             progressBar.style.width = ((currentIndex + 1) / questions.length * 100) + "%";
-            applyDynamicFontScaling();
         }
 
+        // Click event handler attached to user choice response buttons
         buttons.forEach(button => {
             button.addEventListener('click', () => {
+                // Increment score counter specific to current question category trait
                 scores[questions[currentIndex].c] += parseInt(button.getAttribute('data-score'));
                 currentIndex++;
+                
                 if (currentIndex < questions.length) {
                     updateQuestion();
                 } else {
+                    // Compute final DASS-21 metrics (Scale calculation factor requires doubling raw scores)
                     const finalResults = { d: scores.d * 2, a: scores.a * 2, s: scores.s * 2 };
                     localStorage.setItem('dass_results', JSON.stringify(finalResults));
                     window.location.href = "status.html";
                 }
             });
         });
+        
+        // Render initial test query payload immediately on page load initialization
         updateQuestion();
     </script>
 </body>

@@ -6,6 +6,7 @@
     <title>CampusMind</title>
     <link rel="stylesheet" href="authentification.css">
     <style>
+        /*CSS for acessibility tool*/
         html, body {
             min-height: 100%;
             margin: 0;
@@ -76,14 +77,17 @@
         <h1>Create Account</h1>
         <h3>Join CampusMind to start your wellness journey</h3>
 
+        //Get user name
         <label for="name">Name</label> <br>
         <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
 
+        //Get user email
         <label for="email">Email Address</label>
         <br>
         <input type="email" id="email" placeholder="your.email@example.com" required>
         <br><br>
 
+        //Get user password
         <label for="password">Password</label>
         <br>
         <input type="password" id="password" placeholder="Create a password (min. 6 characters)" required>
@@ -137,21 +141,6 @@
         }
     }
 }
-        /*const sidebar = document.querySelector('.cm-sidebar');
-        if(sidebar) {
-            const allSidebarTexts = sidebar.querySelectorAll('.cm-uname, .cm-urole, .cm-brand, .cm-brand-sub, .cm-nav a, .cm-logout');
-            allSidebarTexts.forEach(el => {
-                el.style.fontSize = (currentScale / 100) + 'em';
-            });
-        }
-
-        const footerSlot = document.getElementById('cm-footer-slot');
-        if(footerSlot) {
-            const footerTexts = footerSlot.querySelectorAll('.cm-footer h4, .cm-footer h5, .cm-footer p, .cm-footer a, .cm-footer li');
-            footerTexts.forEach(el => {
-                el.style.fontSize = (currentScale / 100) + 'em';
-            });
-        }*/
     </script>
     <script src="authentification.js"></script>
 </body>
