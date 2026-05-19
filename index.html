@@ -55,7 +55,7 @@
                     <li>Complete the mental health screening to better understand your current stress level.</li>
                     <li>Track your daily activities and monitor your personal progress over time.</li>
                 </ol>
-                <p>We hope CampusMind supports you on your journey to better well-being 🌿</p>
+                <p>We hope CampusMind supports you on your journey to better well-being</p>
             </div>
 
             <!--will go to login page-->
@@ -68,33 +68,6 @@
 
     </main>
     
-    
-    <script>
-        // Accessibility function
-        let currentScale = 100;
-
-        function changeFontSize(action) {
-            if (action === 'up' && currentScale < 150) {    //to increase the size
-            currentScale += 15;
-        } else if (action === 'down' && currentScale > 100) {   //to decrease the size
-            currentScale -= 15;
-        } else if (action === 'reset') {    //to reset the page
-            currentScale = 100; 
-        }
-
-            document.body.style.fontSize = currentScale + '%'; //display on screen with the current scale
-
-            const manualContent = document.querySelector('.manual');
-            
-            //for the resize of the element iinside
-            manualContent.querySelectorAll('h1, h3, li, p, button').forEach(el => {
-                if (action === 'reset') {
-                    el.style.removeProperty('font-size');
-                } else {
-                    el.style.fontSize = (currentScale / 100) + 'em';
-                }
-                });
-            }
-    </script>
+    <script src="accessibility.js"></script>
 </body>
 </html>

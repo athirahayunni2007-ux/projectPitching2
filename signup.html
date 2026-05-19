@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CampusMind</title>
     <link rel="stylesheet" href="authentification.css">
+    
     <style>
         /*CSS for acessibility tool*/
         html, body {
@@ -100,48 +101,7 @@
         <button onclick="signUp()">Sign up</button>
     </div>
 
-    <script>
-    let currentScale = 100; 
-
-    function changeFontSize(action) {
-        if(action === 'up') {
-            if(currentScale < 150) currentScale += 15; 
-        } else if (action === 'down') {
-            if(currentScale > 100) currentScale -= 15; 
-        }
-          else if (action === 'reset') {
-            currentScale = 100; 
-        }
-        document.body.style.fontSize = currentScale + '%';
-
-        const mainContent = document.querySelector('.cm-main');
-
-        if(mainContent) {
-            mainContent.style.fontSize = currentScale + '%';
-            const allMainTexts = mainContent.querySelectorAll('h1, h3, label, input, div, button');
-
-            allMainTexts.forEach(el => {
-
-            if (!el.classList.contains('btn-access')) {
-                
-                if (action === 'reset') {
-                    el.style.removeProperty('font-size');
-
-                } else {
-                    el.style.fontSize = (currentScale / 100) + 'em';
-                }
-                
-            }
-        });
-        
-        if (action === 'reset') {
-            mainContent.style.removeProperty('font-size');
-        } else {
-            mainContent.style.fontSize = currentScale + '%';
-        }
-    }
-}
-    </script>
     <script src="authentification.js"></script>
+    <script src="accessibility.js"></script>
 </body>
 </html>

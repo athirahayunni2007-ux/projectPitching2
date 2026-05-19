@@ -4,11 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Support · CampusMind</title>
-    <link rel="stylesheet" href="theme.css"/>
-    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="footer.css" >
+    
     <style>
         /* Accessibility Tools */
-        .access-container { position: fixed; top: 20px; right: 20px; z-index: 9999; display:flex; gap: 6px; }
+        .accessibility-tools { position: fixed; top: 20px; right: 20px; z-index: 9999; display:flex; gap: 6px; background: #ffffff; padding: 6px 8px; border-radius: 12px;  
+        border: 1px solid var(--cm-border); box-shadow: var(--cm-shadow);}
         .btn-access { background: #fff; border: 1px solid var(--cm-border); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; box-shadow: var(--cm-shadow); }
         .btn-access:hover { background: var(--cm-green-soft); color: var(--cm-green-dark); }
 
@@ -30,11 +32,6 @@
 </head>
 
 <body>
-
-<div class="access-container">
-    <button class="btn-access" onclick="changeFontSize('up')">A+</button>
-    <button class="btn-access" onclick="changeFontSize('down')">A-</button>
-</div>
 
 <div class="cm-app">
     <aside class="cm-sidebar">
@@ -60,8 +57,20 @@
     </aside>
 
     <main class="cm-main" style="display: flex; flex-direction: column; min-height: 100vh;">
-        <h2 class="cm-page-title">Counseling &amp; Support</h2>
-        <p class="cm-page-sub">You're not alone. Reach out to our professional support services.</p>
+        <main class="cm-main" style="display: flex; flex-direction: column; min-height: 100vh;">
+        
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div>
+                <h2 class="cm-page-title" style="margin: 0 0 6px;">Counseling &amp; Support</h2>
+                <p class="cm-page-sub" style="margin: 0; color: var(--cm-muted);">You're not alone. Reach out to our professional support services.</p>
+            </div>
+
+            <div style="display: flex; gap: 6px; background: #fff; padding: 4px; border-radius: 8px; border: 1px solid var(--cm-border); box-shadow: var(--cm-shadow); shrink: 0;">
+                <button class="btn-access" onclick="changeFontSize('up')">A+</button>
+                <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+                <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
+            </div>
+        </div>
         
         <div id="support-list" class="support-grid"></div>
 
@@ -145,15 +154,6 @@
 </script>
 
 <script>
-    // Accessibility Dengan Had Limit (12px hingga 24px)
-    function changeFontSize(action) {
-        let size = parseFloat(getComputedStyle(document.body).fontSize);
-        let newSize = action === 'up' ? size + 2 : size - 2;
-        
-        if (newSize >= 12 && newSize <= 24) {
-            document.body.style.fontSize = newSize + 'px';
-        }
-    }
 
     // Auto-set Tahun Semasa pada Footer
     document.getElementById('cm-year').textContent = new Date().getFullYear();
@@ -185,5 +185,6 @@
         list.appendChild(card);
     });
 </script>
+<script src=accessibility.js></script>
 </body>
 </html>

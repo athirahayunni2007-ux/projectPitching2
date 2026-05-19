@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Daily Tasks · CampusMind</title>
-    <link rel="stylesheet" href="theme.css" />
-    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="theme.css" >
+    <link rel="stylesheet" href="footer.css" >
+
     <style>
         /* AKSESIBILITI */
         .accessibility-tools { display: flex; gap: 6px; background: #fff; padding: 4px; border-radius: 8px; border: 1px solid var(--cm-border); display: inline-flex; }
@@ -77,6 +78,7 @@
             <div class="accessibility-tools">
                 <button class="btn-access" onclick="changeFontSize('up')">A+</button>
                 <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+                <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
             </div>
         </div>
         
@@ -136,21 +138,6 @@
     document.getElementById('user-display-name').innerText = savedName;
     document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
 
-    // Fungsi Aksesibiliti Suci Murni (Lock 12px - 24px)
-    let currentFontSize = 16; 
-    function changeFontSize(action) {
-        if (action === 'up') {
-            currentFontSize += 2;
-        } else if (action === 'down') {
-            currentFontSize -= 2;
-        }
-
-        if (currentFontSize < 12) currentFontSize = 12;
-        if (currentFontSize > 24) currentFontSize = 24;
-
-        document.body.style.fontSize = currentFontSize + 'px';
-    }
-
     // Auto-set Tahun Footer
     document.getElementById('cm-year').textContent = new Date().getFullYear();
 
@@ -208,5 +195,6 @@
 
     render();
 </script>
+<script src=accessibility.js></script>
 </body>
 </html>

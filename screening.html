@@ -6,7 +6,7 @@
     <title>Screening · CampusMind</title>
     
     <!-- Link to the global design system -->
-    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="theme.css" >
     <link rel="stylesheet" href="style.css">
     
     <style>
@@ -102,6 +102,7 @@
         <div class="accessibility-tools">
             <button class="btn-access" onclick="changeFontSize('up')" title="Increase text size">A+</button>
             <button class="btn-access" onclick="changeFontSize('down')" title="Decrease text size">A-</button>
+            <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
         </div>
     </div>
 
@@ -169,17 +170,6 @@
         const progressBar = document.getElementById('progress-bar');
         const buttons = document.querySelectorAll('.option-btn');
 
-        // ACCESSIBILITY ENGINE: Scales font size dynamically via body element percentage
-        let currentScale = 100;
-
-        function changeFontSize(action) {
-            if (action === 'up') {
-                if (currentScale < 140) currentScale += 10;
-            } else {
-                if (currentScale > 90) currentScale -= 10;
-            }
-            document.body.style.fontSize = currentScale + '%';
-        }
 
         // Updates the user interface state for questions numbers, text, and active progress
         function updateQuestion() {
@@ -209,5 +199,6 @@
         // Render initial test query payload immediately on page load initialization
         updateQuestion();
     </script>
+    <script src=accessibility.js></script>
 </body>
 </html>

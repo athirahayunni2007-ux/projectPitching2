@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Dashboard · CampusMind</title>
     
-    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="theme.css" >
     <link rel="stylesheet" href="style.css">
+    
     
     <style>
         /* Specific layout configurations for the Dashboard grid view only */
@@ -162,6 +163,7 @@
             <div class="accessibility-tools">
                 <button class="btn-access" onclick="changeFontSize('up')" title="Increase text size">A+</button>
                 <button class="btn-access" onclick="changeFontSize('down')" title="Decrease text size">A-</button>
+                <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
             </div>
         </div>
 
@@ -193,7 +195,7 @@
             </div>
             
             <div class="quote-container">
-                <div class="quote-title">🌿 Mindful Advice of the Day</div>
+                <div class="quote-title">Mindful Advice of the Day</div>
                 <p class="quote-text" id="quote-display">Loading your daily advice...</p>
                 <button class="btn-refresh" id="btn-quote" onclick="fetchNewQuote()">New Advice</button>
             </div>
@@ -217,35 +219,40 @@
     document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
     document.getElementById('welcome-title').innerText = `Welcome back, ${savedName}!`;
 
-    // ACCESSIBILITY ENGINE: Scales base interface typography configuration values dynamically via body pixel dimensions
-    let currentFontSize = 16; 
-    function changeFontSize(action) {
-        if (action === 'up') {
-            currentFontSize += 2;
-        } else if (action === 'down') {
-            currentFontSize -= 2;
-        }
-
-        if (currentFontSize < 12) currentFontSize = 12;
-        if (currentFontSize > 24) currentFontSize = 24;
-
-        document.body.style.fontSize = currentFontSize + 'px';
-    }
 
     // DYNAMIC QUOTE ENGINE: Leverages public API query sequences to dynamically populate random mindfulness advice strings
     function fetchNewQuote() {
-        const quoteDisplay = document.getElementById('quote-display');
-        const quoteButton = document.getElementById('btn-quote');
-        quoteDisplay.innerText = "Fetching custom wisdom for you...";
-        quoteButton.innerText = "Loading...";
-        quoteButton.disabled = true;
-        fetch('https://api.adviceslip.com/advice')
-            .then(response => response.json())
-            .then(data => { quoteDisplay.innerText = `"${data.slip.advice}"`; })
-            .catch(error => { quoteDisplay.innerText = "Take a deep breath. You are doing better than you think. 🌿"; })
-            .finally(() => { quoteButton.innerText = "New Advice"; quoteButton.disabled = false; });
-    }
-    document.addEventListener("DOMContentLoaded", fetchNewQuote);
+    const quoteDisplay = document.getElementById('quote-display');
+    const quoteButton = document.getElementById('btn-quote');
+    
+    quoteDisplay.innerText = "Fetching custom wisdom for you...";
+    quoteButton.innerText = "Loading...";
+    quoteButton.disabled = true;
+
+    fetch('https://thequoteshub.com/api/random-quote')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response is not ok');
+            }
+            return response.json();
+        })
+        .then(data => {  
+            const quoteText = data.quote || data.text || data;
+            const author = data.author ? ` — ${data.author}` : '';
+
+            quoteDisplay.innerText = `"${quoteText}"${author}`; 
+        })
+        .catch(error => { 
+            console.error("Error fetching quote:", error);
+            quoteDisplay.innerText = "Take a deep breath. You are doing better than you think."; 
+        })
+        .finally(() => { 
+            quoteButton.innerText = "New Quotes"; // 
+            quoteButton.disabled = false; 
+        });
+}
+
+document.addEventListener("DOMContentLoaded", fetchNewQuote);
 
     // CRITICAL DASS INTERPRETATION ENGINE: Maps raw stored assessment data directly onto standardized scoring classification thresholds
     const results = JSON.parse(localStorage.getItem('dass_results'));
@@ -292,6 +299,7 @@
     loadDashboardResources();
 </script>
 
+<script src=accessibility.js></script>
 <script src="footer.js"></script>
 </body>
 </html>

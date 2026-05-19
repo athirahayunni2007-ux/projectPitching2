@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CampusMind</title>
     <link rel="stylesheet" href="authentification.css">
+    
 
     <style>
         /*CSS for accessibility tool*/
@@ -72,31 +73,7 @@
     </div>
 </main>
 
-
-    <script>
-        // Accessibility function
-        let currentScale = 100;
-
-        function changeFontSize(action) {
-            if (action === 'up' && currentScale < 150) {
-            currentScale += 15;
-        } else if (action === 'down' && currentScale > 100) {
-            currentScale -= 15;
-        } else if (action === 'reset') {
-            currentScale = 100;
-        }
-            document.body.style.fontSize = currentScale + '%';
-            
-            const welcomeContent = document.querySelector('.welcome');
-            welcomeContent.querySelectorAll('h1, h3, label, input, button, p, a').forEach(el => {
-                if (action === 'reset') {
-                el.style.removeProperty('font-size');
-                } else {
-                    el.style.fontSize = (currentScale / 100) + 'em';
-                }
-            });
-         }
-    </script>
+    <script src="accessibility.js"></script>
     <script src="authentification.js"></script>
 
 
