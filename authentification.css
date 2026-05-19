@@ -126,7 +126,6 @@ button:active {
     transform: scale(0.98);
 }
 
-/* Index/Manual Specific Styles */
 .instruction {
     text-align: left;
     margin: 20px 0;
@@ -167,7 +166,7 @@ a:hover {
     text-decoration: underline;
 }
 
-
+/*styling for tablet mode*/
 @media (min-width: 600px) {
     body {
         padding: 40px;
@@ -187,6 +186,7 @@ a:hover {
     }
 }
 
+/*styling for laptop mode*/
 @media (min-width: 1024px) {
     
     .manual,.signup, .welcome {
