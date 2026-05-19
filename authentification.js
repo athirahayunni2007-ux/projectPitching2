@@ -5,29 +5,31 @@ function showPassword(){
     let checkbox = document.getElementById("showPassword");
 
     if (checkbox.checked){
-        passwordInput.type = "text";
+        passwordInput.type = "text"; //change password datatype to text datatype
     }
     else{
-        passwordInput.type = "password";
+        passwordInput.type = "password"; //if not check, then datatype will be password datatype
     }
 }
 
 function signUp() {
+
+    //get value from user input
     let nameInput = document.getElementById("name").value.trim();
     let emailInput = document.getElementById("email").value.trim();
     let passwordInput = document.getElementById("password").value.trim();
 
-    if (nameInput === "" || emailInput === "" || passwordInput === "") {
+    if (nameInput === "" || emailInput === "" || passwordInput === "") {    //user does not enter anything
         alert("Please fill in all the details before signing up!");
         return;
     }
 
-    if (passwordInput.length < 6) {
+    if (passwordInput.length < 6) {     //if password lenght less than 6
         alert("Password must be at least 6 characters long!");
         return;
     }
 
-    let userList = JSON.parse(localStorage.getItem("allUsers")) || [];
+    let userList = JSON.parse(localStorage.getItem("allUsers")) || []; //get initial data from local storage
 
     let newUsers = {
         name: nameInput,
@@ -35,35 +37,37 @@ function signUp() {
         password: passwordInput
     };
 
-    userList.push(newUsers);
+    userList.push(newUsers); //add the new data
 
-    localStorage.setItem("allUsers", JSON.stringify(userList));
-    localStorage.setItem("activeUser", newUsers.name);
+    localStorage.setItem("allUsers", JSON.stringify(userList));     //keep the updated data in the local storage 
+    localStorage.setItem("activeUser", newUsers.name);  //keept the user name, to display in dashboard
 
-    console.log("Updated list:", userList);
+    console.log("Updated list:", userList);     //
     alert("Successfully sign up!");
 
-    window.location.href = "screening.html";
+    window.location.href = "screening.html";    //direct to screening test
 }
 
 function login() {
-    let loginEmail = document.getElementById("email").value.trim();
+    //get value from user input
+    let loginEmail = document.getElementById("email").value.trim(); 
     let loginPassword = document.getElementById("password").value.trim();
 
-    if (loginEmail === "" || loginPassword === "") {
+    if (loginEmail === "" || loginPassword === "") {    //user does not enter anything
         alert("Please enter both your email and password to log in!");
         return; 
     }
 
-    let userList = JSON.parse(localStorage.getItem("allUsers")) || [];
-    let foundUser = userList.find(user => user.email === loginEmail);
+    let userList = JSON.parse(localStorage.getItem("allUsers")) || []; //get data of user from local storage
 
-    if (!foundUser) {
+    let foundUser = userList.find(user => user.email === loginEmail); //compare email entered and email from the local storage
+
+    if (!foundUser) {   //email not found
         alert("Account not found. Please sign up first!");
-        window.location.href = "signup.html"; 
+        window.location.href = "signup.html"; //direct to signup
     } 
-    else if (foundUser.password === loginPassword) {
-        localStorage.setItem("activeUser", foundUser.name);
+    else if (foundUser.password === loginPassword) {    //compare password entered and password from local storage
+        localStorage.setItem("activeUser", foundUser.name);     //keep user name as active user to display the name on dashboard
         alert("Login successfully!");
         window.location.href = "dashboard.html";
     } 

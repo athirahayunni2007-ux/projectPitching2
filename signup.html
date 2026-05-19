@@ -68,6 +68,7 @@
         <div class="accessibility-tools">
             <button class="btn-access" onclick="changeFontSize('up')" title="Besarkan tulisan">A+</button>
             <button class="btn-access" onclick="changeFontSize('down')" title="Kecilkan tulisan">A-</button>
+            <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
         </div>
     </div>
 
@@ -94,31 +95,49 @@
         <br>
         <button onclick="signUp()">Sign up</button>
     </div>
-    <div id="cm-footer-slot"></div>
 
     <script>
     let currentScale = 100; 
+
     function changeFontSize(action) {
         if(action === 'up') {
             if(currentScale < 150) currentScale += 15; 
-        } else {
+        } else if (action === 'down') {
             if(currentScale > 100) currentScale -= 15; 
         }
-        
+          else if (action === 'reset') {
+            currentScale = 100; 
+        }
         document.body.style.fontSize = currentScale + '%';
-        
+
         const mainContent = document.querySelector('.cm-main');
+
         if(mainContent) {
             mainContent.style.fontSize = currentScale + '%';
             const allMainTexts = mainContent.querySelectorAll('h1, h3, label, input, div, button');
+
             allMainTexts.forEach(el => {
-                if (!el.classList.contains('btn-access')) {
+
+            if (!el.classList.contains('btn-access')) {
+                
+                if (action === 'reset') {
+                    el.style.removeProperty('font-size');
+
+                } else {
                     el.style.fontSize = (currentScale / 100) + 'em';
                 }
-            });
+                
+            }
+        });
+        
+        if (action === 'reset') {
+            mainContent.style.removeProperty('font-size');
+        } else {
+            mainContent.style.fontSize = currentScale + '%';
         }
-
-        const sidebar = document.querySelector('.cm-sidebar');
+    }
+}
+        /*const sidebar = document.querySelector('.cm-sidebar');
         if(sidebar) {
             const allSidebarTexts = sidebar.querySelectorAll('.cm-uname, .cm-urole, .cm-brand, .cm-brand-sub, .cm-nav a, .cm-logout');
             allSidebarTexts.forEach(el => {
@@ -132,10 +151,8 @@
             footerTexts.forEach(el => {
                 el.style.fontSize = (currentScale / 100) + 'em';
             });
-        }
-    }
+        }*/
     </script>
     <script src="authentification.js"></script>
-    <script src="footer.js"></script>
 </body>
 </html>

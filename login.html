@@ -39,6 +39,7 @@
     <div class="accessibility-tools">
         <button class="btn-access" onclick="changeFontSize('up')">A+</button>
         <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+        <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
     </div>
     
 <main class="auth-container">
@@ -66,27 +67,32 @@
     </div>
 </main>
 
-<div id="cm-footer-slot"></div>
 
     <script>
         // Fungsi Aksesibiliti
         let currentScale = 100;
         function changeFontSize(action) {
-            if(action === 'up' && currentScale < 150) currentScale += 15;
-            if(action === 'down' && currentScale > 100) currentScale -= 15;
+            if (action === 'up' && currentScale < 150) {
+            currentScale += 15;
+        } else if (action === 'down' && currentScale > 100) {
+            currentScale -= 15;
+        } else if (action === 'reset') {
+            currentScale = 100; // Kembali ke 100%
+        }
             document.body.style.fontSize = currentScale + '%';
             
-            // Melaraskan saiz teks dalam kotak welcome
             const welcomeContent = document.querySelector('.welcome');
-            if(welcomeContent) {
-                welcomeContent.querySelectorAll('h1, h3, label, input, button, p, a').forEach(el => {
+            welcomeContent.querySelectorAll('h1, h3, label, input, button, p, a').forEach(el => {
+                if (action === 'reset') {
+                el.style.removeProperty('font-size');
+                } else {
                     el.style.fontSize = (currentScale / 100) + 'em';
-                });
-            }
-        }
+                }
+            });
+         }
     </script>
     <script src="authentification.js"></script>
-    <script src="footer.js"></script>
+
 
 </body>
 </html>
