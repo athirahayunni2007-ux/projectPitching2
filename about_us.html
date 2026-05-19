@@ -141,6 +141,7 @@
       <div class="accessibility-tools">
         <button class="btn-access" onclick="changeFontSize('up')">A+</button>
         <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+        <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
       </div>
     </div>
 
@@ -173,19 +174,6 @@
 </script>
 
 <script>
-  // SKRIP AKSESIBILITI
-  let currentScale = 100;
-  function changeFontSize(action) {
-      if(action === 'up' && currentScale < 150) currentScale += 15;
-      if(action === 'down' && currentScale > 100) currentScale -= 15;
-      document.body.style.fontSize = currentScale + '%';
-      const mainContent = document.querySelector('.cm-main');
-      if(mainContent) {
-          mainContent.querySelectorAll('h1, h2, h3, h4, p, span, div').forEach(el => {
-              el.style.fontSize = (currentScale / 100) + 'em';
-          });
-      }
-  }
 
   const savedName = localStorage.getItem('activeUser') || "Guest";
     document.getElementById('user-display-name').innerText = savedName;
@@ -243,6 +231,7 @@
 </script>
 
 <script src="footer.js"></script>
+<script src=accessibility.js></script>
 
 </body>
 </html>
