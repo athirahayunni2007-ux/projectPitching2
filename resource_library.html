@@ -127,20 +127,21 @@
     padding:40px;text-align:center;color:var(--cm-muted)
   }
 
-  .modal {
-    position: fixed; top:0; left:0; width:100%; height:100%;
-    background: rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background:#fff; padding:20px; border-radius:8px; max-width:600px; width:90%;
-    position: relative;
-  }
-  
-  #modal-close {
-    float:right; font-size:24px; cursor:pointer; font-weight:bold;
-  }
+    .modal {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center;
+}
+.modal-content {
+  background:#fff; padding:20px; border-radius:8px; max-width:600px; width:90%;
+}
+#modal-close {
+  float:right; font-size:24px; cursor:pointer;
+}
+
+#modal-close {
+  float:right; font-size:24px; cursor:pointer;
+}
+
 </style>
 </head>
 
@@ -176,7 +177,7 @@
     <div class="header-container">
       <div>
         <h2 class="cm-page-title">Resource Library</h2>
-        <p class="cm-page-sub">Browse e-books, videos, and posters to support your wellness journey.</p>
+        <p class="cm-page-sub">Browse videos, e-books and posters to support your wellness journey.</p>
       </div>
       <div class="accessibility-tools">
         <button class="btn-access" onclick="changeFontSize('up')" title="Besarkan tulisan">A+</button>
@@ -279,72 +280,68 @@ document.getElementById('user-initials').innerText = savedName.charAt(0).toUpper
         + '</div>';
     }).join('');
 
-    // Click events for resources box (Modal Trigger)
+    //click events for resources
     list.querySelectorAll('.item').forEach(function(card){
-      card.addEventListener('click', function(e){
-        // Prevent modal opening if user only clicks the tag button
-        if(e.target.classList.contains('tag')) return;
+  card.addEventListener('click', function(){
+    var id = card.dataset.id;
+    var material = state.materials.find(function(m){ return m.id===id; });
 
-        var id = card.dataset.id;
-        var material = state.materials.find(function(m){ return m.id===id; });
+    if(material){
+      document.getElementById('modal-title').innerText = material.title;
+      document.getElementById('modal-description').innerText = material.description;
 
-        if(material){
-          document.getElementById('modal-title').innerText = material.title;
-          document.getElementById('modal-description').innerText = material.description;
-
-          let extra = '';
-          
-          if(material.type === "E-Books"){
-            if(material.id === "e1"){
-              extra = '<iframe src="ebooks/Suicide_PreventionKit.pdf" width="100%" height="400"></iframe>'
-                    + '<p><a href="ebooks/Suicide_PreventionKit.pdf" target="_blank">Open in new tab</a></p>';
-            }
-            else if(material.id === "e2"){
-              extra = '<iframe src="ebooks/Campus_SurvivalKit.pdf" width="100%" height="400"></iframe>'
-                    + '<p><a href="ebooks/Campus_SurvivalKit.pdf" target="_blank">Open in new tab</a></p>';
-            }
-            else if(material.id === "e3"){
-              extra = '<iframe src="ebooks/IIUM_Policy2021.pdf" width="100%" height="400"></iframe>'
-                    + '<p><a href="ebooks/IIUM_Policy2021.pdf" target="_blank">Open in new tab</a></p>';
-            }
-            else if(material.id === "e4"){
-              extra = '<iframe src="ebooks/MentalHealth_UKTips.pdf" width="100%" height="400"></iframe>'
-                    + '<p><a href="ebooks/MentalHealth_UKTips.pdf" target="_blank">Open in new tab</a></p>';
-            }
-          }
-          else if(material.type === "Videos"){
-            if(material.id === "v1"){
-              extra = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/8--GxE6E2so" frameborder="0" allowfullscreen></iframe>'
-                    + '<p><a href="https://youtu.be/8--GxE6E2so" target="_blank">Open in new tab</a></p>';
-            }
-            else if(material.id === "v2"){
-              extra = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/AzZpiZPxvq0" frameborder="0" allowfullscreen></iframe>'
-                    + '<p><a href="https://youtu.be/AzZpiZPxvq0" target="_blank">Open in new tab</a></p>';
-            }
-            else if(material.id === "v3"){
-              extra = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/3BteSKlP92w" frameborder="0" allowfullscreen></iframe>'
-                    + '<p><a href="https://youtu.be/3BteSKlP92w" target="_blank">Open in new tab</a></p>';
-            }
-          }
-          else if(material.type === "Posters"){
-            if(material.id === "p1"){
-              extra = '<img src="img/livelifeWHO.png" alt="Live Life by WHO" style="max-width:100%; height:auto;">'
-                    + '<p><a href="img/livelifeWHO.png" target="_blank">Open in new tab</a></p>';
-            }
-            else if(material.id === "p2"){
-              extra = '<img src="img/taliansokonganpsikososial.png" alt="Talian Sokongan Psikososial KKM" style="max-width:100%; height:auto;">'
-                    + '<p><a href="img/taliansokonganpsikososial.png" target="_blank">Open in new tab</a></p>';
-            } 
-          }
-
-          document.getElementById('modal-extra').innerHTML = extra;
-          document.getElementById('material-modal').style.display = 'flex';
-          
+      let extra = '';
+      if(material.type === "E-Books"){
+        if(material.id === "e1"){
+          extra = '<iframe src="ebooks/Suicide_PreventionKit.pdf" width="100%" height="400"></iframe>'
+                + '<p><a href="ebooks/Suicide_PreventionKit.pdf" target="_blank">Open in new tab</a></p>';
         }
-      });
-    });
+        else if(material.id === "e2"){
+          extra = '<iframe src="ebooks/Campus_SurvivalKit.pdf" width="100%" height="400"></iframe>'
+                + '<p><a href="ebooks/Campus_SurvivalKit.pdf" target="_blank">Open in new tab</a></p>';
+        }
+        else if(material.id === "e3"){
+          extra = '<iframe src="ebooks/IIUM_Policy2021.pdf" width="100%" height="400"></iframe>'
+                + '<p><a href="ebooks/IIUM_Policy2021.pdf" target="_blank">Open in new tab</a></p>';
+        }
+        else if(material.id === "e4"){
+          extra = '<iframe src="ebooks/MentalHealth_UKTips.pdf" width=100%" height="400"></iframe>'
+                + '<p><a href="ebooks/MentalHealth_UKTips.pdf" target="_blank">Open in new tab</a></p>';
+        }
+      }
+      else if(material.type === "Videos"){
+        if(material.id === "v1"){
+          extra = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/8--GxE6E2so" frameborder="0" allowfullscreen></iframe>'
+                + '<p><a href="https://youtu.be/8--GxE6E2so?si=ySHL9yO7KME_dZ9j" target="_blank">Open in new tab</a></p>';
+        }
+        else if(material.id === "v2"){
+          extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AzZpiZPxvq0?si=zTSdftVWkhfJN2ur" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+                + '<p><a href="https://www.youtube.com/embed/AzZpiZPxvq0?si=zTSdftVWkhfJN2ur" target="_blank">Open in new tab</a></p>';
+        }
+        else if(material.id === "v3"){
+          extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/3BteSKlP92w?si=VEp86KPszlib2i2M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+                + '<p><a href="https://www.youtube.com/embed/3BteSKlP92w?si=VEp86KPszlib2i2M" target="_blank">Open in new tab</a></p>';
+        }
+      }
+      else if(material.type === "Posters"){
+        if(material.id === "p1"){
+          extra = '<img src="img/livelifeWHO.png" alt="Live Life by WHO" style="max-width:100%">'
+                + '<p><a href="img/livelifeWHO.png" target="_blank">Open in new tab</a></p>';
+      }
+      else if(material.id === "p2"){
+          extra = '<img src="img/taliansokonganpsikososial.png" alt="Talian Sokongan Psikososial KKM" style="max-width:70%">'
+                + '<p><a href="img/taliansokonganpsikososial.png" target="_blank">Open in new tab</a></p>';
+      } 
+    }
 
-    // Click logic for #tags
+      document.getElementById('modal-extra').innerHTML = extra;
+      document.getElementById('material-modal').style.display = 'flex';
+    }
+  });
+});
+
+
+  //keep tag click logic after
     list.querySelectorAll('.tag').forEach(function(t){
       t.addEventListener('click', function(){
         document.getElementById('search').value = '#'+t.dataset.tag;
@@ -362,30 +359,20 @@ document.getElementById('user-initials').innerText = savedName.charAt(0).toUpper
 
 <script src="footer.js"></script>
 
+<!-- open details of resource in modal -->
 <div id="material-modal" class="modal" style="display:none;">
   <div class="modal-content">
     <span id="modal-close">&times;</span>
-    <h3 id="modal-title" style="margin-top: 0;"></h3>
+    <h3 id="modal-title"></h3>
     <p id="modal-description"></p>
     <div id="modal-extra"></div>
   </div>
 </div>
 
+<!-- close details of resource in modal -->
 <script>
-  // Close Modal trigger
   document.getElementById('modal-close').addEventListener('click', function(){
     document.getElementById('material-modal').style.display = 'none';
-    // Mute/reset video components when closing modal
-    document.getElementById('modal-extra').innerHTML = '';
-  });
-
-  // Close modal when clicking outside content box
-  window.addEventListener('click', function(e) {
-    const modal = document.getElementById('material-modal');
-    if (e.target === modal) {
-      modal.style.display = 'none';
-      document.getElementById('modal-extra').innerHTML = '';
-    }
   });
 </script>
 <script src=accessibility.js></script>

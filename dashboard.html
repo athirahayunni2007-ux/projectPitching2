@@ -277,29 +277,212 @@ document.addEventListener("DOMContentLoaded", fetchNewQuote);
 
     // DYNAMIC RESOURCE COMPONENT PIPELINE: References local asset payload (resources.json) to dynamically generate content highlights
     function loadDashboardResources() {
-        const listContainer = document.getElementById('dash-resources-list');
-        fetch('resources.json')
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.materials) {
-                    const shortList = data.materials.slice(0, 3);
-                    listContainer.innerHTML = shortList.map(item => `
-                        <div style="background: var(--cm-bg); padding: 15px; border-radius: 10px; border: 1px solid var(--cm-border);">
-                            <span style="font-size: 0.75em; font-weight: 700; color: var(--cm-green-dark); text-transform: uppercase; letter-spacing: 0.05em;">${item.type}</span>
-                            <h4 style="margin: 5px 0; color: #3d4a3e; font-size: 1em; font-weight: 700;">${item.title}</h4>
-                            <p style="margin: 0; color: var(--cm-muted); font-size: 0.85em; line-height: 1.4;">${item.description}</p>
-                        </div>
-                    `).join('');
-                }
-            })
-            .catch(err => {
-                listContainer.innerHTML = `<p style="color: var(--cm-muted);">View your contents inside the Resources tab.</p>`;
-            });
-    }
-    loadDashboardResources();
+    fetch('resources.json')
+        .then(response => response.json())
+        .then(data => {
+            const listContainer = document.getElementById('dash-resources-list');
+
+            if (data && data.materials) {
+                // Step 1: slice the first 3 items
+                const shortList = data.materials.slice(0, 3);
+
+                // Step 2: render the cards with data-id
+                listContainer.innerHTML = shortList.map(item => `
+                    <div class="dash-card" data-id="${item.id}"
+                        style="background: var(--cm-bg); padding: 15px; border-radius: 10px; border: 1px solid var(--cm-border); cursor:pointer;">
+                        <span style="font-size: 11px; font-weight: 700; color: var(--cm-green-dark); text-transform: uppercase; letter-spacing: 0.05em;">${item.type}</span>
+                        <h4 style="margin: 5px 0; color: #3d4a3e; font-size: 15px; font-weight: 700;">${item.title}</h4>
+                        <p style="margin: 0; color: var(--cm-muted); font-size: 13px; line-height: 1.4;">${item.description}</p>
+                    </div>
+                `).join('');
+
+                // Step 3: attach click listeners AFTER rendering
+                shortList.forEach(item => {
+                    const card = listContainer.querySelector(`[data-id="${item.id}"]`);
+                    card.addEventListener('click', () => {
+                        document.getElementById('modal-title').innerText = item.title;
+                        document.getElementById('modal-description').innerText = item.description;
+
+                        let extra = '';
+                        if(item.type === "E-Books"){
+                            if(item.id === "e1"){
+                                extra = '<iframe src="ebooks/Suicide_PreventionKit.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/Suicide_PreventionKit.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e2"){
+                                extra = '<iframe src="ebooks/Campus_SurvivalKit.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/Campus_SurvivalKit.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e3"){
+                                extra = '<iframe src="ebooks/IIUM_Policy2021.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/IIUM_Policy2021.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e4"){
+                                extra = '<iframe src="ebooks/MentalHealth_UKTips.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/MentalHealth_UKTips.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+                        else if(item.type === "Videos"){
+                            if(item.id === "v1"){
+                                extra = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/8--GxE6E2so" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/8--GxE6E2so" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "v2"){
+                                extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AzZpiZPxvq0" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/AzZpiZPxvq0" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "v3"){
+                                extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/3BteSKlP92w" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/3BteSKlP92w" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+                        else if(item.type === "Posters"){
+                            if(item.id === "p1"){
+                                extra = '<img src="img/livelifeWHO.png" alt="Live Life by WHO" style="max-width:100%">'
+                                      + '<p><a href="img/livelifeWHO.png" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "p2"){
+                                extra = '<img src="img/taliansokonganpsikososial.png" alt="Talian Sokongan Psikososial KKM" style="max-width:70%">'
+                                      + '<p><a href="img/taliansokonganpsikososial.png" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+
+                        document.getElementById('modal-extra').innerHTML = extra;
+                        document.getElementById('material-modal').style.display = 'flex';
+                    });
+                });
+            }
+        })
+        .catch(err => {
+            document.getElementById('dash-resources-list').innerHTML =
+                `<p style="color: var(--cm-muted); font-size: 14px;">View your contents inside the Resources tab.</p>`;
+        });
+}
+loadDashboardResources();
+
+function loadDashboardResources() {
+    fetch('resources.json')
+        .then(response => response.json())
+        .then(data => {
+            const listContainer = document.getElementById('dash-resources-list');
+
+            if (data && data.materials) {
+                // Step 1: slice the first 3 items
+                const shortList = data.materials.slice(0, 3);
+
+                // Step 2: render the cards with data-id
+                listContainer.innerHTML = shortList.map(item => `
+                    <div class="dash-card" data-id="${item.id}"
+                        style="background: var(--cm-bg); padding: 15px; border-radius: 10px; border: 1px solid var(--cm-border); cursor:pointer;">
+                        <span style="font-size: 11px; font-weight: 700; color: var(--cm-green-dark); text-transform: uppercase; letter-spacing: 0.05em;">${item.type}</span>
+                        <h4 style="margin: 5px 0; color: #3d4a3e; font-size: 15px; font-weight: 700;">${item.title}</h4>
+                        <p style="margin: 0; color: var(--cm-muted); font-size: 13px; line-height: 1.4;">${item.description}</p>
+                    </div>
+                `).join('');
+
+                // Step 3: attach click listeners AFTER rendering
+                shortList.forEach(item => {
+                    const card = listContainer.querySelector(`[data-id="${item.id}"]`);
+                    card.addEventListener('click', () => {
+                        document.getElementById('modal-title').innerText = item.title;
+                        document.getElementById('modal-description').innerText = item.description;
+
+                        let extra = '';
+                        if(item.type === "E-Books"){
+                            if(item.id === "e1"){
+                                extra = '<iframe src="ebooks/Suicide_PreventionKit.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/Suicide_PreventionKit.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e2"){
+                                extra = '<iframe src="ebooks/Campus_SurvivalKit.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/Campus_SurvivalKit.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e3"){
+                                extra = '<iframe src="ebooks/IIUM_Policy2021.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/IIUM_Policy2021.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e4"){
+                                extra = '<iframe src="ebooks/MentalHealth_UKTips.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/MentalHealth_UKTips.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+                        else if(item.type === "Videos"){
+                            if(item.id === "v1"){
+                                extra = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/8--GxE6E2so" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/8--GxE6E2so" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "v2"){
+                                extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AzZpiZPxvq0" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/AzZpiZPxvq0" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "v3"){
+                                extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/3BteSKlP92w" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/3BteSKlP92w" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+                        else if(item.type === "Posters"){
+                            if(item.id === "p1"){
+                                extra = '<img src="img/livelifeWHO.png" alt="Live Life by WHO" style="max-width:100%">'
+                                      + '<p><a href="img/livelifeWHO.png" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "p2"){
+                                extra = '<img src="img/taliansokonganpsikososial.png" alt="Talian Sokongan Psikososial KKM" style="max-width:70%">'
+                                      + '<p><a href="img/taliansokonganpsikososial.png" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+
+// Separate function for full Resources tab
+function render(){
+  // … filtering and sorting logic …
+
+  var list = document.getElementById('list');
+  if(!items.length){
+    list.innerHTML = '<div class="empty">No materials found.</div>';
+    return;
+  }
+
+  // Build cards
+  list.innerHTML = items.map(function(i){
+    return '<div class="cm-card item" data-id="'+i.id+'">'
+      + '<span class="type-badge">'+i.type+'</span>'
+      + '<h4>'+i.title+'</h4>'
+      + '<p>'+i.description+'</p>'
+      + '<div class="tags">'+(i.tags||[]).map(function(t){
+          return '<button class="tag" data-tag="'+t+'">#'+t+'</button>';
+        }).join('')+'</div>'
+      + '</div>';
+  }).join('');
+
+  // Card click listeners
+  list.querySelectorAll('.item').forEach(function(card){
+    card.addEventListener('click', function(){
+      var id = card.dataset.id;
+      var item = state.items.find(function(i){ return i.id===id; });
+      if(item){
+        document.getElementById('modal-title').innerText = item.title;
+        document.getElementById('modal-description').innerText = item.description;
+        // … embed logic …
+        document.getElementById('material-modal').style.display = 'flex';
+      }
+    });
+  });
+
+  // 👉 Tag click logic AFTER card listeners
+  list.querySelectorAll('.tag').forEach(function(t){
+    t.addEventListener('click', function(e){
+      e.stopPropagation();
+      document.getElementById('search').value = '#'+t.dataset.tag;
+      state.search = '#'+t.dataset.tag;
+      render();
+    });
+  });
+
+  applyDynamicFontScaling();
+}
 </script>
 
 <script src=accessibility.js></script>
 <script src="footer.js"></script>
+
 </body>
 </html>
