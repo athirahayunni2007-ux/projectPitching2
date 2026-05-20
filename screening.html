@@ -5,9 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Screening · CampusMind</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-size: 16px;
+            transition: font-size 0.2s ease;
+            position: relative;
+        }
+        .accessibility-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+        .accessibility-tools {
+            display: flex;
+            gap: 6px;
+            background: #fff;
+            padding: 4px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+        }
+        .btn-access {
+            background: transparent;
+            border: none;
+            color: #334155;
+            padding: 6px 12px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.1s;
+        }
+        .btn-access:hover {
+            background: #eafff5;
+            color: #0f766e;
+        }
+        @media(max-width: 600px) {
+            .accessibility-container {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="screening-card">
+
+    <div class="accessibility-container">
+        <div class="accessibility-tools">
+            <button class="btn-access" onclick="changeFontSize('up')" title="Besarkan tulisan">A+</button>
+            <button class="btn-access" onclick="changeFontSize('down')" title="Kecilkan tulisan">A-</button>
+        </div>
+    </div>
+
+    <div class="screening-card cm-main">
         <div class="header">
             <div class="title-group">
                 <h1>DASS-21 Screening</h1>
@@ -69,10 +120,49 @@
         const progressBar = document.getElementById('progress-bar');
         const buttons = document.querySelectorAll('.option-btn');
 
+        let currentScale = 100;
+
+        function applyDynamicFontScaling() {
+            const mainContent = document.querySelector('.cm-main');
+            if (mainContent) {
+                const dynamicTexts = mainContent.querySelectorAll('h1, span, p, button');
+                dynamicTexts.forEach(el => {
+                    if (!el.classList.contains('btn-access')) {
+                        el.style.fontSize = (currentScale / 100) + 'em';
+                    }
+                });
+            }
+            const sidebar = document.querySelector('.cm-sidebar');
+            if (sidebar) {
+                const sidebarTexts = sidebar.querySelectorAll('.cm-uname, .cm-urole, .cm-brand, .cm-brand-sub, .cm-nav a, .cm-logout');
+                sidebarTexts.forEach(el => {
+                    el.style.fontSize = (currentScale / 100) + 'em';
+                });
+            }
+            const footerSlot = document.getElementById('cm-footer-slot');
+            if (footerSlot) {
+                const footerTexts = footerSlot.querySelectorAll('.cm-footer h4, .cm-footer h5, .cm-footer p, .cm-footer a, .cm-footer li');
+                footerTexts.forEach(el => {
+                    el.style.fontSize = (currentScale / 100) + 'em';
+                });
+            }
+        }
+
+        function changeFontSize(action) {
+            if (action === 'up') {
+                if (currentScale < 150) currentScale += 15;
+            } else {
+                if (currentScale > 100) currentScale -= 15;
+            }
+            document.body.style.fontSize = currentScale + '%';
+            applyDynamicFontScaling();
+        }
+
         function updateQuestion() {
             questionDisplay.innerText = questions[currentIndex].t;
             questionNumber.innerText = `Question ${currentIndex + 1} of 21`;
             progressBar.style.width = ((currentIndex + 1) / questions.length * 100) + "%";
+            applyDynamicFontScaling();
         }
 
         buttons.forEach(button => {

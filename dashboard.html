@@ -7,79 +7,27 @@
     <link rel="stylesheet" href="theme.css" />
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            display: block !important;
-            padding-top: 0 !important;
-            background: var(--cm-bg) !important;
-        }
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-            margin-top: 24px;
-        }
-        .cm-card-dash {
-            background: #fff;
-            border: 1px solid var(--cm-border);
-            border-radius: 14px;
-            padding: 24px;
-            box-shadow: var(--cm-shadow);
-        }
-        .welcome-section h1 { 
-            font-size: 28px; 
-            font-weight: 800; 
-            color: #3d4a3e; 
-            margin: 0; 
-        }
+        .accessibility-tools { display: flex; gap: 6px; background: #fff; padding: 4px; border-radius: 8px; border: 1px solid var(--cm-border); margin-bottom: 10px; display: inline-flex; }
+        .btn-access { background: transparent; border: none; color: var(--cm-text); padding: 4px 10px; font-weight: 700; font-size: 14px; cursor: pointer; border-radius: 6px; }
+        .btn-access:hover { background: var(--cm-green-soft); color: var(--cm-green-dark); }
+        body { display: block !important; padding-top: 0 !important; background: var(--cm-bg) !important; transition: font-size 0.2s ease; }
+        .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-top: 24px; }
+        .cm-card-dash { background: #fff; border: 1px solid var(--cm-border); border-radius: 14px; padding: 24px; box-shadow: var(--cm-shadow); }
+        .welcome-section h1 { font-size: 28px; font-weight: 800; color: #3d4a3e; margin: 0; }
         .welcome-section p { color: #7a8a7c; margin: 5px 0 30px; }
-        .stress-box {
-            background: #f0f4f2;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            text-align: center;
-            border: 1px solid #dce4e0;
-        }
-        .stress-value {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--cm-green);
-            display: block;
-        }
-        .btn-main {
-            background: var(--cm-green);
-            color: #fff;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            width: 100%;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        .btn-main:hover {
-            background-color: var(--cm-green-dark);
-        }
-        .btn-outline {
-            background: white;
-            color: var(--cm-green);
-            border: 1px solid var(--cm-border);
-            padding: 12px;
-            border-radius: 10px;
-            width: 100%;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        .btn-outline:hover {
-            background-color: var(--cm-green-soft);
-        }
-        @media(max-width: 990px) {
-            .dashboard-grid { grid-template-columns: 1fr; }
-        }
-        @media(max-width: 600px) {
-            .dashboard-grid { gap: 15px; }
-        }
+        .stress-box { background: #f0f4f2; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; border: 1px solid #dce4e0; }
+        .stress-value { font-size: 24px; font-weight: 800; color: var(--cm-green); display: block; }
+        .btn-main { background: var(--cm-green); color: #fff; border: none; padding: 12px; border-radius: 10px; width: 100%; font-weight: 700; cursor: pointer; font-family: inherit; }
+        .btn-main:hover { background-color: var(--cm-green-dark); }
+        .btn-outline { background: white; color: var(--cm-green); border: 1px solid var(--cm-border); padding: 12px; border-radius: 10px; width: 100%; font-weight: 700; cursor: pointer; font-family: inherit; }
+        .btn-outline:hover { background-color: var(--cm-green-soft); }
+        .quote-container { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); grid-column: span 2; width: 100%; }
+        .quote-title { font-size: 13px; font-weight: 700; color: #0f766e; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+        .quote-text { font-size: 18px; font-weight: 500; color: #1e293b; line-height: 1.6; margin: 0 0 20px 0; font-style: italic; }
+        .btn-refresh { background-color: #709677; color: white; border: none; padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .btn-refresh:hover { background-color: #5a7a60; }
+        @media(max-width: 990px) { .dashboard-grid { grid-template-columns: 1fr; } }
+        @media(max-width: 600px) { .dashboard-grid { gap: 15px; } }
     </style>
 </head>
 <body>
@@ -103,15 +51,20 @@
             <a href="about_us.html"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2"/><path d="M15 20c0-2 2-4 5-4"/></svg>About Us</a>
         </nav>
         <a href="index.html" class="cm-logout" onclick="localStorage.removeItem('activeUser');">
-            <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
-            Log out
+            <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Log out
         </a>
     </aside>
 
     <div class="cm-main">
-        <div class="welcome-section">
-            <h1 id="welcome-title">Welcome back, User!</h1>
-            <p>Here's your mental wellness overview for today</p>
+        <div class="welcome-section" style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <h1 id="welcome-title">Welcome back, User!</h1>
+                <p>Here's your mental wellness overview for today</p>
+            </div>
+            <div class="accessibility-tools">
+                <button class="btn-access" onclick="changeFontSize('up')">A+</button>
+                <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+            </div>
         </div>
 
         <div class="dashboard-grid">
@@ -121,9 +74,7 @@
                 <div class="stress-box">
                     <span class="stress-value" id="dash-level">NO DATA</span>
                 </div>
-                <button class="btn-outline" onclick="location.href='screening.html'">
-                    Retake Assessment
-                </button>
+                <button class="btn-outline" onclick="location.href='screening.html'">Retake Assessment</button>
             </div>
 
             <div class="cm-card-dash">
@@ -138,6 +89,12 @@
                 <button class="btn-main" onclick="location.href='daily_tasks.html'">View All Tasks</button>
             </div>
             
+            <div class="quote-container">
+                <div class="quote-title">🌿 Mindful Advice of the Day</div>
+                <p class="quote-text" id="quote-display">Loading your daily advice...</p>
+                <button class="btn-refresh" id="btn-quote" onclick="fetchNewQuote()">New Advice</button>
+            </div>
+
             <div class="cm-card-dash" style="grid-column: span 2;">
                 <h3 style="color: #3d4a3e; margin-bottom: 15px;">Recommended Resources</h3>
                 <div id="dash-resources-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px;">
@@ -149,12 +106,38 @@
     </div>
 </div>
 
-
 <script>
     const savedName = localStorage.getItem('activeUser') || "Guest";
     document.getElementById('user-display-name').innerText = savedName;
     document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
     document.getElementById('welcome-title').innerText = `Welcome back, ${savedName}!`;
+
+    let currentScale = 100;
+    function changeFontSize(action) {
+        if(action === 'up' && currentScale < 150) currentScale += 15;
+        if(action === 'down' && currentScale > 100) currentScale -= 15;
+        document.body.style.fontSize = currentScale + '%';
+        const mainContent = document.querySelector('.cm-main');
+        if(mainContent) {
+            mainContent.querySelectorAll('h1, h2, h3, h4, p, span, div').forEach(el => {
+                el.style.fontSize = (currentScale / 100) + 'em';
+            });
+        }
+    }
+
+    function fetchNewQuote() {
+        const quoteDisplay = document.getElementById('quote-display');
+        const quoteButton = document.getElementById('btn-quote');
+        quoteDisplay.innerText = "Fetching custom wisdom for you...";
+        quoteButton.innerText = "Loading...";
+        quoteButton.disabled = true;
+        fetch('https://api.adviceslip.com/advice')
+            .then(response => response.json())
+            .then(data => { quoteDisplay.innerText = `"${data.slip.advice}"`; })
+            .catch(error => { quoteDisplay.innerText = "Take a deep breath. You are doing better than you think. 🌿"; })
+            .finally(() => { quoteButton.innerText = "New Advice"; quoteButton.disabled = false; });
+    }
+    document.addEventListener("DOMContentLoaded", fetchNewQuote);
 
     const results = JSON.parse(localStorage.getItem('dass_results'));
     const display = document.getElementById('dash-level');
@@ -175,27 +158,208 @@
     } catch(e) {}
 
     function loadDashboardResources() {
-        fetch('resources.json')
-            .then(response => response.json())
-            .then(data => {
-                const listContainer = document.getElementById('dash-resources-list');
-                if (data && data.materials) {
-                    const shortList = data.materials.slice(0, 3); 
-                    
-                    listContainer.innerHTML = shortList.map(item => `
-                        <div style="background: var(--cm-bg); padding: 15px; border-radius: 10px; border: 1px solid var(--cm-border);">
-                            <span style="font-size: 11px; font-weight: 700; color: var(--cm-green-dark); text-transform: uppercase; letter-spacing: 0.05em;">${item.type}</span>
-                            <h4 style="margin: 5px 0; color: #3d4a3e; font-size: 15px; font-weight: 700;">${item.title}</h4>
-                            <p style="margin: 0; color: var(--cm-muted); font-size: 13px; line-height: 1.4;">${item.description}</p>
-                        </div>
-                    `).join('');
-                }
-            })
-            .catch(err => {
-                document.getElementById('dash-resources-list').innerHTML = `<p style="color: var(--cm-muted); font-size: 14px;">View your contents inside the Resources tab.</p>`;
-            });
-    }
-    loadDashboardResources();
+    fetch('resources.json')
+        .then(response => response.json())
+        .then(data => {
+            const listContainer = document.getElementById('dash-resources-list');
+
+            if (data && data.materials) {
+                // Step 1: slice the first 3 items
+                const shortList = data.materials.slice(0, 3);
+
+                // Step 2: render the cards with data-id
+                listContainer.innerHTML = shortList.map(item => `
+                    <div class="dash-card" data-id="${item.id}"
+                        style="background: var(--cm-bg); padding: 15px; border-radius: 10px; border: 1px solid var(--cm-border); cursor:pointer;">
+                        <span style="font-size: 11px; font-weight: 700; color: var(--cm-green-dark); text-transform: uppercase; letter-spacing: 0.05em;">${item.type}</span>
+                        <h4 style="margin: 5px 0; color: #3d4a3e; font-size: 15px; font-weight: 700;">${item.title}</h4>
+                        <p style="margin: 0; color: var(--cm-muted); font-size: 13px; line-height: 1.4;">${item.description}</p>
+                    </div>
+                `).join('');
+
+                // Step 3: attach click listeners AFTER rendering
+                shortList.forEach(item => {
+                    const card = listContainer.querySelector(`[data-id="${item.id}"]`);
+                    card.addEventListener('click', () => {
+                        document.getElementById('modal-title').innerText = item.title;
+                        document.getElementById('modal-description').innerText = item.description;
+
+                        let extra = '';
+                        if(item.type === "E-Books"){
+                            if(item.id === "e1"){
+                                extra = '<iframe src="ebooks/Suicide_PreventionKit.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/Suicide_PreventionKit.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e2"){
+                                extra = '<iframe src="ebooks/Campus_SurvivalKit.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/Campus_SurvivalKit.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e3"){
+                                extra = '<iframe src="ebooks/IIUM_Policy2021.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/IIUM_Policy2021.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e4"){
+                                extra = '<iframe src="ebooks/MentalHealth_UKTips.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/MentalHealth_UKTips.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+                        else if(item.type === "Videos"){
+                            if(item.id === "v1"){
+                                extra = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/8--GxE6E2so" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/8--GxE6E2so" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "v2"){
+                                extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AzZpiZPxvq0" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/AzZpiZPxvq0" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "v3"){
+                                extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/3BteSKlP92w" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/3BteSKlP92w" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+                        else if(item.type === "Posters"){
+                            if(item.id === "p1"){
+                                extra = '<img src="img/livelifeWHO.png" alt="Live Life by WHO" style="max-width:100%">'
+                                      + '<p><a href="img/livelifeWHO.png" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "p2"){
+                                extra = '<img src="img/taliansokonganpsikososial.png" alt="Talian Sokongan Psikososial KKM" style="max-width:70%">'
+                                      + '<p><a href="img/taliansokonganpsikososial.png" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+
+                        document.getElementById('modal-extra').innerHTML = extra;
+                        document.getElementById('material-modal').style.display = 'flex';
+                    });
+                });
+            }
+        })
+        .catch(err => {
+            document.getElementById('dash-resources-list').innerHTML =
+                `<p style="color: var(--cm-muted); font-size: 14px;">View your contents inside the Resources tab.</p>`;
+        });
+}
+loadDashboardResources();
+
+function loadDashboardResources() {
+    fetch('resources.json')
+        .then(response => response.json())
+        .then(data => {
+            const listContainer = document.getElementById('dash-resources-list');
+
+            if (data && data.materials) {
+                // Step 1: slice the first 3 items
+                const shortList = data.materials.slice(0, 3);
+
+                // Step 2: render the cards with data-id
+                listContainer.innerHTML = shortList.map(item => `
+                    <div class="dash-card" data-id="${item.id}"
+                        style="background: var(--cm-bg); padding: 15px; border-radius: 10px; border: 1px solid var(--cm-border); cursor:pointer;">
+                        <span style="font-size: 11px; font-weight: 700; color: var(--cm-green-dark); text-transform: uppercase; letter-spacing: 0.05em;">${item.type}</span>
+                        <h4 style="margin: 5px 0; color: #3d4a3e; font-size: 15px; font-weight: 700;">${item.title}</h4>
+                        <p style="margin: 0; color: var(--cm-muted); font-size: 13px; line-height: 1.4;">${item.description}</p>
+                    </div>
+                `).join('');
+
+                // Step 3: attach click listeners AFTER rendering
+                shortList.forEach(item => {
+                    const card = listContainer.querySelector(`[data-id="${item.id}"]`);
+                    card.addEventListener('click', () => {
+                        document.getElementById('modal-title').innerText = item.title;
+                        document.getElementById('modal-description').innerText = item.description;
+
+                        let extra = '';
+                        if(item.type === "E-Books"){
+                            if(item.id === "e1"){
+                                extra = '<iframe src="ebooks/Suicide_PreventionKit.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/Suicide_PreventionKit.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e2"){
+                                extra = '<iframe src="ebooks/Campus_SurvivalKit.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/Campus_SurvivalKit.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e3"){
+                                extra = '<iframe src="ebooks/IIUM_Policy2021.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/IIUM_Policy2021.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "e4"){
+                                extra = '<iframe src="ebooks/MentalHealth_UKTips.pdf" width="100%" height="400"></iframe>'
+                                      + '<p><a href="ebooks/MentalHealth_UKTips.pdf" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+                        else if(item.type === "Videos"){
+                            if(item.id === "v1"){
+                                extra = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/8--GxE6E2so" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/8--GxE6E2so" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "v2"){
+                                extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AzZpiZPxvq0" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/AzZpiZPxvq0" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "v3"){
+                                extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/3BteSKlP92w" frameborder="0" allowfullscreen></iframe>'
+                                      + '<p><a href="https://youtu.be/3BteSKlP92w" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+                        else if(item.type === "Posters"){
+                            if(item.id === "p1"){
+                                extra = '<img src="img/livelifeWHO.png" alt="Live Life by WHO" style="max-width:100%">'
+                                      + '<p><a href="img/livelifeWHO.png" target="_blank">Open in new tab</a></p>';
+                            }
+                            else if(item.id === "p2"){
+                                extra = '<img src="img/taliansokonganpsikososial.png" alt="Talian Sokongan Psikososial KKM" style="max-width:70%">'
+                                      + '<p><a href="img/taliansokonganpsikososial.png" target="_blank">Open in new tab</a></p>';
+                            }
+                        }
+
+// Separate function for full Resources tab
+function render(){
+  // … filtering and sorting logic …
+
+  var list = document.getElementById('list');
+  if(!items.length){
+    list.innerHTML = '<div class="empty">No materials found.</div>';
+    return;
+  }
+
+  // Build cards
+  list.innerHTML = items.map(function(i){
+    return '<div class="cm-card item" data-id="'+i.id+'">'
+      + '<span class="type-badge">'+i.type+'</span>'
+      + '<h4>'+i.title+'</h4>'
+      + '<p>'+i.description+'</p>'
+      + '<div class="tags">'+(i.tags||[]).map(function(t){
+          return '<button class="tag" data-tag="'+t+'">#'+t+'</button>';
+        }).join('')+'</div>'
+      + '</div>';
+  }).join('');
+
+  // Card click listeners
+  list.querySelectorAll('.item').forEach(function(card){
+    card.addEventListener('click', function(){
+      var id = card.dataset.id;
+      var item = state.items.find(function(i){ return i.id===id; });
+      if(item){
+        document.getElementById('modal-title').innerText = item.title;
+        document.getElementById('modal-description').innerText = item.description;
+        // … embed logic …
+        document.getElementById('material-modal').style.display = 'flex';
+      }
+    });
+  });
+
+  // 👉 Tag click logic AFTER card listeners
+  list.querySelectorAll('.tag').forEach(function(t){
+    t.addEventListener('click', function(e){
+      e.stopPropagation();
+      document.getElementById('search').value = '#'+t.dataset.tag;
+      state.search = '#'+t.dataset.tag;
+      render();
+    });
+  });
+
+  applyDynamicFontScaling();
+}
 </script>
 
 <script src="footer.js"></script>

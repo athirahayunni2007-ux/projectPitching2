@@ -1,5 +1,5 @@
 {
-  "materials": [
+  "items": [
     { "id":"e1","type":"E-Books","title":"Suicide Prevention Kit","description":"Collection of items designed to help individuals remember their reasons to keep living.","tags":["kit","suicide"] },
     { "id":"e2","type":"E-Books","title":"Campus Survival Kit","description":"Why campus preparation and survival skill is important for your mental health.","tags":["campus","kit"] },
     { "id":"e3","type":"E-Books","title":"IIUM Student Mental Health Policy 2021","description":"IIUM views an individual with good mental health as someone who displays the characteristics of Insan Sejahtera","tags":["sejahtera","policy"] },

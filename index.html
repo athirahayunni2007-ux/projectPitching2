@@ -4,31 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CampusMind</title>
-    <link rel = "stylesheet" href ="authentification.css">
+    <link rel="stylesheet" href="authentification.css">
+    <style>
+        /* CSS UNTUK AKSESIBILITI */
+        .accessibility-tools { 
+            position: absolute; 
+            top: 20px; 
+            right: 20px; 
+            display: flex; 
+            gap: 6px; 
+            background: #fff; 
+            padding: 4px; 
+            border-radius: 8px; 
+            border: 1px solid var(--cm-border, #e5e7eb); 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .btn-access { 
+            background: transparent; 
+            border: none; 
+            color: #374151; 
+            padding: 4px 10px; 
+            font-weight: 700; 
+            font-size: 14px; 
+            cursor: pointer; 
+            border-radius: 6px; 
+            transition: 0.1s; 
+        }
+        .btn-access:hover { background: #f0fdf4; color: #065f46; }
+    </style>
 </head>
 
 <body class="page1">
-    <div class = "manual">
-        <h1>Welcome to CampusMind</h1>
-        <h3>Here's a quick guide for your setup</h3>
-
-        <div class = "instruction">
-            <ol>
-                <li>Create an account or log in to get started.</li>
-                <li>Complete the mental health screening to better understand your current stress level.</li>
-                <li>Track your daily activities and monitor your personal progress over time.</li>
-            </ol>
-            <p>We hope CampusMind supports you on your journey to better well-being 🌿</p>
-        </div>
-
-        <div class = "buttons">
-            <a href = "login.html">
-                <button id = "start">Click to start</button>
-            </a>
-        </div>
+    <div class="accessibility-tools">
+        <button class="btn-access" onclick="changeFontSize('up')">A+</button>
+        <button class="btn-access" onclick="changeFontSize('down')">A-</button>
     </div>
+
+    <main class="auth-container">
+        <div class="manual">
+            <h1>Welcome to CampusMind</h1>
+            <h3>Here's a quick guide for your setup</h3>
+
+            <div class="instruction">
+                <ol>
+                    <li>Create an account or log in to get started.</li>
+                    <li>Complete the mental health screening to better understand your current stress level.</li>
+                    <li>Track your daily activities and monitor your personal progress over time.</li>
+                </ol>
+                <p>We hope CampusMind supports you on your journey to better well-being 🌿</p>
+            </div>
+
+            <div class="buttons">
+                <a href="login.html">
+                    <button id="start">Click to start</button>
+                </a>
+            </div>
+        </div>
+    </main>
+    
     <div id="cm-footer-slot"></div>
     
+    <script>
+        // Fungsi Aksesibiliti
+        let currentScale = 100;
+        function changeFontSize(action) {
+            if(action === 'up' && currentScale < 150) currentScale += 15;
+            if(action === 'down' && currentScale > 100) currentScale -= 15;
+            document.body.style.fontSize = currentScale + '%';
+            const manualContent = document.querySelector('.manual');
+            if(manualContent) {
+                manualContent.querySelectorAll('h1, h3, li, p, button').forEach(el => {
+                    el.style.fontSize = (currentScale / 100) + 'em';
+                });
+            }
+        }
+    </script>
     <script src="footer.js"></script>
 </body>
 </html>

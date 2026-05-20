@@ -2,27 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result - CampusMind</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .status-container{
-            text-align: center; padding-top: 20px;
+        html, body {
+            min-height: 100%;
+            margin: 0;
         }
-
+        body {
+            font-size: 16px;
+            transition: font-size 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 60px 20px;
+            box-sizing: border-box;
+        }
+        .accessibility-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+        .accessibility-tools {
+            display: flex;
+            gap: 6px;
+            background: #fff;
+            padding: 4px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+        }
+        .btn-access {
+            background: transparent;
+            border: none;
+            color: #334155;
+            padding: 6px 12px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.1s;
+        }
+        .btn-access:hover {
+            background: #eafff5;
+            color: #0f766e;
+        }
+        
+        .status-container {
+            text-align: center; 
+            padding-top: 20px;
+            width: 90%;          
+            max-width: 600px;   
+        }
         .result-box { 
             background: #ffffff; 
             border: 2px solid #88ab8e; 
             border-radius: 15px; 
             padding: 25px; 
-            text-align: left; 
+            text-align: center; /* Ubah dari left ke center */
             margin: 20px 0;
         }
-
-        .result-value{
+        .result-value {
             color: #709677; font-size: 32px; font-weight: bold;
+            margin: 10px 0;
         }
-
-        .btn-green{
+        .btn-green {
             background-color: #709677;
             color: white;
             padding: 15px;
@@ -33,23 +80,60 @@
             font-weight: bold;
             border: none;
             box-sizing: border-box;
+            text-align: center; /* Bagi teks butang center */
         }
-
-        .btn-green:hover{
+        .btn-green:hover {
             background-color: #5a7a60;
         }
-        
+
+        .status-title {
+            max-width: 100%; 
+            color: #3d4a3e;
+            margin: 0 0 10px 0;
+        }
+        .status-sub {
+            color: #7a8a7c;
+            margin: 0;
+        }
+        .res-lbl {
+            font-size: 14px; 
+            color: #7a8a7c;
+            margin: 0;
+        }
+        .res-msg {
+            font-size: 14px; 
+            color: #3d4a3e;
+            margin: 0;
+        }
+
+        @media(max-width: 600px) {
+            .accessibility-container {
+                top: 10px;
+                right: 10px;
+            }
+            body {
+                padding: 50px 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="screening-card status-container">
-        <h1 style="max-width: 100%; color: #3d4a3e;">Assessment Complete</h1>
-        <p style="color: #7a8a7c;">Here are your results and personalized recommendations.</p>
+
+    <div class="accessibility-container">
+        <div class="accessibility-tools">
+            <button class="btn-access" onclick="changeFontSize('up')" title="Besarkan tulisan">A+</button>
+            <button class="btn-access" onclick="changeFontSize('down')" title="Kecilkan tulisan">A-</button>
+        </div>
+    </div>
+
+    <div class="screening-card status-container cm-main">
+        <h1 class="status-title">Assessment Complete</h1>
+        <p class="status-sub">Here are your results and personalized recommendations.</p>
 
         <div class="result-box">
-            <p style="font-size: 14px; color: #7a8a7c;">Your stress level is</p>
+            <p class="res-lbl">Your stress level is</p>
             <p class="result-value" id="level">Normal</p>
-            <p id="message" style="font-size: 14px; color: #3d4a3e;">You are doing well, keep it up!</p>
+            <p id="message" class="res-msg">You are doing well, keep it up!</p>
         </div>
 
         <a href="dashboard.html" class="btn-green">Go to Dashboard</a>
@@ -60,26 +144,60 @@
         const level = document.getElementById('level');
         const message = document.getElementById('message');
 
-        if (results) {
-            const score = results.s;
-            
-            if (score <= 14) { 
-                level.innerText = "Normal"; 
-                message.innerText = "You're handling things great!"; 
-            }
-            else if (score <= 18) { 
-                level.innerText = "Mild"; 
-                message.innerText = "You're experiencing mild stress. Self-care is recommended."; 
-            }
-            else if (score <= 25) {
-                level.innerText = "Moderate";
-                message.innerText = "Consider taking a break or talking to a friend.";
-            }
-            else { 
-                level.innerText = "High"; 
-                message.innerText = "Please consider seeking support or professional advice."; 
+        let currentScale = 100;
+
+        function applyDynamicFontScaling() {
+            const mainContent = document.querySelector('.cm-main');
+            if (mainContent) {
+                const dynamicTexts = mainContent.querySelectorAll('h1, p, a');
+                dynamicTexts.forEach(el => {
+                    if (!el.classList.contains('btn-access') && !el.classList.contains('result-value')) {
+                        el.style.fontSize = (currentScale / 100) + 'em';
+                    }
+                });
+                
+                const rVal = mainContent.querySelector('.result-value');
+                if (rVal) {
+                    rVal.style.fontSize = (32 * (currentScale / 100)) + 'px';
+                }
             }
         }
+
+        function changeFontSize(action) {
+            if (action === 'up') {
+                if (currentScale < 150) currentScale += 15;
+            } else {
+                if (currentScale > 100) currentScale -= 15;
+            }
+            document.body.style.fontSize = currentScale + '%';
+            applyDynamicFontScaling();
+        }
+
+        function displayResults() {
+            if (results) {
+                const score = results.s;
+                
+                if (score <= 14) { 
+                    level.innerText = "Normal"; 
+                    message.innerText = "You're handling things great!"; 
+                }
+                else if (score <= 18) { 
+                    level.innerText = "Mild"; 
+                    message.innerText = "You're experiencing mild stress. Self-care is recommended."; 
+                }
+                else if (score <= 25) {
+                    level.innerText = "Moderate";
+                    message.innerText = "Consider taking a break or talking to a friend.";
+                }
+                else { 
+                    level.innerText = "High"; 
+                    message.innerText = "Please consider seeking support or professional advice."; 
+                }
+            }
+            applyDynamicFontScaling();
+        }
+
+        displayResults();
     </script>
 </body>
 </html>

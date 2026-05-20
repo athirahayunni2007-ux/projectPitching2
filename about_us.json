@@ -12,9 +12,6 @@
   "team": [
     { "name": "Athirah Ayunni",  "role": "Project Leader & Developer" },
     { "name": "Amirah Haziqah",         "role": "Frontend Developer" },
-    { "name": "Anis Jazmina",        "role": "Backend Developer" },
-    { "name": "Iman Zulkifli",      "role": "Content Lead" },
-    { "name": "Sarah Lee",          "role": "Peer Support" },
-    { "name": "Hafiz Mansor",       "role": "Tech & Design" }
+    { "name": "Anis Jazmina",        "role": "Backend Developer" }
   ]
 }

@@ -1,109 +1,66 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Support · CampusMind</title>
-  <link rel="stylesheet" href="theme.css"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Support · CampusMind</title>
+    <link rel="stylesheet" href="theme.css"/>
+    <style>
+        /* Accessibility Tools */
+        .access-container { position: fixed; top: 20px; right: 20px; z-index: 9999; display:flex; gap: 6px; }
+        .btn-access { background: #fff; border: 1px solid var(--cm-border); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; box-shadow: var(--cm-shadow); }
+        .btn-access:hover { background: var(--cm-green-soft); color: var(--cm-green-dark); }
 
-<style>
-
-  .support-grid{
-    display:grid;grid-template-columns:1fr;gap:20px;max-width:760px
-  }
-
-  .support-card .cover{
-    width:100%;height:230px;object-fit:cover;display:block;background:#e2e8f0;
-  }
-
-  .support-body{
-    padding:22px 24px 26px
-  }
-
-  .support-body h3{
-    margin:0 0 6px;font-size:20px
-  }
-
-  .support-body .desc{
-    color:var(--cm-muted);margin:0 0 18px
-  }
-
-  .info-row{
-    display:flex;gap:14px;align-items:flex-start;padding:10px 0
-  }
-
-  .info-row + .info-row{
-    border-top:1px solid #f1f5f9
-  }
-
-  .info-icon{
-    width:36px;height:36px;border-radius:10px;
-    background:var(--cm-green-soft);color:var(--cm-green-dark);
-    display:flex;align-items:center;justify-content:center;flex:none;
-  }
-
-  .info-icon svg{
-    width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2
-  }
-
-  .info-label{
-    font-weight:600;font-size:14px;margin:0 0 2px
-  }
-
-  .info-value{
-    margin:0;color:var(--cm-green);font-size:14px;line-height:1.5
-  }
-
-  .loading{
-    padding:40px;text-align:center;color:var(--cm-muted)
-  }
-
-  @media(max-width:990px){
-    .support-grid{max-width:100%}
-  }
-  @media(max-width:600px){
-    .support-card .cover{height:160px}
-    .support-body{padding:16px}
-  }
-  </style>
+        /* Support Page Styles */
+        .support-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-top: 20px; }
+        .support-card { background: var(--cm-card); border: 1px solid var(--cm-border); border-radius: 14px; overflow: hidden; box-shadow: var(--cm-shadow); }
+        .support-card .cover { width:100%; height:180px; object-fit:cover; display:block; background:#e2e8f0; }
+        .support-body { padding:22px 24px 26px }
+        .support-body h3 { margin:0 0 10px; font-size:18px; color:var(--cm-green-dark); }
+        .support-body .desc { color:var(--cm-muted); margin:0 0 18px; font-size: 14px; line-height: 1.5; }
+        .info-row { display:flex; gap:14px; align-items:flex-start; padding:10px 0; border-top:1px solid #f1f5f9; }
+        .info-icon { width:36px; height:36px; border-radius:10px; background:var(--cm-green-soft); color:var(--cm-green-dark); display:flex; align-items:center; justify-content:center; flex:none; }
+        .info-icon svg { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2 }
+        .info-label { font-weight:600; font-size:12px; margin:0 0 2px; text-transform: uppercase; color:var(--cm-muted); }
+        .info-value { margin:0; color:var(--cm-green); font-size:14px; line-height:1.5 }
+    </style>
 </head>
 
 <body>
 
+<div class="access-container">
+    <button class="btn-access" onclick="changeFontSize('up')">A+</button>
+    <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+</div>
+
 <div class="cm-app">
-  <aside class="cm-sidebar">
-    <h1 class="cm-brand">CampusMind</h1>
-    <p class="cm-brand-sub">Student Mental Wellness</p>
-    <div class="cm-user">
-      <div class="cm-avatar" id="user-initials">U</div>
+    <aside class="cm-sidebar">
+        <h1 class="cm-brand">CampusMind</h1>
+        <p class="cm-brand-sub">Student Mental Wellness</p>
+        <div class="cm-user">
+            <div class="cm-avatar" id="user-initials">U</div>
             <div>
                 <div class="cm-uname" id="user-display-name">User</div>
                 <div class="cm-urole">Undergraduate</div>
             </div>
-    </div>
-    <nav class="cm-nav">
-      <a href="dashboard.html"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>Dashboard</a>
-      <a href="daily_tasks.html"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Daily Tasks</a>
-      <a href="resource_library.html"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h8M8 11h8"/></svg>Resources</a>
-      <a href="support.html" class="active"><svg viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L7 10.5a16 16 0 0 0 6.5 6.5l1.75-1.79a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg>Support</a>
-      <a href="about_us.html"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2"/><path d="M15 20c0-2 2-4 5-4"/></svg>About Us</a>
-    </nav>
-    <a href="index.html" class="cm-logout" onclick="localStorage.removeItem('activeUser');">
-      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
-      Log out
-    </a>
-  </aside>
+        </div>
+        <nav class="cm-nav">
+            <a href="dashboard.html"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>Dashboard</a>
+            <a href="daily_tasks.html"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Daily Tasks</a>
+            <a href="resource_library.html"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h8M8 11h8"/></svg>Resources</a>
+            <a href="support.html" class="active"><svg viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L7 10.5a16 16 0 0 0 6.5 6.5l1.75-1.79a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg>Support</a>
+            <a href="about_us.html"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2"/><path d="M15 20c0-2 2-4 5-4"/></svg>About Us</a>
+        </nav>
+        <a href="index.html" class="cm-logout" onclick="localStorage.removeItem('activeUser');">
+            <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Log out
+        </a>
+    </aside>
 
-  <main class="cm-main">
-    <h2 class="cm-page-title">Counseling &amp; Support</h2>
-    <p class="cm-page-sub">You're not alone. Reach out to our professional support services.</p>
-
-    <div id="support-list" class="support-grid">
-      <div class="loading">Loading support services…</div>
-    </div>
-
-    <div id="cm-footer-slot"></div>
-  </main>
+    <main class="cm-main">
+        <h2 class="cm-page-title">Counseling &amp; Support</h2>
+        <p class="cm-page-sub">You're not alone. Reach out to our professional support services.</p>
+        <div id="support-list" class="support-grid"></div>
+    </main>
 </div>
 
 <script id="support-data" type="application/json">
@@ -111,11 +68,11 @@
   "services": [
     {
       "name": "Counselling and Career Services Unit (CCSU)",
-      "description": "Professional mental health support for all CFS students.",
-      "image": "supportimage.png",
+      "description": "Mental health support for all CFS students.",
+      "image": "img/supportimage.png",
       "phone": "09-5183464",
       "email": "cfs.enquiry@iium.edu.my",
-      "location": "Administration Building,\n26300 Gambang,\nPahang Darul Makmur, Malaysia"
+      "location": "Administration Building, 26300 Gambang, Pahang."
     },
     {
       "name": "IIUM Counselling and Career Services Centre (CCSC)",
@@ -146,60 +103,38 @@
 </script>
 
 <script>
-const savedName = localStorage.getItem('activeUser') || "Guest";
+    // Accessibility
+    function changeFontSize(action) {
+        let size = parseFloat(getComputedStyle(document.body).fontSize);
+        document.body.style.fontSize = (action === 'up' ? size + 2 : size - 2) + 'px';
+    }
+
+    // User display
+    const savedName = localStorage.getItem('activeUser') || "Guest";
     document.getElementById('user-display-name').innerText = savedName;
     document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
 
-(function(){
-  function render(services){
-    var list = document.getElementById('support-list');
-    list.innerHTML = '';
-    services.forEach(function(s){
-      var card = document.createElement('article');
-      card.className = 'cm-card support-card';
-      card.innerHTML =
-        '<img class="cover" src="'+s.image+'" alt="'+s.name+'" onerror="this.style.display=\'none\'"/>'+
-        '<div class="support-body">'+
-          '<h3>'+s.name+'</h3>'+
-          '<p class="desc">'+s.description+'</p>'+
-          '<div class="info-row"><div class="info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L7 10.5a16 16 0 0 0 6.5 6.5l1.75-1.79a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg></div>'+
-            '<div><p class="info-label">Phone</p><p class="info-value"><a href="tel:'+s.phone.replace(/\s/g,'')+'">'+s.phone+'</a></p></div></div>'+
-          '<div class="info-row"><div class="info-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>'+
-            '<div><p class="info-label">Email</p><p class="info-value"><a href="mailto:'+s.email+'">'+s.email+'</a></p></div></div>'+
-          '<div class="info-row"><div class="info-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg></div>'+
-            '<div><p class="info-label">Location</p><p class="info-value" style="color:var(--cm-text);white-space:pre-line">'+s.location+'</p></div></div>'+
-        '</div>';
-      list.appendChild(card);
+    // Render Logic
+    const data = JSON.parse(document.getElementById('support-data').textContent);
+    const list = document.getElementById('support-list');
+    
+    data.services.forEach(s => {
+        const card = document.createElement('article');
+        card.className = 'cm-card support-card';
+        card.innerHTML = `
+            <img class="cover" src="${s.image}" alt="${s.name}" onerror="this.style.display='none'"/>
+            <div class="support-body">
+                <h3>${s.name}</h3>
+                <p class="desc">${s.description}</p>
+                <div class="info-row"><div class="info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L7 10.5a16 16 0 0 0 6.5 6.5l1.75-1.79a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg></div>
+                    <div><p class="info-label">Phone</p><p class="info-value"><a href="tel:${s.phone}">${s.phone}</a></p></div></div>
+                <div class="info-row"><div class="info-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+                    <div><p class="info-label">Email</p><p class="info-value"><a href="mailto:${s.email}">${s.email}</a></p></div></div>
+                <div class="info-row"><div class="info-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+                    <div><p class="info-label">Location</p><p class="info-value">${s.location}</p></div></div>
+            </div>`;
+        list.appendChild(card);
     });
-  }
-
-  function fallback(){
-    try{
-      var data = JSON.parse(document.getElementById('support-data').textContent);
-      render(data.services);
-    }catch(e){
-      document.getElementById('support-list').innerHTML =
-        '<div class="loading">Unable to load support data.</div>';
-    }
-  }
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET','support.json',true);
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState===4){
-      if(xhr.status===200){
-        try{ render(JSON.parse(xhr.responseText).services); }
-        catch(e){ fallback(); }
-      } else {
-        fallback();
-      }
-    }
-  };
-  try{ xhr.send(); }catch(e){ fallback(); }
-})();
 </script>
-
-<script src="footer.js"></script>
-
 </body>
 </html>
