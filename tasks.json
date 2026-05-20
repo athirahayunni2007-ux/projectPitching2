@@ -1,5 +1,5 @@
 {
-  "stressLevel": "High",
+  "stressLevel": "High", // Current stress level detected
   "pools": {
     "Mild": [
       { "title":"Gratitude Journaling", "desc":"Write down 3 things you're grateful for today" },

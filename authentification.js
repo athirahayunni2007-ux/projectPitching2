@@ -10,7 +10,7 @@ function showPassword(){
     else{
         passwordInput.type = "password"; //if not check, then datatype will be password datatype
     }
-}
+}  
 
 function signUp() {
 

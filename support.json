@@ -29,7 +29,7 @@
       "description": "Mental health support for all  IIUM Pagoh students",
       "image": "img/supportimage.png",
       "phone": "06-974 2655",
-      "email": "No email yet",
+      "email": "No email yet", // Placeholder if email not available //
       "location": "International Islamic University Malaysia (IIUM) Pagoh Edu Hub,\nKM 1, Jalan Panchor,\n84600, Pagoh, Muar,\nJohor Darul Takzim,\nMalaysia."
     }
   ]

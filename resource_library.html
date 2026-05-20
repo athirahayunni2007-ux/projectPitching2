@@ -5,144 +5,140 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Resource Library · CampusMind</title>
   <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   
-
-<style>
-  body {
-    font-size: 1rem;
-    transition: font-size 0.2s ease;
-  }
-
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 6px;
-  }
-
-  .accessibility-tools {
-    display: flex;
-    gap: 6px;
-    background: #fff;
-    padding: 4px;
-    border-radius: 8px;
-    border: 1px solid #cbd5e1;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
-  }
-
-  .btn-access {
-    background: transparent;
-    border: none;
-    color: #334155;
-    padding: 6px 12px;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.1s;
-  }
-
-  .btn-access:hover {
-    background: #eafff5;
-    color: #0f766e;
-  }
-
-  .toolbar{
-    display:flex;flex-wrap:wrap;gap:12px;align-items:center;
-    margin-bottom:18px;
-  }
-
-  .toolbar input, .toolbar select{
-    padding:10px 12px;border:1px solid var(--cm-border);border-radius:10px;
-    font-size:14px;background:#fff;font-family:inherit;
-  }
-
-  .toolbar input{
-    flex:1;min-width:220px
-  }
-
-  .cats{
-    display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px
-  }
-
-  .cat-btn{
-    padding:8px 14px;border-radius:999px;border:1px solid var(--cm-border);
-    background:#fff;cursor:pointer;font-size:13px;font-family:inherit;font-weight:500;
-  }
-
-  .cat-btn.active{
-    background:var(--cm-green);color:#fff;border-color:var(--cm-green)
-  }
-
-  .grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:18px
-  }
-
-  @media(max-width:990px){
-    .grid{grid-template-columns:repeat(2,1fr)}
-  }
-
-  @media(max-width:600px){
-    .grid{grid-template-columns:1fr}
-    .header-container {
-      flex-direction: column-reverse;
-      gap: 15px;
-      align-items: flex-end;
+  <style>
+    body {
+      font-size: 1rem;
+      transition: font-size 0.2s ease;
     }
-  }
 
-  .item{
-    padding:18px;
-    cursor:pointer;
-  }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
 
-  .type-badge{
-    display:inline-block;padding:3px 10px;border-radius:999px;
-    font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;
-    background:var(--cm-green-soft);color:var(--cm-green-dark);margin-bottom:10px;
-  }
+    .accessibility-tools {
+      display: flex;
+      gap: 6px;
+      background: #fff;
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+    }
 
-  .item h4{
-    margin:0 0 6px;font-size:1rem;
-  }
+    .btn-access {
+      background: transparent;
+      border: none;
+      color: #334155;
+      padding: 6px 12px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.1s;
+    }
 
-  .item p{
-    margin:0 0 12px;color:var(--cm-muted);font: size 0.875rem;;line-height:1.5;
-  }
+    .btn-access:hover {
+      background: #eafff5;
+      color: #0f766e;
+    }
 
-  .tags{
-    display:flex;flex-wrap:wrap;gap:6px
-  }
+    .toolbar{
+      display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+      margin-bottom:18px;
+    }
 
-  .tag{
-    font-size:12px;color:var(--cm-green-dark);background:#ecfdf5;
-    padding:3px 8px;border-radius:6px;cursor:pointer;border:none;font-family:inherit;
-  }
+    .toolbar input, .toolbar select{
+      padding:10px 12px;border:1px solid var(--cm-border);border-radius:10px;
+      font-size:14px;background:#fff;font-family:inherit;
+    }
 
-  .tag:hover{
-    background:var(--cm-green-soft)
-  }
+    .toolbar input{
+      flex:1;min-width:220px
+    }
 
-  .empty{
-    padding:40px;text-align:center;color:var(--cm-muted)
-  }
+    .cats{
+      display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px
+    }
+
+    .cat-btn{
+      padding:8px 14px;border-radius:999px;border:1px solid var(--cm-border);
+      background:#fff;cursor:pointer;font-size:13px;font-family:inherit;font-weight:500;
+    }
+
+    .cat-btn.active{
+      background:var(--cm-green);color:#fff;border-color:var(--cm-green)
+    }
+
+    .grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+    }
+
+    @media(max-width:990px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:600px){
+      .grid{grid-template-columns:1fr}
+      .header-container {
+        flex-direction: column-reverse;
+        gap: 15px;
+        align-items: flex-end;
+      }
+    }
+
+    .item{
+      padding:18px;
+      cursor:pointer;
+    }
+
+    .type-badge{
+      display:inline-block;padding:3px 10px;border-radius:999px;
+      font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;
+      background:var(--cm-green-soft);color:var(--cm-green-dark);margin-bottom:10px;
+    }
+
+    .item h4{
+      margin:0 0 6px;font-size:1rem;
+    }
+
+    .item p{
+      margin:0 0 12px;color:var(--cm-muted);font-size: 0.875rem;line-height:1.5;
+    }
+
+    .tags{
+      display:flex;flex-wrap:wrap;gap:6px
+    }
+
+    .tag{
+      font-size:12px;color:var(--cm-green-dark);background:#ecfdf5;
+      padding:3px 8px;border-radius:6px;cursor:pointer;border:none;font-family:inherit;
+    }
+
+    .tag:hover{
+      background:var(--cm-green-soft)
+    }
+
+    .empty{
+      padding:40px;text-align:center;color:var(--cm-muted)
+    }
 
     .modal {
-  position: fixed; top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center;
-}
-.modal-content {
-  background:#fff; padding:20px; border-radius:8px; max-width:600px; width:90%;
-}
-#modal-close {
-  float:right; font-size:24px; cursor:pointer;
-}
-
-#modal-close {
-  float:right; font-size:24px; cursor:pointer;
-}
-
-</style>
+      position: fixed; top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background:#fff; padding:20px; border-radius:8px; max-width:600px; width:90%;
+    }
+    #modal-close {
+      float:right; font-size:24px; cursor:pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -160,16 +156,31 @@
     </div>
 
     <nav class="cm-nav">
-      <a href="dashboard.html"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>Dashboard</a>
-      <a href="daily_tasks.html"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Daily Tasks</a>
-      <a href="resource_library.html" class="active"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h8M8 11h8"/></svg>Resources</a>
-      <a href="support.html"><svg viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L7 10.5a16 16 0 0 0 6.5 6.5l1.75-1.79a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg>Support</a>
-      <a href="about_us.html"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2"/><path d="M15 20c0-2 2-4 5-4"/></svg>About Us</a>
+
+      <a href="dashboard.html">
+            <i class="bi bi-grid-1x2-fill"></i> Dashboard
+      </a>
+
+      <a href="daily_tasks.html">
+            <i class="bi bi-check2-square"></i> Daily Task
+      </a>
+
+      <a href="resource_library.html">
+          <i class="bi bi-book"></i> Resources
+      </a>
+
+      <a href="support.html">
+          <i class="bi bi-telephone"></i> Support
+      </a>
+
+      <a href="about_us.html">
+          <i class="bi bi-people"></i> About Us
+        </a>
     </nav>
 
+    <!-- Logout -->
     <a href="index.html" class="cm-logout" onclick="localStorage.removeItem('activeUser');">
-      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
-      Log out
+    <i class="bi bi-box-arrow-right"> Log Out</i> 
     </a>
   </aside>
 
@@ -259,9 +270,10 @@ document.getElementById('user-initials').innerText = savedName.charAt(0).toUpper
     var items = state.materials.filter(function(m){
       if(state.category!=='All' && m.type!==state.category) return false;
       if(!q) return true;
-      return m.title.toLowerCase().indexOf(q)>-1
-          || m.description.toLowerCase().indexOf(q)>-1
-          || (m.tags||[]).some(function(t){return t.toLowerCase().indexOf(q)>-1});
+      // ✔️ KEMAS KINI 1: Betulkan operator pencarian || dan tukar m.tags[] kepada (m.tags || [])
+      return m.title.toLowerCase().indexOf(q)>-1 ||
+             m.description.toLowerCase().indexOf(q)>-1 ||
+             (m.tags || []).some(function(t){return t.toLowerCase().indexOf(q)>-1});
     });
 
     items.sort(function(a,b){
@@ -280,70 +292,70 @@ document.getElementById('user-initials').innerText = savedName.charAt(0).toUpper
         + '</div>';
     }).join('');
 
-    //click events for resources
+    // click events for resources
     list.querySelectorAll('.item').forEach(function(card){
-  card.addEventListener('click', function(){
-    var id = card.dataset.id;
-    var material = state.materials.find(function(m){ return m.id===id; });
+      card.addEventListener('click', function(){
+        var id = card.dataset.id;
+        var material = state.materials.find(function(m){ return m.id===id; });
 
-    if(material){
-      document.getElementById('modal-title').innerText = material.title;
-      document.getElementById('modal-description').innerText = material.description;
+        if(material){
+          document.getElementById('modal-title').innerText = material.title;
+          document.getElementById('modal-description').innerText = material.description;
+          var extra = '';
+          if(material.type === "E-Books"){
+            if(material.id === "e1"){
+              extra = '<iframe src="ebooks/Suicide_PreventionKit.pdf" width="100%" height="400"></iframe>'
+                    + '<p><a href="ebooks/Suicide_PreventionKit.pdf" target="_blank">Open in new tab</a></p>';
+            }
+            else if(material.id === "e2"){
+              extra = '<iframe src="ebooks/Campus_SurvivalKit.pdf" width="100%" height="400"></iframe>'
+                    + '<p><a href="ebooks/Campus_SurvivalKit.pdf" target="_blank">Open in new tab</a></p>';
+            }
+            else if(material.id === "e3"){
+              extra = '<iframe src="ebooks/IIUM_Policy2021.pdf" width="100%" height="400"></iframe>'
+                    + '<p><a href="ebooks/IIUM_Policy2021.pdf" target="_blank">Open in new tab</a></p>';
+            }
+            // ✔️ KEMAS KINI 2: Betulkan ralat tanda petikan berganda pada width="100%"
+            else if(material.id === "e4"){
+              extra = '<iframe src="ebooks/MentalHealth_UKTips.pdf" width="100%" height="400"></iframe>'
+                    + '<p><a href="ebooks/MentalHealth_UKTips.pdf" target="_blank">Open in new tab</a></p>';
+            }
+          }
+          else if(material.type === "Videos"){
+            if(material.id === "v1"){
+              extra = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/8--GxE6E2so" frameborder="0" allowfullscreen></iframe>'
+                    + '<p><a href="https://youtu.be/8--GxE6E2so" target="_blank">Open in new tab</a></p>';
+            }
+            else if(material.id === "v2"){
+              extra = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/AzZpiZPxvq0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+                    + '<p><a href="https://www.youtube.com/watch?v=AzZpiZPxvq0" target="_blank">Open in new tab</a></p>';
+            }
+            else if(material.id === "v3"){
+              extra = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/3BteSKlP92w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+                    + '<p><a href="https://www.youtube.com/watch?v=3BteSKlP92w" target="_blank">Open in new tab</a></p>';
+            }
+          }
+          else if(material.type === "Posters"){
+            if(material.id === "p1"){
+              extra = '<img src="img/livelifeWHO.png" alt="Live Life by WHO" style="max-width:100%">'
+                    + '<p><a href="img/livelifeWHO.png" target="_blank">Open in new tab</a></p>';
+            }
+            else if(material.id === "p2"){
+              extra = '<img src="img/taliansokonganpsikososial.png" alt="Talian Sokongan Psikososial KKM" style="max-width:70%">'
+                    + '<p><a href="img/taliansokonganpsikososial.png" target="_blank">Open in new tab</a></p>';
+            } 
+          }
 
-      let extra = '';
-      if(material.type === "E-Books"){
-        if(material.id === "e1"){
-          extra = '<iframe src="ebooks/Suicide_PreventionKit.pdf" width="100%" height="400"></iframe>'
-                + '<p><a href="ebooks/Suicide_PreventionKit.pdf" target="_blank">Open in new tab</a></p>';
+          document.getElementById('modal-extra').innerHTML = extra;
+          document.getElementById('material-modal').style.display = 'flex';
         }
-        else if(material.id === "e2"){
-          extra = '<iframe src="ebooks/Campus_SurvivalKit.pdf" width="100%" height="400"></iframe>'
-                + '<p><a href="ebooks/Campus_SurvivalKit.pdf" target="_blank">Open in new tab</a></p>';
-        }
-        else if(material.id === "e3"){
-          extra = '<iframe src="ebooks/IIUM_Policy2021.pdf" width="100%" height="400"></iframe>'
-                + '<p><a href="ebooks/IIUM_Policy2021.pdf" target="_blank">Open in new tab</a></p>';
-        }
-        else if(material.id === "e4"){
-          extra = '<iframe src="ebooks/MentalHealth_UKTips.pdf" width=100%" height="400"></iframe>'
-                + '<p><a href="ebooks/MentalHealth_UKTips.pdf" target="_blank">Open in new tab</a></p>';
-        }
-      }
-      else if(material.type === "Videos"){
-        if(material.id === "v1"){
-          extra = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/8--GxE6E2so" frameborder="0" allowfullscreen></iframe>'
-                + '<p><a href="https://youtu.be/8--GxE6E2so?si=ySHL9yO7KME_dZ9j" target="_blank">Open in new tab</a></p>';
-        }
-        else if(material.id === "v2"){
-          extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AzZpiZPxvq0?si=zTSdftVWkhfJN2ur" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
-                + '<p><a href="https://www.youtube.com/embed/AzZpiZPxvq0?si=zTSdftVWkhfJN2ur" target="_blank">Open in new tab</a></p>';
-        }
-        else if(material.id === "v3"){
-          extra = '<iframe width="560" height="315" src="https://www.youtube.com/embed/3BteSKlP92w?si=VEp86KPszlib2i2M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
-                + '<p><a href="https://www.youtube.com/embed/3BteSKlP92w?si=VEp86KPszlib2i2M" target="_blank">Open in new tab</a></p>';
-        }
-      }
-      else if(material.type === "Posters"){
-        if(material.id === "p1"){
-          extra = '<img src="img/livelifeWHO.png" alt="Live Life by WHO" style="max-width:100%">'
-                + '<p><a href="img/livelifeWHO.png" target="_blank">Open in new tab</a></p>';
-      }
-      else if(material.id === "p2"){
-          extra = '<img src="img/taliansokonganpsikososial.png" alt="Talian Sokongan Psikososial KKM" style="max-width:70%">'
-                + '<p><a href="img/taliansokonganpsikososial.png" target="_blank">Open in new tab</a></p>';
-      } 
-    }
+      });
+    });
 
-      document.getElementById('modal-extra').innerHTML = extra;
-      document.getElementById('material-modal').style.display = 'flex';
-    }
-  });
-});
-
-
-  //keep tag click logic after
+    // click events for tags
     list.querySelectorAll('.tag').forEach(function(t){
-      t.addEventListener('click', function(){
+      t.addEventListener('click', function(e){
+        e.stopPropagation();
         document.getElementById('search').value = '#'+t.dataset.tag;
         state.search = '#'+t.dataset.tag; render();
       });
@@ -359,7 +371,6 @@ document.getElementById('user-initials').innerText = savedName.charAt(0).toUpper
 
 <script src="footer.js"></script>
 
-<!-- open details of resource in modal -->
 <div id="material-modal" class="modal" style="display:none;">
   <div class="modal-content">
     <span id="modal-close">&times;</span>
@@ -369,13 +380,12 @@ document.getElementById('user-initials').innerText = savedName.charAt(0).toUpper
   </div>
 </div>
 
-<!-- close details of resource in modal -->
 <script>
   document.getElementById('modal-close').addEventListener('click', function(){
     document.getElementById('material-modal').style.display = 'none';
   });
 </script>
-<script src=accessibility.js></script>
+<script src="accessibility.js"></script>
 
 </body>
 </html>

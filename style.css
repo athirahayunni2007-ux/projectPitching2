@@ -1,19 +1,18 @@
-
 /* ==========================================================================
    SISTEM REKA BENTUK GLOBAL (CAMPUSMIND)
    ========================================================================== */
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Global font */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #3d4a3e;
-    min-height: 100vh;
+    color: #3d4a3e; /* Default text color */
+    min-height: 100vh; /* Full viewport height */
     position: relative;
 }
 
-/* Khusus untuk halaman berbentuk kad tunggal di tengah skrin (cth: status.html) */
+/* Layout for single-card pages (e.g., status.html) */
 body.card-layout {
     background-color: #f0f4f2; 
     display: flex;
@@ -22,7 +21,7 @@ body.card-layout {
     padding: 40px 20px;
 }
 
-/* Container untuk kad keputusan (status.html) */
+/* Card container for screening results */
 .screening-card {
     width: 90%; 
     max-width: 500px; 
@@ -39,7 +38,7 @@ body.card-layout {
    SISTEM REKA BENTUK ACCESSIBILITY (GLOBAL)
    ========================================================================== */
 
-/* Posisi absolute khas untuk halaman kad tunggal (status.html) */
+/* Accessibility container positioned absolutely on card-layout pages */
 body.card-layout .accessibility-container {
     position: absolute;
     top: 25px;
@@ -47,7 +46,7 @@ body.card-layout .accessibility-container {
     z-index: 999;
 }
 
-/* Gaya rupa bentuk container butang */
+/* Accessibility tools bar */
 .accessibility-tools {
     display: flex;
     gap: 6px;
@@ -59,6 +58,7 @@ body.card-layout .accessibility-container {
     display: inline-flex;
 }
 
+/* Accessibility buttons */
 .btn-access {
     background: transparent;
     border: none;
@@ -80,6 +80,7 @@ body.card-layout .accessibility-container {
    SISTEM BUTANG (BUTTON UTILITY)
    ========================================================================== */
 
+/* Main button style */
 .btn-main {
     background-color: #709677;
     color: white;
@@ -102,6 +103,7 @@ body.card-layout .accessibility-container {
     background-color: #5f8065;
 }
 
+/* Outline button style */
 .btn-outline { 
     background: white; 
     color: #709677; 
@@ -125,6 +127,7 @@ body.card-layout .accessibility-container {
    ELEMEN KOMPONEN KANDUNGAN
    ========================================================================== */
 
+/* Stress result box */
 .stress-box {
     background: #f0f4f2;
     border: 2px solid #88ab8e;
@@ -134,6 +137,7 @@ body.card-layout .accessibility-container {
     text-align: center;
 }
 
+/* Stress value text */
 .stress-value {
     color: #709677;
     font-weight: 800;
@@ -141,6 +145,7 @@ body.card-layout .accessibility-container {
     margin-bottom: 8px;
 }
 
+/* Footer styling */
 footer {
     margin-top: 40px;
     border-top: 1px solid #f0f4f2;
