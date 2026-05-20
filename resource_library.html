@@ -4,11 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Resource Library · CampusMind</title>
-  <link rel="stylesheet" href="theme.css"/>
+  <link rel="stylesheet" href="theme.css">
+  
 
 <style>
   body {
-    font-size: 16px;
+    font-size: 1rem;
     transition: font-size 0.2s ease;
   }
 
@@ -102,11 +103,11 @@
   }
 
   .item h4{
-    margin:0 0 6px;font-size:16px
+    margin:0 0 6px;font-size:1rem;
   }
 
   .item p{
-    margin:0 0 12px;color:var(--cm-muted);font-size:14px;line-height:1.5
+    margin:0 0 12px;color:var(--cm-muted);font: size 0.875rem;;line-height:1.5;
   }
 
   .tags{
@@ -181,6 +182,7 @@
       <div class="accessibility-tools">
         <button class="btn-access" onclick="changeFontSize('up')" title="Besarkan tulisan">A+</button>
         <button class="btn-access" onclick="changeFontSize('down')" title="Kecilkan tulisan">A-</button>
+        <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
       </div>
     </div>
 
@@ -217,48 +219,10 @@
 </script>
 
 <script>
-    const savedName = localStorage.getItem('activeUser') || "Guest";
-    document.getElementById('user-display-name').innerText = savedName;
-    document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
+const savedName = localStorage.getItem('activeUser') || "Guest";
+document.getElementById('user-display-name').innerText = savedName;
+document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
     
-    let currentScale = 100;
-
-    function applyDynamicFontScaling() {
-        const mainContent = document.querySelector('.cm-main');
-        if (mainContent) {
-            const dynamicTexts = mainContent.querySelectorAll('h2, h3, h4, p, span, input, select, button, li');
-            dynamicTexts.forEach(el => {
-                if (!el.classList.contains('btn-access')) {
-                    el.style.fontSize = (currentScale / 100) + 'em';
-                }
-            });
-        }
-        const sidebar = document.querySelector('.cm-sidebar');
-        if (sidebar) {
-            const sidebarTexts = sidebar.querySelectorAll('.cm-uname, .cm-urole, .cm-brand, .cm-brand-sub, .cm-nav a, .cm-logout, .cm-avatar');
-            sidebarTexts.forEach(el => {
-                el.style.fontSize = (currentScale / 100) + 'em';
-            });
-        }
-        const footerSlot = document.getElementById('cm-footer-slot');
-        if (footerSlot) {
-            const footerTexts = footerSlot.querySelectorAll('.cm-footer h4, .cm-footer h5, .cm-footer p, .cm-footer a, .cm-footer li');
-            footerTexts.forEach(el => {
-                el.style.fontSize = (currentScale / 100) + 'em';
-            });
-        }
-    }
-
-    function changeFontSize(action) {
-        if (action === 'up') {
-            if (currentScale < 150) currentScale += 15;
-        } else {
-            if (currentScale > 100) currentScale -= 15;
-        }
-        document.body.style.fontSize = currentScale + '%';
-        applyDynamicFontScaling();
-    }
-
 (function(){
   var FALLBACK = JSON.parse(document.getElementById('resources-data').textContent);
   var state = { materials:[], category:'All', search:'', sort:'az' };
@@ -288,7 +252,6 @@
     c.querySelectorAll('.cat-btn').forEach(function(b){
       b.addEventListener('click', function(){ state.category=b.dataset.cat; renderCats(); render(); });
     });
-    applyDynamicFontScaling();
   }
 
   function render(){
@@ -306,7 +269,7 @@
     });
 
     var list = document.getElementById('list');
-    if(!items.length){ list.innerHTML = '<div class="empty">No materials found.</div>'; applyDynamicFontScaling(); return; }
+    if(!items.length){ list.innerHTML = '<div class="empty">No materials found.</div>'; return; }
     
     list.innerHTML = items.map(function(m){
       return '<div class="cm-card item" data-id="'+m.id+'">'
@@ -385,7 +348,6 @@
         state.search = '#'+t.dataset.tag; render();
       });
     });
-    applyDynamicFontScaling();
   }
 
   document.getElementById('search').addEventListener('input', function(e){ state.search=e.target.value; render(); });
@@ -413,6 +375,7 @@
     document.getElementById('material-modal').style.display = 'none';
   });
 </script>
+<script src=accessibility.js></script>
 
 </body>
 </html>

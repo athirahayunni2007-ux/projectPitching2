@@ -4,34 +4,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Support · CampusMind</title>
-    <link rel="stylesheet" href="theme.css"/>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="footer.css" >
+    
     <style>
         /* Accessibility Tools */
-        .access-container { position: fixed; top: 20px; right: 20px; z-index: 9999; display:flex; gap: 6px; }
+        .accessibility-tools { position: fixed; top: 20px; right: 20px; z-index: 9999; display:flex; gap: 6px; background: #ffffff; padding: 6px 8px; border-radius: 12px;  
+        border: 1px solid var(--cm-border); box-shadow: var(--cm-shadow);}
         .btn-access { background: #fff; border: 1px solid var(--cm-border); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: 700; box-shadow: var(--cm-shadow); }
         .btn-access:hover { background: var(--cm-green-soft); color: var(--cm-green-dark); }
 
         /* Support Page Styles */
-        .support-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-top: 20px; }
+        .support-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-top: 20px; margin-bottom: 40px; }
         .support-card { background: var(--cm-card); border: 1px solid var(--cm-border); border-radius: 14px; overflow: hidden; box-shadow: var(--cm-shadow); }
         .support-card .cover { width:100%; height:180px; object-fit:cover; display:block; background:#e2e8f0; }
         .support-body { padding:22px 24px 26px }
-        .support-body h3 { margin:0 0 10px; font-size:18px; color:var(--cm-green-dark); }
-        .support-body .desc { color:var(--cm-muted); margin:0 0 18px; font-size: 14px; line-height: 1.5; }
+        .support-body h3 { margin:0 0 10px; font-size:1.25em; color:var(--cm-green-dark); } /* Guna em supaya ikut saiz parent */
+        .support-body .desc { color:var(--cm-muted); margin:0 0 18px; font-size: 1em; line-height: 1.5; }
         .info-row { display:flex; gap:14px; align-items:flex-start; padding:10px 0; border-top:1px solid #f1f5f9; }
         .info-icon { width:36px; height:36px; border-radius:10px; background:var(--cm-green-soft); color:var(--cm-green-dark); display:flex; align-items:center; justify-content:center; flex:none; }
         .info-icon svg { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2 }
-        .info-label { font-weight:600; font-size:12px; margin:0 0 2px; text-transform: uppercase; color:var(--cm-muted); }
-        .info-value { margin:0; color:var(--cm-green); font-size:14px; line-height:1.5 }
+        .info-label { font-weight:600; font-size:0.85em; margin:0 0 2px; text-transform: uppercase; color:var(--cm-muted); }
+        .info-value { margin:0; color:var(--cm-green); font-size:1em; line-height:1.5 }
+        .info-value a { color: inherit; text-decoration: none; }
+        .info-value a:hover { text-decoration: underline; }
     </style>
 </head>
 
 <body>
-
-<div class="access-container">
-    <button class="btn-access" onclick="changeFontSize('up')">A+</button>
-    <button class="btn-access" onclick="changeFontSize('down')">A-</button>
-</div>
 
 <div class="cm-app">
     <aside class="cm-sidebar">
@@ -56,10 +56,61 @@
         </a>
     </aside>
 
-    <main class="cm-main">
-        <h2 class="cm-page-title">Counseling &amp; Support</h2>
-        <p class="cm-page-sub">You're not alone. Reach out to our professional support services.</p>
+    <main class="cm-main" style="display: flex; flex-direction: column; min-height: 100vh;">
+        <main class="cm-main" style="display: flex; flex-direction: column; min-height: 100vh;">
+        
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div>
+                <h2 class="cm-page-title" style="margin: 0 0 6px;">Counseling &amp; Support</h2>
+                <p class="cm-page-sub" style="margin: 0; color: var(--cm-muted);">You're not alone. Reach out to our professional support services.</p>
+            </div>
+
+            <div style="display: flex; gap: 6px; background: #fff; padding: 4px; border-radius: 8px; border: 1px solid var(--cm-border); box-shadow: var(--cm-shadow); shrink: 0;">
+                <button class="btn-access" onclick="changeFontSize('up')">A+</button>
+                <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+                <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
+            </div>
+        </div>
+        
         <div id="support-list" class="support-grid"></div>
+
+        <footer class="cm-footer">
+          <div class="cm-footer-inner">
+            <div class="cm-footer-col">
+              <h4 class="cm-footer-brand">CampusMind</h4>
+              <p>Your companion for student mental wellness at IIUM. Take care of your mind, one day at a time.</p>
+            </div>
+            <div class="cm-footer-col">
+              <h5>Quick Links</h5>
+              <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="daily_tasks.html">Daily Tasks</a></li>
+                <li><a href="resource_library.html">Resources</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+              </ul>
+            </div>
+            <div class="cm-footer-col">
+              <h5>Emergency Help</h5>
+              <ul>
+                <li>IIUM Counseling: <a href="tel:+60361964000">+60 3-6196 4000</a></li>
+                <li>Talian Kasih: <a href="tel:15999">15999</a></li>
+                <li>Befrienders KL: <a href="tel:+60376272929">03-7627 2929</a></li>
+              </ul>
+            </div>
+            <div class="cm-footer-col">
+              <h5>Contact</h5>
+              <ul>
+                <li>counseling@iium.edu.my</li>
+                <li>Student Affairs Building, Level 2</li>
+                <li>IIUM Gombak Campus</li>
+              </ul>
+            </div>
+          </div>
+          <div class="cm-footer-bottom">
+            <p>© <span id="cm-year"></span> CampusMind · IIUM Student Mental Wellness. All rights reserved.</p>
+          </div>
+        </footer>
     </main>
 </div>
 
@@ -103,11 +154,9 @@
 </script>
 
 <script>
-    // Accessibility
-    function changeFontSize(action) {
-        let size = parseFloat(getComputedStyle(document.body).fontSize);
-        document.body.style.fontSize = (action === 'up' ? size + 2 : size - 2) + 'px';
-    }
+
+    // Auto-set Tahun Semasa pada Footer
+    document.getElementById('cm-year').textContent = new Date().getFullYear();
 
     // User display
     const savedName = localStorage.getItem('activeUser') || "Guest";
@@ -129,12 +178,13 @@
                 <div class="info-row"><div class="info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.29 1L7 10.5a16 16 0 0 0 6.5 6.5l1.75-1.79a1 1 0 0 1 1-.29l4 1a1 1 0 0 1 .75 1z"/></svg></div>
                     <div><p class="info-label">Phone</p><p class="info-value"><a href="tel:${s.phone}">${s.phone}</a></p></div></div>
                 <div class="info-row"><div class="info-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
-                    <div><p class="info-label">Email</p><p class="info-value"><a href="mailto:${s.email}">${s.email}</a></p></div></div>
+                    <div><p class="info-label">Email</p><p class="info-value">${s.email !== 'N/A' ? `<a href="mailto:${s.email}">${s.email}</a>` : 'N/A'}</p></div></div>
                 <div class="info-row"><div class="info-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
                     <div><p class="info-label">Location</p><p class="info-value">${s.location}</p></div></div>
             </div>`;
         list.appendChild(card);
     });
 </script>
+<script src=accessibility.js></script>
 </body>
 </html>

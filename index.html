@@ -6,7 +6,8 @@
     <title>CampusMind</title>
     <link rel="stylesheet" href="authentification.css">
     <style>
-        /* CSS UNTUK AKSESIBILITI */
+
+        /* CSS for accessibility tool*/
         .accessibility-tools { 
             position: absolute; 
             top: 20px; 
@@ -35,12 +36,15 @@
 </head>
 
 <body class="page1">
+
     <div class="accessibility-tools">
         <button class="btn-access" onclick="changeFontSize('up')">A+</button>
         <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+        <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
     </div>
 
     <main class="auth-container">
+
         <div class="manual">
             <h1>Welcome to CampusMind</h1>
             <h3>Here's a quick guide for your setup</h3>
@@ -51,34 +55,19 @@
                     <li>Complete the mental health screening to better understand your current stress level.</li>
                     <li>Track your daily activities and monitor your personal progress over time.</li>
                 </ol>
-                <p>We hope CampusMind supports you on your journey to better well-being 🌿</p>
+                <p>We hope CampusMind supports you on your journey to better well-being</p>
             </div>
 
+            <!--will go to login page-->
             <div class="buttons">
                 <a href="login.html">
                     <button id="start">Click to start</button>
                 </a>
             </div>
         </div>
+
     </main>
     
-    <div id="cm-footer-slot"></div>
-    
-    <script>
-        // Fungsi Aksesibiliti
-        let currentScale = 100;
-        function changeFontSize(action) {
-            if(action === 'up' && currentScale < 150) currentScale += 15;
-            if(action === 'down' && currentScale > 100) currentScale -= 15;
-            document.body.style.fontSize = currentScale + '%';
-            const manualContent = document.querySelector('.manual');
-            if(manualContent) {
-                manualContent.querySelectorAll('h1, h3, li, p, button').forEach(el => {
-                    el.style.fontSize = (currentScale / 100) + 'em';
-                });
-            }
-        }
-    </script>
-    <script src="footer.js"></script>
+    <script src="accessibility.js"></script>
 </body>
 </html>

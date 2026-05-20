@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CampusMind</title>
     <link rel="stylesheet" href="authentification.css">
+    
+
     <style>
-        /* CSS AKSESIBILITI */
+        /*CSS for accessibility tool*/
         .accessibility-tools { 
             position: absolute; 
             top: 20px; 
@@ -34,11 +36,13 @@
         .btn-access:hover { background: #f0fdf4; color: #065f46; }
     </style>
 </head>
+
 <body>
 
     <div class="accessibility-tools">
         <button class="btn-access" onclick="changeFontSize('up')">A+</button>
         <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+        <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
     </div>
     
 <main class="auth-container">
@@ -46,13 +50,16 @@
         <h1>Welcome Back!</h1>
         <h3>Sign in to continue your wellness journey</h3>
 
+        <!--input user email-->
         <label for="email">Email Address</label><br>
         <input type="email" id="email" name="email" placeholder="your.email@example.com">
         <br><br>
 
+        <!--input user password-->
         <label for="password">Password</label><br>
         <input type="password" id="password" name="password" placeholder="Enter your password">
 
+        <!--checkbox to show password-->
         <div class="showPasswordArea">
         <input type="checkbox" id="showPassword" onclick="showPassword()">
         <label for="showPassword">Show password</label>
@@ -62,31 +69,13 @@
         <button onclick="login()">Sign in</button>
 
         <p>Don't have an account?
-        <a href="signup.html">Sign Up</a></p>
+        <a href="signup.html">Sign Up</a></p>   <!--direct to sign-up page-->
     </div>
 </main>
 
-<div id="cm-footer-slot"></div>
-
-    <script>
-        // Fungsi Aksesibiliti
-        let currentScale = 100;
-        function changeFontSize(action) {
-            if(action === 'up' && currentScale < 150) currentScale += 15;
-            if(action === 'down' && currentScale > 100) currentScale -= 15;
-            document.body.style.fontSize = currentScale + '%';
-            
-            // Melaraskan saiz teks dalam kotak welcome
-            const welcomeContent = document.querySelector('.welcome');
-            if(welcomeContent) {
-                welcomeContent.querySelectorAll('h1, h3, label, input, button, p, a').forEach(el => {
-                    el.style.fontSize = (currentScale / 100) + 'em';
-                });
-            }
-        }
-    </script>
+    <script src="accessibility.js"></script>
     <script src="authentification.js"></script>
-    <script src="footer.js"></script>
+
 
 </body>
 </html>

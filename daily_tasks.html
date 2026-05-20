@@ -4,7 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Daily Tasks · CampusMind</title>
-    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="theme.css" >
+    <link rel="stylesheet" href="footer.css" >
+
     <style>
         /* AKSESIBILITI */
         .accessibility-tools { display: flex; gap: 6px; background: #fff; padding: 4px; border-radius: 8px; border: 1px solid var(--cm-border); display: inline-flex; }
@@ -12,7 +14,7 @@
         .btn-access:hover { background: var(--cm-green-soft); color: var(--cm-green-dark); }
         
         /* TASK GRID & CARDS */
-        .tasks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
+        .tasks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; margin-bottom: 40px; }
         
         .task-card { 
             background: var(--cm-card); border: 1px solid var(--cm-border); padding: 20px; border-radius: 12px; 
@@ -26,6 +28,10 @@
         }
         .task-card.done h4 { text-decoration: line-through; color: var(--cm-green-dark); }
         
+        /* Menggunakan em supaya teks di dalam kad ikut berubah mengikut body */
+        .task-card h4 { margin: 0; font-size: 1.15em; }
+        .task-card p { margin: 5px 0 0; color: var(--cm-muted); font-size: 0.9em; line-height: 1.4; }
+
         /* BUTANG RESET */
         #reset-btn {
             background: #fee2e2; border: 1px solid #fecaca; color: #b91c1c;
@@ -63,20 +69,21 @@
         </a>
     </aside>
 
-    <main class="cm-main">
+    <main class="cm-main" style="display: flex; flex-direction: column; min-height: 100vh;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <div>
-                <h2 class="cm-page-title">Your 21-Day Wellness Plan</h2>
+                <h2 class="cm-page-title">Your 30-Day Wellness Plan</h2>
                 <p class="cm-page-sub">Stress Level: <b id="stress-level-text">Normal</b></p>
             </div>
             <div class="accessibility-tools">
                 <button class="btn-access" onclick="changeFontSize('up')">A+</button>
                 <button class="btn-access" onclick="changeFontSize('down')">A-</button>
+                <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
             </div>
         </div>
         
         <div class="cm-card" style="padding:20px; margin-bottom:30px;">
-            <h3><span id="done-count">0</span> / 21 Tasks Completed</h3>
+            <h3><span id="done-count">0</span> / 30 Tasks Completed</h3>
             <div style="background:#e5e7eb; height:10px; border-radius:5px; overflow:hidden;">
                 <div id="progress-bar" style="height:100%; width:0%; background:var(--cm-green);"></div>
             </div>
@@ -84,6 +91,44 @@
         </div>
 
         <div id="tasks" class="tasks-grid"></div>
+
+        <footer class="cm-footer" style="margin-top: auto;">
+          <div class="cm-footer-inner">
+            <div class="cm-footer-col">
+              <h4 class="cm-footer-brand">CampusMind</h4>
+              <p>Your companion for student mental wellness at IIUM. Take care of your mind, one day at a time.</p>
+            </div>
+            <div class="cm-footer-col">
+              <h5>Quick Links</h5>
+              <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="daily_tasks.html">Daily Tasks</a></li>
+                <li><a href="resource_library.html">Resources</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+              </ul>
+            </div>
+            <div class="cm-footer-col">
+              <h5>Emergency Help</h5>
+              <ul>
+                <li>IIUM Counseling: <a href="tel:+60361964000">+60 3-6196 4000</a></li>
+                <li>Talian Kasih: <a href="tel:15999">15999</a></li>
+                <li>Befrienders KL: <a href="tel:+60376272929">03-7627 2929</a></li>
+              </ul>
+            </div>
+            <div class="cm-footer-col">
+              <h5>Contact</h5>
+              <ul>
+                <li>counseling@iium.edu.my</li>
+                <li>Student Affairs Building, Level 2</li>
+                <li>IIUM Gombak Campus</li>
+              </ul>
+            </div>
+          </div>
+          <div class="cm-footer-bottom">
+            <p>© <span id="cm-year"></span> CampusMind · IIUM Student Mental Wellness. All rights reserved.</p>
+          </div>
+        </footer>
     </main>
 </div>
 
@@ -93,21 +138,13 @@
     document.getElementById('user-display-name').innerText = savedName;
     document.getElementById('user-initials').innerText = savedName.charAt(0).toUpperCase();
 
-    // Fungsi Aksesibiliti
-    let currentScale = 100;
-    function changeFontSize(action) {
-        if(action === 'up' && currentScale < 150) currentScale += 15;
-        if(action === 'down' && currentScale > 100) currentScale -= 15;
-        document.body.style.fontSize = currentScale + '%';
-        document.querySelectorAll('h1, h2, h3, h4, p, span, div, a').forEach(el => {
-            el.style.fontSize = (currentScale / 100) + 'em';
-        });
-    }
+    // Auto-set Tahun Footer
+    document.getElementById('cm-year').textContent = new Date().getFullYear();
 
     const myTasks = [
-    { title: "Deep Breathing", desc: "Take 5 minutes for deep breathing to reduce tension." },
-    { title: "Physical Activity", desc: "Perform stretching or go for a 15-minute walk." },
-    { title: "Prioritization", desc: "Organize today's tasks using the prioritization matrix." }
+        { title: "Deep Breathing", desc: "Take 5 minutes for deep breathing to reduce tension." },
+        { title: "Physical Activity", desc: "Perform stretching or go for a 15-minute walk." },
+        { title: "Prioritization", desc: "Organize today's tasks using the prioritization matrix." }
     ];
 
     let level = "Normal";
@@ -126,15 +163,18 @@
         tasksDiv.innerHTML = '';
         let doneCount = 0;
 
-        for (let i = 1; i <= 21; i++) {
+        // TUKAR KAT SINI: Gelas loop diubah dari i <= 21 ke i <= 30
+        for (let i = 1; i <= 30; i++) {
             const taskInfo = myTasks[(i - 1) % myTasks.length];
             const isDone = !!completed[i];
             if(isDone) doneCount++;
 
             const div = document.createElement('div');
             div.className = `task-card ${isDone ? 'done' : ''}`;
-            div.innerHTML = `<div><h4 style="margin:0;">Day ${i}: ${taskInfo.title}</h4>
-                             <p style="margin:5px 0 0; color:var(--cm-muted); font-size:13px;">${taskInfo.desc}</p></div>`;
+            div.innerHTML = `<div>
+                                <h4>Day ${i}: ${taskInfo.title}</h4>
+                                <p>${taskInfo.desc}</p>
+                             </div>`;
             div.onclick = () => {
                 completed[i] = !completed[i];
                 localStorage.setItem('cm_daily_progress_v1', JSON.stringify(completed));
@@ -143,7 +183,9 @@
             tasksDiv.appendChild(div);
         }
         document.getElementById('done-count').textContent = doneCount;
-        document.getElementById('progress-bar').style.width = `${(doneCount/21)*100}%`;
+        
+        // TUKAR KAT SINI: Pengiraan peratus progress diubah suai bahagi dengan 30
+        document.getElementById('progress-bar').style.width = `${(doneCount/30)*100}%`;
         document.getElementById('stress-level-text').textContent = level;
     }
 
@@ -153,5 +195,6 @@
 
     render();
 </script>
+<script src=accessibility.js></script>
 </body>
 </html>

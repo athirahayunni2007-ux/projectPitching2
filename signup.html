@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CampusMind</title>
     <link rel="stylesheet" href="authentification.css">
+    
     <style>
+        /*CSS for acessibility tool*/
         html, body {
             min-height: 100%;
             margin: 0;
@@ -68,6 +70,7 @@
         <div class="accessibility-tools">
             <button class="btn-access" onclick="changeFontSize('up')" title="Besarkan tulisan">A+</button>
             <button class="btn-access" onclick="changeFontSize('down')" title="Kecilkan tulisan">A-</button>
+            <button class="btn-access" onclick="changeFontSize('reset')">Reset</button>
         </div>
     </div>
 
@@ -75,14 +78,17 @@
         <h1>Create Account</h1>
         <h3>Join CampusMind to start your wellness journey</h3>
 
+        <!--Get user name-->
         <label for="name">Name</label> <br>
         <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
 
+        <!--Get user email-->
         <label for="email">Email Address</label>
         <br>
         <input type="email" id="email" placeholder="your.email@example.com" required>
         <br><br>
 
+        <!--Get user password-->
         <label for="password">Password</label>
         <br>
         <input type="password" id="password" placeholder="Create a password (min. 6 characters)" required>
@@ -94,48 +100,8 @@
         <br>
         <button onclick="signUp()">Sign up</button>
     </div>
-    <div id="cm-footer-slot"></div>
 
-    <script>
-    let currentScale = 100; 
-    function changeFontSize(action) {
-        if(action === 'up') {
-            if(currentScale < 150) currentScale += 15; 
-        } else {
-            if(currentScale > 100) currentScale -= 15; 
-        }
-        
-        document.body.style.fontSize = currentScale + '%';
-        
-        const mainContent = document.querySelector('.cm-main');
-        if(mainContent) {
-            mainContent.style.fontSize = currentScale + '%';
-            const allMainTexts = mainContent.querySelectorAll('h1, h3, label, input, div, button');
-            allMainTexts.forEach(el => {
-                if (!el.classList.contains('btn-access')) {
-                    el.style.fontSize = (currentScale / 100) + 'em';
-                }
-            });
-        }
-
-        const sidebar = document.querySelector('.cm-sidebar');
-        if(sidebar) {
-            const allSidebarTexts = sidebar.querySelectorAll('.cm-uname, .cm-urole, .cm-brand, .cm-brand-sub, .cm-nav a, .cm-logout');
-            allSidebarTexts.forEach(el => {
-                el.style.fontSize = (currentScale / 100) + 'em';
-            });
-        }
-
-        const footerSlot = document.getElementById('cm-footer-slot');
-        if(footerSlot) {
-            const footerTexts = footerSlot.querySelectorAll('.cm-footer h4, .cm-footer h5, .cm-footer p, .cm-footer a, .cm-footer li');
-            footerTexts.forEach(el => {
-                el.style.fontSize = (currentScale / 100) + 'em';
-            });
-        }
-    }
-    </script>
     <script src="authentification.js"></script>
-    <script src="footer.js"></script>
+    <script src="accessibility.js"></script>
 </body>
 </html>
