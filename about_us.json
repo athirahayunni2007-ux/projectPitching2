@@ -15,3 +15,23 @@
     { "name": "Anis Jazmina",        "role": "Backend Developer" }
   ]
 }
+{
+  "hero": {
+    // Hero section: Mission statement displayed at the top
+    "title": "Our Mission",
+    "body": "CampusMind is a student-led initiative at IIUM that supports your mental wellness journey through daily self-care tasks, curated resources, and easy access to professional help. We believe every student deserves a calm mind and a place to turn to when things feel heavy."
+  },
+  "info": [
+    // Info cards: Vision, Values, Who We Help, What We Do
+    { "icon": "heart",  "title": "Our Vision",  "body": "A campus where every student feels seen, supported, and equipped with tools to thrive academically and emotionally." },
+    { "icon": "shield", "title": "Our Values",  "body": "Compassion, confidentiality, inclusivity, and evidence-based care guide everything we do." },
+    { "icon": "users",  "title": "Who We Help", "body": "All IIUM students from undergraduate, postgraduate, local and international across every campus." },
+    { "icon": "book",   "title": "What We Do",  "body": "We provide self-help resources, wellness tracking, and direct lines to IIUM's counseling services." }
+  ],
+  "team": [
+    // Team members: names and roles
+    { "name": "Athirah Ayunni",  "role": "Project Leader & Developer" },
+    { "name": "Amirah Haziqah",         "role": "Frontend Developer" },
+    { "name": "Anis Jazmina",        "role": "Backend Developer" }
+  ]
+}

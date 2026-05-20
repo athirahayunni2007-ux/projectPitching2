@@ -1,55 +1,87 @@
 /* ============ CampusMind Footer styles ============ */
 .cm-footer{
-  margin-top:60px;
-  background:#0b3d33;
-  color:#cfe9df;
+  margin-top:60px; /* Space above footer */
+  background:#0b3d33; /* Dark green background */
+  color:#cfe9df; /* Light text color */
   font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
 }
 
+/* Footer inner grid layout */
 .cm-footer-inner{
-  max-width:1200px;
-  margin:0 auto;
-  padding:40px 32px 24px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:32px;
+  max-width:1200px; /* Limit width for readability */
+  margin:0 auto; /* Center horizontally */
+  padding:40px 32px 24px; /* Inner spacing */
+  display:grid; /* Grid layout */
+  grid-template-columns:repeat(4,1fr); /* 4 equal columns */
+  gap:32px; /* Space between columns */
 }
 
+/* Brand heading */
 .cm-footer h4.cm-footer-brand{
-  color:#fff;margin:0 0 10px;font-size:18px;font-weight:800;
+  color:#fff;
+  margin:0 0 10px;
+  font-size:18px;
+  font-weight:800;
 }
 
+/* Section headings */
 .cm-footer h5{
-  color:#fff;margin:0 0 12px;font-size:14px;
-  text-transform:uppercase;letter-spacing:.05em;
+  color:#fff;
+  margin:0 0 12px;
+  font-size:14px;
+  text-transform:uppercase; /* All caps */
+  letter-spacing:.05em; /* Slight spacing */
 }
 
+/* Paragraph text */
 .cm-footer p{
-  margin:0;line-height:1.6;font-size:14px
+  margin:0;
+  line-height:1.6;
+  font-size:14px
 }
 
+/* Lists for links */
 .cm-footer ul{
-  list-style:none;padding:0;margin:0;
-  display:flex;flex-direction:column;gap:8px;font-size:14px;
+  list-style:none; /* Remove bullets */
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column; /* Vertical list */
+  gap:8px;
+  font-size:14px;
 }
 
+
+/* Links */
 .cm-footer a{
-  color:#9ed8c5;text-decoration:none
+  color:#9ed8c5; /* Soft green */
+  text-decoration:none;
 }
 
 .cm-footer a:hover{
-  color:#fff;text-decoration:underline
+  color:#fff; /* White on hover */
+  text-decoration:underline;
 }
 
+/* Bottom copyright bar */
 .cm-footer-bottom{
   border-top:1px solid rgba(255,255,255,.08);
-  padding:16px 32px;text-align:center;font-size:13px;color:#9ed8c5;
+  padding:16px 32px;
+  text-align:center;
+  font-size:13px;
+  color:#9ed8c5;
 }
 
+/* Responsive adjustments */
 @media (max-width: 880px){
-  .cm-footer-inner{grid-template-columns:1fr 1fr;padding:32px 20px}
+  .cm-footer-inner{
+    grid-template-columns:1fr 1fr; /* 2 columns on tablets */
+    padding:32px 20px
+  }
 }
 
 @media (max-width: 520px){
-  .cm-footer-inner{grid-template-columns:1fr}
+  .cm-footer-inner{
+    grid-template-columns:1fr; /* Single column on mobile */
+  }
 }
